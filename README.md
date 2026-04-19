@@ -34,76 +34,64 @@ Phase de conception terminée. Ce repo contient les **12 documents de référenc
 
 ## Architecture (vue d'ensemble)
 
-```
-        ┌──────────────────┐           ┌──────────────────┐
-        │  YouTube Live    │           │     Twitch       │
-        │  (chat + video)  │           │  (chat + video)  │
-        └────┬────────┬────┘           └────┬────────┬────┘
-  chat msgs  │        │ video       video   │        │  chat msgs
-             │        └──────┬──────────────┘        │
-             │               │                       │
-             ▼               ▼                       ▼
-    ┌─────────────┐  ┌──────────────────┐   ┌─────────────┐
-    │  YouTube    │  │  Relais RTMP     │   │  Twitch     │
-    │  Adapter    │  │  (multistream)   │   │  Adapter    │
-    │  (poll API) │  └────────▲─────────┘   │  (IRC/WS)   │
-    └──────┬──────┘           │             └──────┬──────┘
-           │                  │                    │
-           └──────┬───────────┼────────────────────┘
-                  │           │
-                  ▼           │
-        ┌─────────────────┐   │
-        │  UnifiedChat    │   │
-        │  Manager        │   │
-        │  (agrégation +  │   │
-        │   identité      │   │
-        │   cross-plat.)  │   │
-        └────────┬────────┘   │
-                 │            │
-           commandes          │
-                 ▼            │
-╔═══════════════════════════════════════════════╗
-║          BACKEND  (Node.js + TypeScript)      ║
-║                                               ║
-║  ┌─────────────────────────────────────────┐  ║
-║  │  SIMULATION ENGINE                       │  ║
-║  │  • Tick loop (2s nominal, ×30-50 acc.)  │  ║
-║  │  • 7 âges, règles d'évolution            │  ║
-║  │  • Pression, apocalypses, cycles         │  ║
-║  │  • Attribution de titres                 │  ║
-║  └───────┬────────────────┬────────────────┘  ║
-║          │                │                    ║
-║   état   │                │   events           ║
-║          ▼                ▼                    ║
-║  ┌────────────────┐  ┌──────────────────┐     ║
-║  │  PERSISTENCE   │  │  EVENT BUS       │     ║
-║  │  • SQLite       │  │  • Pub/Sub        │     ║
-║  │  • Snapshots    │  │  • Broadcast WS   │     ║
-║  │  • HistoryLog   │  └────────┬─────────┘     ║
-║  └────────────────┘           │                ║
-║                               │                ║
-╚═══════════════════════════════╪════════════════╝
-                                │ WebSocket
-                                ▼                │
-┌───────────────────────────────────────────────┐│
-│   FRONTEND  (navigateur capturé par OBS)      ││
-│                                               ││
-│   ┌────────────┐ ┌────────┐ ┌──────────────┐ ││
-│   │  RENDERER  │ │  HUD   │ │    AUDIO     │ ││
-│   │  (Pixi.js) │ │ (HTML/ │ │  (Howler.js) │ ││
-│   │            │ │  CSS)  │ │              │ ││
-│   │ globe ↔ iso│ │        │ │ musique par  │ ││
-│   │ caméra     │ │ stats  │ │ âge, SFX     │ ││
-│   │ cinémat.   │ │ events │ │              │ ││
-│   └────────────┘ └────────┘ └──────────────┘ ││
-└───────────────────────┬───────────────────────┘│
-                        │                        │
-                        │ capture vidéo          │
-                        ▼                        │
-            ┌───────────────────────┐            │
-            │     OBS Studio        │────────────┘
-            │  (scène + encodeur)   │  flux RTMP unique
-            └───────────────────────┘  vers le relais
+```mermaid
+flowchart TB
+    subgraph platforms["🎥 Plateformes de diffusion"]
+        YT["<b>YouTube Live</b><br/>chat + viewers + vidéo"]
+        TW["<b>Twitch</b><br/>chat + viewers + vidéo"]
+    end
+
+    subgraph chatLayer["💬 Ingestion chat"]
+        YTA["YouTube Adapter<br/><i>poll API</i>"]
+        TWA["Twitch Adapter<br/><i>IRC / WebSocket</i>"]
+        UCM["<b>UnifiedChatManager</b><br/>agrégation · identité cross-platform"]
+    end
+
+    subgraph backend["⚙️ Backend — Node.js + TypeScript"]
+        SIM["<b>Simulation Engine</b><br/>tick loop · 7 âges · pression<br/>apocalypses · cycles · titres"]
+        PERS[("<b>Persistence</b><br/>SQLite · snapshots<br/>HistoryLog")]
+        BUS["<b>Event Bus</b><br/>Pub/Sub"]
+    end
+
+    subgraph frontendLayer["🎨 Frontend — navigateur"]
+        REND["Renderer<br/><i>Pixi.js · globe ↔ iso<br/>caméra cinématique</i>"]
+        HUD["HUD<br/><i>HTML / CSS<br/>stats · événements</i>"]
+        AUDIO["Audio<br/><i>Howler.js · musique<br/>adaptative · SFX</i>"]
+    end
+
+    OBS["🎬 <b>OBS Studio</b><br/>capture + encodeur"]
+    RELAY["📡 <b>Relais RTMP</b><br/>Restream / NGINX-RTMP"]
+
+    YT -- "chat msgs" --> YTA
+    TW -- "chat msgs" --> TWA
+    YTA --> UCM
+    TWA --> UCM
+    UCM -- "commandes validées" --> SIM
+
+    SIM <--> PERS
+    SIM --> BUS
+    BUS -- "WebSocket" --> REND
+    BUS -- "WebSocket" --> HUD
+    BUS -- "WebSocket" --> AUDIO
+
+    REND --> OBS
+    HUD --> OBS
+    AUDIO --> OBS
+    OBS -- "flux RTMP unique" --> RELAY
+    RELAY -- "vidéo" --> YT
+    RELAY -- "vidéo" --> TW
+
+    classDef platform fill:#6366f1,stroke:#3730a3,color:#fff,stroke-width:2px
+    classDef adapter fill:#10b981,stroke:#047857,color:#fff,stroke-width:2px
+    classDef engine fill:#f59e0b,stroke:#b45309,color:#111,stroke-width:2px
+    classDef front fill:#ec4899,stroke:#9d174d,color:#fff,stroke-width:2px
+    classDef infra fill:#64748b,stroke:#1e293b,color:#fff,stroke-width:2px
+
+    class YT,TW platform
+    class YTA,TWA,UCM adapter
+    class SIM,PERS,BUS engine
+    class REND,HUD,AUDIO front
+    class OBS,RELAY infra
 ```
 
 **Principes clés** :
@@ -112,7 +100,31 @@ Phase de conception terminée. Ce repo contient les **12 documents de référenc
 - **Tout est événement** : chaque action (viewer ou moteur) produit un événement dans le HistoryLog — rien n'est jamais perdu.
 - **Multistream dès le jour 1** : YouTube + Twitch en entrée (chats agrégés) et en sortie (même flux vidéo).
 
-Détails complets : [architecture.md](architecture.md).
+### Flux type : un viewer tape `!rain`
+
+```mermaid
+sequenceDiagram
+    participant V as Viewer (YouTube ou Twitch)
+    participant A as ChatAdapter
+    participant U as UnifiedChatManager
+    participant S as Simulation Engine
+    participant P as Persistence
+    participant B as Event Bus
+    participant F as Frontend (Pixi + Audio)
+
+    V->>A: "!rain 5min"
+    A->>U: ChatMessage normalisé
+    U->>U: résolution identité + PI + cooldown
+    U->>S: Command { user, action: rain, args: [5min] }
+    S->>S: validation · calcul effet · tick
+    S->>P: append HistoryLog<br/>update PlanetState
+    S->>B: event { type: "rain_started", region, duration }
+    B-->>F: WebSocket broadcast
+    F->>F: render pluie + SFX
+    Note over V,F: Le viewer voit le résultat ~2-5s<br/>après avoir tapé la commande
+```
+
+Détails complets : [architecture.md](architecture.md), [chat_integration.md](chat_integration.md).
 
 ---
 

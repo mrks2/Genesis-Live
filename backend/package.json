@@ -14,9 +14,16 @@
     "test": "echo \"Tests à ajouter en Phase 2\" && exit 0"
   },
   "dependencies": {
-    "@genesis-live/shared": "*"
+    "@genesis-live/shared": "*",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "pino": "^9.4.0",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/ws": "^8.5.12",
+    "pino-pretty": "^11.2.2",
     "tsx": "^4.19.0"
   }
 }

@@ -320,19 +320,19 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 
 **Jour 15-17 — Monorepo setup**
 
-- [ ] Initialiser le monorepo (npm workspaces ou pnpm)
-- [ ] Créer les packages : `backend/`, `frontend/`, `shared/`
-- [ ] Configurer TypeScript dans chaque package
-- [ ] Installer les dépendances principales
-- [ ] Premier `npm run build` qui marche
+- [x] Initialiser le monorepo (npm workspaces ou pnpm) → **npm workspaces** choisi
+- [x] Créer les packages : `backend/`, `frontend/`, `shared/`
+- [x] Configurer TypeScript dans chaque package (project references + `tsconfig.base.json` strict)
+- [x] Installer les dépendances principales (TypeScript 5.6, tsx, Vite 5, @types/node, rimraf)
+- [x] Premier `npm run build` qui marche — 3 workspaces compilent, `node backend/dist/index.js` affiche le banner, `vite build` produit un bundle frontend
 
 **Jour 18-20 — Backend hello world**
 
-- [ ] Serveur Express basique
-- [ ] Endpoint `/health` qui retourne `{ status: 'ok' }`
-- [ ] WebSocket server qui accepte des connexions
-- [ ] Logger structuré (Winston ou Pino)
-- [ ] Dotenv + fichier `.env.example`
+- [x] Serveur Express basique → [backend/src/server/http.ts](../backend/src/server/http.ts)
+- [x] Endpoint `/health` qui retourne `{ status, uptime, timestamp, version }` → [backend/src/routes/health.ts](../backend/src/routes/health.ts)
+- [x] WebSocket server qui accepte des connexions (welcome + echo) sur `/ws` → [backend/src/server/websocket.ts](../backend/src/server/websocket.ts)
+- [x] Logger structuré (**Pino** choisi) + pino-pretty en dev → [backend/src/logger/index.ts](../backend/src/logger/index.ts)
+- [x] Dotenv + fichier `.env.example` + validation typée → [backend/src/config/env.ts](../backend/src/config/env.ts)
 
 **Jour 21 — Test intégration**
 

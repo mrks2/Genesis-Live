@@ -1,0 +1,21 @@
+{
+  "name": "@genesis-live/frontend",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Rendu Pixi.js de Genesis Live : planète, entités, HUD, audio.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --build && vite build",
+    "preview": "vite preview",
+    "clean": "rimraf dist .vite",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"Tests à ajouter en Phase 2\" && exit 0"
+  },
+  "dependencies": {
+    "@genesis-live/shared": "*"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}

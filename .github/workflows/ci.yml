@@ -36,11 +36,8 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
-            --no-progress
-            --exclude-mail
-            --exclude-path node_modules
-            --exclude-path .git
             --accept 200,204,206,429
+            --exclude "^https?://(?:www\\.)?(localhost|127\\.0\\.0\\.1)"
             './**/*.md'
           fail: true
           jobSummary: true

@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Annule les runs obsolètes quand plusieurs commits sont poussés à la suite
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  markdown-lint:
+    name: Markdown lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run markdownlint
+        uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          globs: "**/*.md"
+          config: ".markdownlint.json"
+
+  link-check:
+    name: Check markdown links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check internal + external links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --exclude-mail
+            --exclude-path node_modules
+            --exclude-path .git
+            --accept 200,204,206,429
+            './**/*.md'
+          fail: true
+          jobSummary: true
+
+  code-checks:
+    name: Code lint & tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect package.json
+        id: pkg
+        run: |
+          if [ -f package.json ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node.js
+        if: steps.pkg.outputs.exists == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        if: steps.pkg.outputs.exists == 'true'
+        run: npm ci
+
+      - name: Type check
+        if: steps.pkg.outputs.exists == 'true'
+        run: npm run typecheck --if-present
+
+      - name: Lint
+        if: steps.pkg.outputs.exists == 'true'
+        run: npm run lint --if-present
+
+      - name: Tests
+        if: steps.pkg.outputs.exists == 'true'
+        run: npm test --if-present
+
+      - name: No code yet
+        if: steps.pkg.outputs.exists == 'false'
+        run: |
+          echo "::notice title=Code CI inactive::Aucun package.json détecté — les checks de code s'activeront automatiquement dès l'arrivée du code (Phase 1 roadmap)."

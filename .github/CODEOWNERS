@@ -1,0 +1,16 @@
+# CODEOWNERS — revue automatique des PRs
+# Voir : https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Par défaut, @mrks2 est reviewer sur tout
+* @mrks2
+
+# Documentation de conception — toute modif doit être relue
+/*.md                    @mrks2
+
+# Infra CI / GitHub config
+/.github/                @mrks2
+
+# Quand le code arrivera, découpage possible par domaine :
+# /backend/core/         @mrks2 @lead-backend
+# /frontend/renderer/    @mrks2 @lead-frontend
+# /audio/                @mrks2 @audio-designer

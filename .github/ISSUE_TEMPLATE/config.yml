@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://github.com/mrks2/Genesis-Live#documentation
+    about: Lis d'abord les 12 MDs de référence pour comprendre le projet.
+  - name: 🤝 Guide de contribution
+    url: https://github.com/mrks2/Genesis-Live/blob/main/CONTRIBUTING.md
+    about: Comment contribuer efficacement (bug, feature, doc, lore, assets).

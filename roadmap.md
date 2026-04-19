@@ -171,6 +171,7 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 ### Principes de priorisation
 
 **Pour chaque feature**, demander :
+
 1. **Critique** : la simulation peut-elle vivre sans ? (Si non → priorité max)
 2. **Différenciante** : est-ce ce qui rend Genesis Live unique ? (Si oui → prioritaire)
 3. **Impact/effort** : gros impact pour peu d'effort ? (À faire tôt)
@@ -239,12 +240,14 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 ### Semaine 1 — Compréhension et setup
 
 **Jour 1-2 — Relecture des specs**
+
 - [ ] Relire les 9 documents de spec en entier
 - [ ] Prendre des notes sur les points flous
 - [ ] Identifier les risques techniques (ce qu'on ne sait pas faire)
 - [ ] Lister les zones où il faudra improviser
 
 **Jour 3-4 — Setup environnement de dev**
+
 - [ ] Installer Node.js 20+ (via nvm recommandé)
 - [ ] Installer un IDE (VS Code recommandé)
 - [ ] Configurer les extensions (ESLint, Prettier, TypeScript)
@@ -252,6 +255,7 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 - [ ] Créer le repo GitHub (privé ou public)
 
 **Jour 5-7 — Exploration technique**
+
 - [ ] POC : faire marcher Pixi.js avec un canvas simple
 - [ ] POC : créer un bot Twitch qui réagit à "!hello"
 - [ ] POC : connecter YouTube Live Chat API et recevoir des messages
@@ -260,17 +264,20 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 ### Semaine 2 — Outillage et documentation
 
 **Jour 8-10 — Documentation initiale**
+
 - [ ] README.md du projet
 - [ ] CONTRIBUTING.md si open source
 - [ ] Schéma d'architecture (dans le README)
 - [ ] Diagramme de la roadmap
 
 **Jour 11-12 — Outillage CI/CD**
+
 - [ ] GitHub Actions : lint + tests automatiques sur PR
 - [ ] Configuration ESLint + Prettier
 - [ ] Pre-commit hooks (Husky)
 
 **Jour 13-14 — Buffer / réflexion**
+
 - [ ] Temps libre pour digérer, ajuster
 - [ ] Validation du plan avec quelqu'un d'autre si possible
 - [ ] GO/NO-GO pour la phase suivante
@@ -298,6 +305,7 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 ### Semaine 3 — Structure du projet
 
 **Jour 15-17 — Monorepo setup**
+
 - [ ] Initialiser le monorepo (npm workspaces ou pnpm)
 - [ ] Créer les packages : `backend/`, `frontend/`, `shared/`
 - [ ] Configurer TypeScript dans chaque package
@@ -305,6 +313,7 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 - [ ] Premier `npm run build` qui marche
 
 **Jour 18-20 — Backend hello world**
+
 - [ ] Serveur Express basique
 - [ ] Endpoint `/health` qui retourne `{ status: 'ok' }`
 - [ ] WebSocket server qui accepte des connexions
@@ -312,6 +321,7 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 - [ ] Dotenv + fichier `.env.example`
 
 **Jour 21 — Test intégration**
+
 - [ ] Tests unitaires basiques fonctionnent (vitest)
 - [ ] GitHub Actions exécute les tests
 - [ ] Premier commit qui passe le CI
@@ -319,18 +329,21 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 ### Semaine 4 — Frontend et communication
 
 **Jour 22-24 — Frontend hello world**
+
 - [ ] Vite configuré avec TypeScript
 - [ ] Page HTML minimale
 - [ ] Pixi.js affiche un cercle animé
 - [ ] Build production fonctionne
 
 **Jour 25-26 — Communication backend ↔ frontend**
+
 - [ ] Client WebSocket qui se connecte
 - [ ] Le backend envoie "hello" toutes les secondes
 - [ ] Le frontend affiche le compteur
 - [ ] Reconnexion automatique
 
 **Jour 27-28 — Persistance basique**
+
 - [ ] SQLite configuré (better-sqlite3)
 - [ ] Migrations initiales (schema_version)
 - [ ] Premier repository (ViewerRepo vide)
@@ -339,12 +352,14 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 ### Semaine 5 — Polissage fondations (optionnel)
 
 **Jour 29-31 — Outillage**
+
 - [ ] pm2 configuré pour production
 - [ ] Docker fonctionnel (Dockerfile + compose)
 - [ ] Scripts de démarrage / arrêt
 - [ ] Backup SQLite automatique
 
 **Jour 32-35 — Documentation technique**
+
 - [ ] README de chaque package
 - [ ] Comment lancer en local
 - [ ] Architecture actualisée
@@ -374,6 +389,7 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 ### Semaine 6-7 — Moteur de tick
 
 **Jour 36-40 — Boucle principale**
+
 - [ ] Tick loop avec interval configurable
 - [ ] PlanetState en mémoire
 - [ ] Les 7 phases du tick implémentées (structure vide)
@@ -381,6 +397,7 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 - [ ] Tests unitaires
 
 **Jour 41-45 — État de la planète**
+
 - [ ] Structure PlanetState complète
 - [ ] Getters / setters avec validation
 - [ ] Sérialisation JSON
@@ -388,6 +405,7 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 - [ ] Tests
 
 **Jour 46-49 — RNG seedé**
+
 - [ ] Mulberry32 implémenté
 - [ ] Helpers (randomInt, pickRandom, etc.)
 - [ ] Seed reproductible → mêmes résultats
@@ -396,6 +414,7 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 ### Semaine 8-9 — Règles de simulation
 
 **Jour 50-55 — Règles Âge I (Feu)**
+
 - [ ] Température décroît avec le temps
 - [ ] Météorites aléatoires
 - [ ] Volcanisme aléatoire
@@ -403,6 +422,7 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 - [ ] Visualisation frontend : planète rouge qui refroidit
 
 **Jour 56-61 — Règles Âge II (Eaux)**
+
 - [ ] Accumulation d'eau
 - [ ] Tectonique simple (continents qui dérivent)
 - [ ] Pluies aléatoires
@@ -410,6 +430,7 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 - [ ] Visualisation : planète qui devient bleue
 
 **Jour 62-66 — Règles Âge III (Germes)**
+
 - [ ] Entités "Strain" créées
 - [ ] Reproduction, compétition
 - [ ] Mutations aléatoires
@@ -419,18 +440,21 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 ### Semaine 10-11 — Persistance et robustesse
 
 **Jour 67-70 — Persistance en DB**
+
 - [ ] Écriture des snapshots en SQLite
 - [ ] Chargement au démarrage
 - [ ] HistoryLog append-only
 - [ ] Tests
 
 **Jour 71-75 — Système de Pression**
+
 - [ ] Jauge Pression calculée
 - [ ] Événements aléatoires selon la Pression
 - [ ] Intégration aux règles existantes
 - [ ] Tests
 
 **Jour 76-80 — Rendu frontend**
+
 - [ ] Planète avec couleur dynamique selon état
 - [ ] HUD basique (température, pop, âge)
 - [ ] Affichage des événements
@@ -464,12 +488,14 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 ### Semaine 12 — Adapters de chat
 
 **Jour 81-84 — Mock adapter**
+
 - [ ] Interface `ChatAdapter`
 - [ ] `MockChatAdapter` pour tests
 - [ ] Messages simulés avec pseudos aléatoires
 - [ ] Tests
 
 **Jour 85-87 — Parser de commandes**
+
 - [ ] Détection `!commande`
 - [ ] Registre de commandes
 - [ ] Système d'alias
@@ -480,12 +506,14 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 **Jour 88-91 — 10 commandes MVP**
 
 Implémenter dans l'ordre :
+
 - [ ] `!help`, `!status`, `!me`
 - [ ] `!rain`, `!volcano`, `!impact`
 - [ ] `!seed`, `!mutate`
 - [ ] `!cool`, `!heat`
 
 **Jour 92-94 — Validation et économie**
+
 - [ ] Système de PI (Points d'Influence)
 - [ ] Cooldowns personnels
 - [ ] Rate limiting global
@@ -495,12 +523,14 @@ Implémenter dans l'ordre :
 ### Semaine 14 — Plateformes réelles (multistream dès le début)
 
 **Jour 95-97 — YouTube Live**
+
 - [ ] YouTube adapter fonctionnel
 - [ ] Polling messages
 - [ ] Détection subs / superchats
 - [ ] Reconnexion automatique
 
 **Jour 98-101 — Twitch**
+
 - [ ] Twitch adapter avec tmi.js
 - [ ] Détection subs, resubs, gifts, bits
 - [ ] Tests avec un compte test
@@ -535,6 +565,7 @@ Implémenter dans l'ordre :
 ### Semaine 15-16 — Âge IV (Grouillement)
 
 **Jour 102-110**
+
 - [ ] Entité Species complète
 - [ ] Sélection naturelle (fitness, reproduction)
 - [ ] Spéciation (branches phylogénétiques)
@@ -542,6 +573,7 @@ Implémenter dans l'ordre :
 - [ ] Visualisation des créatures
 
 **Jour 111-115**
+
 - [ ] Arbre phylogénétique consultable
 - [ ] Extinctions de masse (événements)
 - [ ] Créatures impossibles (rare)
@@ -550,6 +582,7 @@ Implémenter dans l'ordre :
 ### Semaine 17-18 — Âge V (Étincelles)
 
 **Jour 116-122**
+
 - [ ] Entité Tribe
 - [ ] Développement technologique (feu, outils, langage)
 - [ ] Commandes : `!tribe`, `!fire`, `!tool`, `!ritual`, etc.
@@ -557,6 +590,7 @@ Implémenter dans l'ordre :
 - [ ] Naissance de mythes basiques
 
 **Jour 123-129**
+
 - [ ] Visualisation : huttes, feux de camp
 - [ ] Système d'art rupestre
 - [ ] Migration de tribus
@@ -565,6 +599,7 @@ Implémenter dans l'ordre :
 ### Semaine 19-21 — Âge VI (Cités)
 
 **Jour 130-140**
+
 - [ ] Entités City, Civilization, Religion, Dynasty
 - [ ] Commandes de fondation : `!city`, `!religion`, `!dynasty`
 - [ ] Commandes militaires : `!war`, `!peace`, `!conquer`
@@ -572,6 +607,7 @@ Implémenter dans l'ordre :
 - [ ] Visualisation des cités évolutives
 
 **Jour 141-150**
+
 - [ ] Commandes tech : `!tech` avec progression
 - [ ] Commandes culturelles : `!art`, `!university`, `!library`
 - [ ] Empires émergents
@@ -581,6 +617,7 @@ Implémenter dans l'ordre :
 ### Semaine 22 — Âge VII (Vide)
 
 **Jour 151-157**
+
 - [ ] Entités Satellite, Station, Colony, AI
 - [ ] Commandes : `!launch`, `!satellite`, `!station`, `!ai`, etc.
 - [ ] Événements du Vide Noir
@@ -590,12 +627,14 @@ Implémenter dans l'ordre :
 ### Semaine 23 — Apocalypses et cycles
 
 **Jour 158-163**
+
 - [ ] 9 types d'apocalypses implémentés
 - [ ] Phases d'apocalypse (premise, trigger, devastation, cessation)
 - [ ] Déclenchement automatique selon Pression
 - [ ] Animations cinématiques
 
 **Jour 164-168**
+
 - [ ] Transition entre cycles
 - [ ] Persistance des ruines
 - [ ] Artefacts légendaires
@@ -628,6 +667,7 @@ Implémenter dans l'ordre :
 ### Semaine 24-25 — Assets visuels
 
 **Jour 169-175**
+
 - [ ] Intégration de la palette maître (64 couleurs)
 - [ ] Textures de planète par âge (mode globe) — 7 variantes
 - [ ] Tilesets isométriques par biome (mode iso, tiles 32×16) — 40-60 tuiles chacun
@@ -635,6 +675,7 @@ Implémenter dans l'ordre :
 - [ ] Sprites d'UI / icônes
 
 **Jour 176-182**
+
 - [ ] Animations de créatures (iso : 4 orientations NE/NW/SE/SW)
 - [ ] Animations d'événements (éruption, pluie, explosion) en globe ET iso
 - [ ] Particules (feu, neige, étoiles)
@@ -643,6 +684,7 @@ Implémenter dans l'ordre :
 ### Semaine 26-27 — Caméra cinématique et projection hybride
 
 **Jour 183-188**
+
 - [ ] Détection automatique de points d'intérêt
 - [ ] Zoom / pan cinématique
 - [ ] Cadrage dramatique sur événements majeurs
@@ -652,6 +694,7 @@ Implémenter dans l'ordre :
 - [ ] Z-sort iso pour entités et bâtiments
 
 **Jour 189-194**
+
 - [ ] HUD complet (stats, événements, top viewers)
 - [ ] Notifications stylisées (titres gagnés, apocalypse)
 - [ ] Banner d'âge en transition
@@ -660,12 +703,14 @@ Implémenter dans l'ordre :
 ### Semaine 28-29 — Audio
 
 **Jour 195-201**
+
 - [ ] Musique ambient par âge (7 pistes)
 - [ ] Transitions douces (crossfade)
 - [ ] Thèmes spéciaux (apocalypse, âge d'or)
 - [ ] Contrôle volume global
 
 **Jour 202-208**
+
 - [ ] SFX événements (40-60 effets)
 - [ ] SFX UI (notifications, clics)
 - [ ] Mix dynamique selon l'activité
@@ -698,6 +743,7 @@ Implémenter dans l'ordre :
 ### Semaine 30 — Tests techniques
 
 **Jour 209-213 — Stress tests**
+
 - [ ] Simulation de 1000 commandes/minute
 - [ ] Test de charge WebSocket (500 clients simultanés)
 - [ ] Vérification de la consommation mémoire sur 48h
@@ -705,6 +751,7 @@ Implémenter dans l'ordre :
 - [ ] Test du relais multistream YouTube Live + Twitch (diffusion simultanée stable sur 3h)
 
 **Jour 214-216 — Monitoring**
+
 - [ ] Dashboard admin complet
 - [ ] Alertes configurées (Discord/email)
 - [ ] Logs structurés vérifiés
@@ -713,6 +760,7 @@ Implémenter dans l'ordre :
 ### Semaine 31 — Stream privé
 
 **Jour 217-223 — Stream de test 1 (3 jours)**
+
 - [ ] Lancement avec 10-20 proches
 - [ ] Observation des bugs
 - [ ] Notes sur l'équilibrage
@@ -721,6 +769,7 @@ Implémenter dans l'ordre :
 ### Semaine 32 — Stream plus large
 
 **Jour 224-230 — Stream de test 2 (7 jours, cycle accéléré)**
+
 - [ ] Annonce à 100-200 personnes (cercle proche + communauté early)
 - [ ] Mode "cycle accéléré" (×30 à ×50) pour observer un cycle complet en 4-12 jours de stream
 - [ ] Collecte de feedback structurée
@@ -756,12 +805,14 @@ Implémenter dans l'ordre :
 ### Semaine 33 — Préparation marketing
 
 **Jour 231-233 — Assets marketing**
+
 - [ ] Trailer final (1-2 minutes)
 - [ ] Screenshots iconiques
 - [ ] Description du concept (1 paragraphe)
 - [ ] FAQ pour les nouveaux viewers
 
 **Jour 234-235 — Plateformes (diffusion multistream)**
+
 - [ ] Compte YouTube Live vérifié + éligible au live 24/7
 - [ ] Compte Twitch créé + Stream Key configurée
 - [ ] Relais multistream opérationnel (Restream.io ou NGINX-RTMP self-hosted) : un flux OBS → YouTube Live **et** Twitch simultanément
@@ -774,6 +825,7 @@ Implémenter dans l'ordre :
 ### Jour 236 — Jour J
 
 **Go live**
+
 - [ ] Vérification finale (serveur, DB, backups)
 - [ ] Annonce sur tous les canaux prévus
 - [ ] Live Twitter/X / Discord pour répondre en direct
@@ -810,21 +862,25 @@ Implémenter dans l'ordre :
 ### Rituels récurrents
 
 **Quotidien** :
+
 - Check des logs et alertes
 - Réponse aux questions chat les plus importantes
 - Hot-fixes si besoin
 
 **Hebdomadaire** :
+
 - Review des métriques (engagement, uptime, bugs)
 - Priorisation des améliorations pour la semaine
 - Patch mineur déployé
 
 **Mensuel** :
+
 - Analyse profonde du cycle écoulé
 - Équilibrage des commandes (ajustement des coûts/cooldowns)
 - Ajout d'une feature majeure ou contenu
 
 **Par cycle** :
+
 - Postmortem (ce qui a marché, ce qui n'a pas)
 - Nouvelle narration / twist dans le lore
 - Export des données pour archive publique
@@ -832,18 +888,21 @@ Implémenter dans l'ordre :
 ### Backlog d'améliorations
 
 **Court terme (mois 7-9)** :
+
 - Polissage des assets restants
 - Optimisations de performance
 - Commandes secrètes ajoutées
 - Mode "haute lisibilité" accessibilité
 
 **Moyen terme (mois 9-12)** :
+
 - Wiki public auto-généré
 - API publique pour outils tiers
 - Événements saisonniers (Halloween, Noël...)
 - Features communautaires (votes globaux)
 
 **Long terme (année 2+)** :
+
 - Support nouvelles plateformes (Kick, TikTok Live)
 - "Genesis Live Classic" : relire des cycles archivés
 - Spin-offs possibles (planète secondaire, multivers)
@@ -852,11 +911,13 @@ Implémenter dans l'ordre :
 ### Arrêt / pause
 
 **Cas où tu pourrais vouloir pauser** :
+
 - Burnout (priorise ta santé)
 - Coût serveur excessif vs audience
 - Volonté de pivot majeur
 
 **Comment pauser proprement** :
+
 - Annonce 2 semaines avant
 - Dernière apocalypse cinématique
 - Archivage du cycle final
@@ -866,6 +927,7 @@ Implémenter dans l'ordre :
 ### Fin possible
 
 Genesis Live n'a pas besoin d'avoir une fin. Il peut tourner des années. Mais si un jour tu décides d'arrêter :
+
 - **Cycle final épique** annoncé 3 mois à l'avance (pour laisser le temps à la communauté de vivre la fin)
 - **Apocalypse unique** : quelque chose qui n'est jamais arrivé
 - **Export complet** du lore pour archive publique
@@ -880,6 +942,7 @@ Genesis Live n'a pas besoin d'avoir une fin. Il peut tourner des années. Mais s
 Ces moments clés doivent valider avant de continuer :
 
 **Fin Phase 2 (MVP simulation)**
+
 - ❓ La simulation tourne 24h sans crash ?
 - ❓ Les 3 premiers âges sont distincts visuellement ?
 - ❓ Je suis toujours motivé à continuer ?
@@ -887,6 +950,7 @@ Ces moments clés doivent valider avant de continuer :
 Si un NON → pause, reflex, ajustement du plan avant de continuer.
 
 **Fin Phase 3 (intégration chat)**
+
 - ❓ Un vrai viewer peut influencer le monde ?
 - ❓ Pas de faille de sécurité évidente ?
 - ❓ La latence est acceptable (<5s) ?
@@ -894,6 +958,7 @@ Si un NON → pause, reflex, ajustement du plan avant de continuer.
 Si un NON → refactor technique, pas question de sortir à la prochaine phase.
 
 **Fin Phase 6 (soft launch)**
+
 - ❓ Uptime > 99% sur 7 jours ?
 - ❓ Retours globalement positifs ?
 - ❓ Je me sens prêt pour le grand public ?
@@ -926,21 +991,25 @@ Quelque chose qui n'était pas prévu, mais qui émerge. C'est l'objectif ultime
 ### Risques techniques
 
 **1. Quota YouTube API insuffisant**
+
 - **Probabilité** : Moyenne
 - **Impact** : Élevé (chat ne marche pas)
 - **Mitigation** : Demander un quota élevé gratuit en amont, optimiser les polls, fallback sur Twitch prioritaire
 
 **2. Performance qui s'écroule sur le long terme**
+
 - **Probabilité** : Moyenne
 - **Impact** : Critique (le stream crash)
 - **Mitigation** : Tests de charge en Phase 6, monitoring mémoire, caps sur les entités actives
 
 **3. Bug critique en production**
+
 - **Probabilité** : Haute (c'est inévitable)
 - **Impact** : Variable
 - **Mitigation** : Backups fréquents, procédure de rollback, monitoring proactif
 
 **4. Piratage / injection**
+
 - **Probabilité** : Faible (si bien fait)
 - **Impact** : Élevé
 - **Mitigation** : Validation stricte partout, no-eval, rate limiting, audit régulier
@@ -948,16 +1017,19 @@ Quelque chose qui n'était pas prévu, mais qui émerge. C'est l'objectif ultime
 ### Risques humains
 
 **1. Burnout**
+
 - **Probabilité** : Haute (projet ambitieux en solo)
 - **Impact** : Critique
 - **Mitigation** : Pauses planifiées, célébrer les jalons, ne pas se comparer
 
 **2. Perte de motivation**
+
 - **Probabilité** : Moyenne
 - **Impact** : Élevé
 - **Mitigation** : Livrables fréquents, démos régulières, communauté early
 
 **3. Complexification excessive ("feature creep")**
+
 - **Probabilité** : Haute
 - **Impact** : Moyen (retards)
 - **Mitigation** : Revenir aux specs, dire non aux ajouts, prioriser le lancement
@@ -965,16 +1037,19 @@ Quelque chose qui n'était pas prévu, mais qui émerge. C'est l'objectif ultime
 ### Risques communautaires
 
 **1. Pas assez d'audience**
+
 - **Probabilité** : Moyenne
 - **Impact** : Modéré (le stream marche, mais peu de gens)
 - **Mitigation** : Marketing en amont, partenariats, patience (ça peut croître lentement)
 
 **2. Toxicité dans le chat**
+
 - **Probabilité** : Haute dès qu'il y a du public
 - **Impact** : Élevé sur l'ambiance
 - **Mitigation** : Modération solide (cf. chat_integration.md), bannir vite, community guidelines claires
 
 **3. Tentatives de sabotage organisé**
+
 - **Probabilité** : Faible à Moyenne
 - **Impact** : Modéré
 - **Mitigation** : Rate limiting, détection de coordination, backup possible en tout temps
@@ -982,11 +1057,13 @@ Quelque chose qui n'était pas prévu, mais qui émerge. C'est l'objectif ultime
 ### Risques financiers
 
 **1. Coûts serveur qui explosent**
+
 - **Probabilité** : Faible à Moyenne
 - **Impact** : Modéré (mais bloquant si pas d'argent)
 - **Mitigation** : Commencer petit (VPS 20€/mois), scaler selon besoin, monétisation possible (superchats, dons, sponsors)
 
 **2. API payantes qui augmentent de prix**
+
 - **Probabilité** : Faible
 - **Impact** : Modéré
 - **Mitigation** : Architecture permettant de changer de plateforme
@@ -998,12 +1075,14 @@ Quelque chose qui n'était pas prévu, mais qui émerge. C'est l'objectif ultime
 ### En solo
 
 **Répartition type (semaine de 20h)** :
+
 - 60% code (12h)
 - 20% assets / design (4h)
 - 10% docs / réflexion (2h)
 - 10% tests / déploiement (2h)
 
 **Équilibrer** :
+
 - **Ne pas coder tout le temps** : le design et le lore demandent de la pensée
 - **Ne pas designer tout le temps** : sans code, rien n'avance
 - **Alterner** : 2-3 jours code, 1 jour design, 1 jour réflexion
@@ -1011,11 +1090,13 @@ Quelque chose qui n'était pas prévu, mais qui émerge. C'est l'objectif ultime
 ### En équipe de 2
 
 **Répartition suggérée** :
+
 - **Personne A** : backend (moteur, chat, persistance)
 - **Personne B** : frontend (rendu, UI, audio)
 - **Les deux** : game design, équilibrage, tests
 
 **Rituels** :
+
 - Standup de 15 min 2x/semaine
 - Pair programming 1x/semaine
 - Review des PRs en 24h max
@@ -1023,6 +1104,7 @@ Quelque chose qui n'était pas prévu, mais qui émerge. C'est l'objectif ultime
 ### En équipe de 3+
 
 **Rôles possibles** :
+
 - **Tech lead** : architecture, backend critique
 - **Game designer** : règles, équilibrage, lore
 - **Artist/Audio** : assets, musique, identité visuelle
@@ -1049,22 +1131,26 @@ Quelque chose qui n'était pas prévu, mais qui émerge. C'est l'objectif ultime
 ### Coûts financiers estimés
 
 **Développement** :
+
 - IDE, outils : 0€ (tout gratuit / open source)
 - Assets libres : 0€ à 100€ (packs optionnels)
 - Assets custom (graphiste) : 500-3000€ selon niveau
 
 **Infrastructure** (annuel) :
+
 - VPS 2-4 vCPU : 10-30€/mois → 120-360€/an
 - Domaine : 15€/an
 - Backup cloud : 5-20€/mois → 60-240€/an
 - **Total infra** : 200-600€/an
 
 **APIs** :
+
 - YouTube API : 0€ (quota gratuit suffisant si optimisé)
 - Twitch : 0€
 - Monitoring : 0€ (Grafana self-hosted) ou 10-30€/mois (cloud)
 
 **Marketing** (optionnel) :
+
 - Trailer / graphisme : 0-500€
 - Promotion paid : 0-500€
 
@@ -1074,6 +1160,7 @@ Quelque chose qui n'était pas prévu, mais qui émerge. C'est l'objectif ultime
 ### Plan de rentabilité (si l'objectif est pro)
 
 **Sources potentielles de revenus** :
+
 - Superchats / dons YouTube/Twitch
 - Abonnements (Twitch Subs, YouTube Channel Memberships)
 - Sponsoring (à discuter si ça prend)
@@ -1091,6 +1178,7 @@ Quelque chose qui n'était pas prévu, mais qui émerge. C'est l'objectif ultime
 ### Ce que cette roadmap n'est PAS
 
 Ce n'est **pas** un contrat avec toi-même. Les dates sont **indicatives**. Les phases peuvent s'allonger ou se raccourcir selon :
+
 - Ta disponibilité réelle
 - Les découvertes en cours de route
 - Les priorités qui changent
@@ -1099,6 +1187,7 @@ Ce n'est **pas** un contrat avec toi-même. Les dates sont **indicatives**. Les 
 ### Ce que cette roadmap EST
 
 Un **chemin proposé** pour éviter les pièges classiques :
+
 - Commencer sans plan → abandon précoce
 - Trop ambitieux → abandon par écrasement
 - Pas de démo intermédiaire → démotivation

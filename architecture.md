@@ -60,6 +60,7 @@ Chaque composant doit pouvoir échouer sans emporter le système entier. Circuit
 ### Choix technologiques
 
 **Backend : Node.js + TypeScript**
+
 - Javascript full-stack (partage de code possible avec le frontend)
 - Excellente gestion des événements asynchrones
 - Écosystème riche (SQLite, WebSocket, APIs tierces)
@@ -68,6 +69,7 @@ Chaque composant doit pouvoir échouer sans emporter le système entier. Circuit
 *Alternative : Python avec asyncio ou Go si préférence*
 
 **Frontend : Vanilla JS + Canvas API (+ Pixi.js)**
+
 - Pixi.js pour le rendu 2D performant : **globe** (dézoom) et **tilemap isométrique** (zoom), voir [render_spec.md](render_spec.md)
 - Pas de framework lourd : on veut du rendu simple et rapide
 - HTML/CSS pur pour le HUD superposé
@@ -76,17 +78,20 @@ Chaque composant doit pouvoir échouer sans emporter le système entier. Circuit
 *Alternative : Godot Engine si on veut un moteur 2D plus intégré (tilemap iso natif)*
 
 **Base de données**
+
 - **SQLite** pour la persistance principale (simple, fiable, zéro config)
 - Fichiers **JSON** pour les archives long terme
 - **Redis** (optionnel) pour les caches partagés si multi-instance
 
 **Chat et intégrations externes**
+
 - API YouTube Live Streaming **ET** Twitch tmi.js en parallèle (les deux chats sont agrégés — voir [chat_integration.md](chat_integration.md))
 - OBS Studio en sortie unique + relais multistream pour diffuser simultanément sur YouTube Live et Twitch (voir [§Diffusion multi-plateforme](#diffusion-multi-plateforme))
 - OBS WebSocket API pour contrôler les scènes (optionnel)
 - Discord webhook pour notifications admin (optionnel)
 
 **Outils de développement**
+
 - **Vite** pour le build frontend
 - **ESLint + Prettier** pour le code quality
 - **Vitest** ou **Jest** pour les tests
@@ -96,6 +101,7 @@ Chaque composant doit pouvoir échouer sans emporter le système entier. Circuit
 ### Dépendances principales
 
 **Backend (package.json)**
+
 ```json
 {
   "dependencies": {
@@ -119,6 +125,7 @@ Chaque composant doit pouvoir échouer sans emporter le système entier. Circuit
 ```
 
 **Frontend (package.json séparé)**
+
 ```json
 {
   "dependencies": {
@@ -739,11 +746,13 @@ eventBus.on('AGE_TRANSITION', (event) => {
 ```
 
 **Pourquoi ?**
+
 - Découplage : le core ne sait pas qui écoute
 - Extensibilité : facile d'ajouter un listener (logging, notifications, etc.)
 - Testabilité : on peut vérifier que les events sont émis
 
 **Liste des events principaux** :
+
 - `TICK_COMPLETED`
 - `CHAT_COMMAND_RECEIVED`
 - `ENTITY_CREATED` / `ENTITY_DESTROYED`
@@ -779,6 +788,7 @@ type InboundMessage =
 ```
 
 **Stratégie de bande passante** :
+
 - STATE_UPDATE uniquement tous les N ticks (pas chaque tick)
 - EVENTS pushés immédiatement
 - Compression (gzip) activée côté serveur
@@ -946,6 +956,7 @@ Facilite les tests et la modularité.
 ### Variables d'environnement
 
 **`.env.example`** (committé, sans secrets) :
+
 ```bash
 # Serveur
 PORT=3000
@@ -1031,17 +1042,20 @@ export const FEATURE_FLAGS = {
 ### Environnements
 
 **Local (dev)** :
+
 - Backend en `npm run dev` (avec tsx watch)
 - Frontend en `npm run dev` (Vite HMR)
 - SQLite en local
 - Chat en mode mock ou compte test
 
 **Staging** :
+
 - Un cycle de test sur une petite audience
 - Monitoring en place
 - Rollback facile
 
 **Production** :
+
 - Déployé sur un VPS ou cloud (DigitalOcean, Hetzner, OVH...)
 - Configuration : 2-4 vCPU, 4-8 GB RAM minimum
 - SSD recommandé pour les snapshots
@@ -1068,6 +1082,7 @@ curl http://localhost:3000/api/health
 ### pm2 configuration
 
 **`ecosystem.config.js`** :
+
 ```javascript
 module.exports = {
   apps: [
@@ -1092,6 +1107,7 @@ module.exports = {
 ### Docker (optionnel)
 
 **`Dockerfile`** :
+
 ```dockerfile
 FROM node:20-slim
 
@@ -1111,6 +1127,7 @@ CMD ["node", "backend/dist/index.js"]
 ```
 
 **`docker-compose.yml`** pour le dev :
+
 ```yaml
 services:
   backend:
@@ -1127,14 +1144,17 @@ services:
 ### Stratégie de mise à jour
 
 **Hot updates (sans downtime)** :
+
 - Modifications UI, assets frontend : rechargement client suffit
 - Modifications config : API d'admin pour recharger
 
 **Updates avec downtime court (< 1 minute)** :
+
 - Modifications mineures du moteur
 - Snapshot avant, redémarrage, reprise du snapshot
 
 **Updates avec migration de données** :
+
 - Backup complet
 - Script de migration testé en staging
 - Fenêtre de maintenance annoncée à l'avance
@@ -1235,6 +1255,7 @@ Tous les logs sont en JSON structuré :
 ```
 
 **Niveaux** :
+
 - `error` : erreurs critiques, demande intervention
 - `warn` : situations anormales mais gérables
 - `info` : événements notables (transitions, apocalypses)
@@ -1243,6 +1264,7 @@ Tous les logs sont en JSON structuré :
 ### Métriques à suivre
 
 **Métriques système** :
+
 - CPU usage
 - Mémoire
 - Latence des ticks (p50, p95, p99)
@@ -1250,6 +1272,7 @@ Tous les logs sont en JSON structuré :
 - Espace disque
 
 **Métriques métier** :
+
 - Nombre de viewers actifs
 - Actions par minute
 - Événements par tick
@@ -1257,6 +1280,7 @@ Tous les logs sont en JSON structuré :
 - Titre attribué / jour
 
 **Métriques de santé** :
+
 - Uptime du backend
 - Connexions WebSocket actives
 - Taux d'erreur des commandes
@@ -1265,6 +1289,7 @@ Tous les logs sont en JSON structuré :
 ### Dashboard
 
 Un dashboard simple (Grafana ou custom HTML) affichant :
+
 - Métriques système
 - Métriques métier
 - Logs récents
@@ -1273,6 +1298,7 @@ Un dashboard simple (Grafana ou custom HTML) affichant :
 ### Alertes
 
 Conditions qui déclenchent une notification (Discord webhook, email, SMS) :
+
 - Backend down
 - Erreurs > 10/minute
 - Tick latency > 1 seconde en moyenne
@@ -1288,6 +1314,7 @@ GET /api/health
 ```
 
 Vérifie :
+
 - Backend répond
 - DB accessible
 - Dernière mise à jour < 30s (la simulation tourne)
@@ -1312,12 +1339,14 @@ Vérifie :
 ### Tests unitaires
 
 **Priorité absolue** pour :
+
 - Règles de simulation (évolution, apocalypse, etc.)
 - Parser de commandes
 - Calculs de fitness, probabilités
 - Générateurs de noms, drift
 
 **Exemple** :
+
 ```typescript
 describe('AgeTransitions', () => {
   it('should transition from I to II when water coverage >= 5%', () => {
@@ -1332,6 +1361,7 @@ describe('AgeTransitions', () => {
 ### Tests d'intégration
 
 Vérifier les interactions entre modules :
+
 - Commande chat → event → mutation d'état → broadcast
 - Chargement d'un snapshot complet
 - Déroulement d'un cycle complet (accéléré)
@@ -1339,6 +1369,7 @@ Vérifier les interactions entre modules :
 ### Tests E2E
 
 Scénarios complets :
+
 - Démarrage du serveur → connexion client → affichage planète
 - Simulation d'un cycle entier en mode rapide
 - Crash + recovery depuis snapshot
@@ -1346,6 +1377,7 @@ Scénarios complets :
 ### Tests de charge
 
 Avant un gros événement (stream live attendu), vérifier :
+
 - 1000 commandes en 1 minute
 - 500 connexions WebSocket simultanées
 - Simulation sans dégradation

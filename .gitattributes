@@ -1,0 +1,21 @@
+# Normalisation des fins de ligne dans le repo
+* text=auto eol=lf
+
+# Shell scripts : toujours LF (sinon les hooks Husky cassent sur Linux/macOS)
+*.sh text eol=lf
+.husky/pre-commit text eol=lf
+.husky/commit-msg text eol=lf
+
+# Fichiers binaires : ne pas toucher
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.webm binary
+*.mp4 binary
+*.pdf binary
+*.aseprite binary
+*.ase binary

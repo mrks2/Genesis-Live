@@ -98,17 +98,21 @@ Support de plusieurs plateformes simultanément. Ajout facile de nouvelles plate
 ### Priorités d'intégration
 
 **Phase 1 (MVP)** :
+
 - ✅ YouTube Live Chat (priorité 1)
 - ✅ Mock adapter (pour dev local)
 
 **Phase 2** :
+
 - ✅ Twitch Chat (tmi.js)
 
 **Phase 3** :
+
 - ⏳ Kick.com
 - ⏳ Discord (pour tests VIP)
 
 **Phase 4 (futur)** :
+
 - TikTok Live (quand l'API sera stable)
 - Rumble
 - X (Twitter) Spaces
@@ -297,6 +301,7 @@ YouTube ne propose pas de WebSocket officiel pour le chat. Il faut **poll** l'AP
 **Deux approches possibles** :
 
 **Option A : API officielle YouTube Data API v3** (recommandée)
+
 - Endpoint : `GET /liveChat/messages`
 - Quota : 10 000 unités/jour (1 requête chat = 5 unités)
 - À une requête par 2 secondes → 43 200 unités/jour ❌
@@ -305,6 +310,7 @@ YouTube ne propose pas de WebSocket officiel pour le chat. Il faut **poll** l'AP
 Il faut donc optimiser : **requête toutes les 3-4 secondes**, et réduire la fréquence en période creuse.
 
 **Option B : Librairies tierces non-officielles**
+
 - Exemple : `@yt-live-chat/api`
 - Utilisent du scraping, risqué (peut casser), non supporté
 - À éviter en production long terme
@@ -319,6 +325,7 @@ YOUTUBE_LIVE_VIDEO_ID=optional       // Si stream en cours
 ```
 
 **Étapes côté Google Cloud Console** :
+
 1. Créer un projet
 2. Activer YouTube Data API v3
 3. Créer des credentials (clé API)
@@ -468,6 +475,7 @@ Twitch utilise **IRC over WebSocket** — beaucoup plus simple et plus rapide qu
 ### Setup Twitch
 
 **Étapes** :
+
 1. Créer une application Twitch Developer
 2. Obtenir un OAuth token (pour bot)
 3. Identifier le canal cible
@@ -633,6 +641,7 @@ Kick.com est plus récent et son API est moins stable. À implémenter plus tard
 ### Détection d'une commande
 
 Un message est considéré comme une commande si :
+
 1. Il commence par `!`
 2. Le premier mot (sans `!`) est dans le registre des commandes
 3. Le viewer a les permissions
@@ -896,6 +905,7 @@ class PIManager {
 **Commande** `!pi [@pseudo]` : voir les PI d'un autre viewer (si option activée)
 
 Exemple de réponse :
+
 ```
 @Tom — 2457 PI | 12 titres | 89 actions | Présent depuis cycle 7
 ```
@@ -1011,6 +1021,7 @@ class SpamDetector {
 ### Courbe de punition
 
 Les pénalités augmentent exponentiellement :
+
 - 1ère infraction : warning silencieux
 - 2ème : cooldown global x2 pendant 30 min
 - 3ème : timeout 5 min (aucune commande)
@@ -1297,6 +1308,7 @@ class MultiPlatformChatManager {
 ### Principe : toujours répondre
 
 Chaque commande **doit** avoir un retour visible :
+
 - **Succès** : effet visuel à l'écran + pseudo mentionné
 - **Échec** : explication claire (pourquoi ça n'a pas marché)
 - **En attente** : indication si la commande est queue
@@ -1318,11 +1330,13 @@ Pour les infos personnelles (PI, titres gagnés), via la plateforme si possible.
 ### Règles de réponse dans le chat
 
 **Ne JAMAIS répondre pour** :
+
 - Chaque commande (spammerait le chat)
 - Les erreurs de cooldown (gérées silencieusement)
 - Les validations (on affiche juste l'effet)
 
 **Répondre pour** :
+
 - Commandes échouées par manque de PI (avec montant manquant)
 - Gain de titre important
 - Question directe (`!help`, `!me`, `!status`)
@@ -1370,19 +1384,23 @@ const BOT_RATE_LIMIT = {
 Même sans taper de commande, les viewers contribuent via :
 
 **Présence** :
+
 - Connexion au stream = +1 PI/minute
 - Détection via API plateforme (viewer count)
 
 **Likes** :
+
 - Comptage périodique des likes
 - Delta = nouveaux likes
 - Impact sur le monde selon l'âge (cf. [genesis_live_commands.md](genesis_live_commands.md))
 
 **Subs** :
+
 - Events `subscribe` captés par l'adapter
 - Déclenchent événement majeur dans le monde
 
 **Raids** :
+
 - Event `raid` → bonus d'arrivée massif
 - Nouveaux viewers = pic de PI
 
@@ -1485,6 +1503,7 @@ class UnifiedChatManager {
 Problème : un viewer peut avoir des pseudos différents sur chaque plateforme.
 
 **Approche** :
+
 1. Chaque viewer a un `unifiedId` interne
 2. Lié à plusieurs `platformIds`
 3. Le premier pseudo utilisé devient le pseudo canonique
@@ -1527,12 +1546,14 @@ Certaines commandes nécessitent un consensus (ex: `!observe` pour zoomer sur un
 ### Métriques à suivre
 
 **Santé du chat** :
+
 - Taux de connexion des adapters
 - Latence moyenne (message → traitement)
 - Taux d'erreur par plateforme
 - Nombre de reconnexions
 
 **Activité** :
+
 - Viewers actifs par minute
 - Messages par minute
 - Commandes par minute
@@ -1540,12 +1561,14 @@ Certaines commandes nécessitent un consensus (ex: `!observe` pour zoomer sur un
 - Répartition par plateforme
 
 **Qualité** :
+
 - Taux de spam détecté
 - Taux de commandes rejetées
 - Erreurs de parsing
 - Viewers timeout/banned
 
 **Engagement** :
+
 - Nouveaux viewers par heure
 - Viewers récurrents (reviennent > 3 fois)
 - Taux de subs / viewers actifs
@@ -1578,6 +1601,7 @@ Chaque événement important est loggé en JSON :
 ### Dashboard live
 
 Un dashboard admin (séparé du rendu public) affiche :
+
 - Status des adapters (UP/DOWN/DEGRADED)
 - Graphique latence en temps réel
 - Top 10 viewers par PI actuel
@@ -1617,21 +1641,25 @@ En cas de doute, refuser l'action.
 ### Attaques à prévenir
 
 **Injection** :
+
 - Dans les noms d'entités (SQL injection → validation stricte)
 - Dans les descriptions (XSS → échappement côté frontend)
 - Dans les commandes elles-mêmes (arguments malformés → validation)
 
 **DoS** :
+
 - Rate limiting strict
 - Circuit breakers sur les plateformes
 - Détection de patterns d'attaque
 
 **Account takeover** :
+
 - Ne JAMAIS faire confiance à un changement de pseudo soudain
 - Logging des changements de pseudo
 - Possibilité de "reset" manuel d'un viewer suspect
 
 **Collusion** :
+
 - Détection de groupes qui agissent de concert pour tricher
 - Analyse de timing suspects entre viewers
 
@@ -1648,6 +1676,7 @@ ADMIN_SECRET        # 6 mois
 ### Audit trail
 
 Toutes les actions admin sont loggées pour audit :
+
 - Qui a banni qui
 - Qui a modifié les paramètres de simulation
 - Qui a forcé une commande

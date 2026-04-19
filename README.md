@@ -13,21 +13,25 @@ Phase de conception terminée. Ce repo contient les **12 documents de référenc
 ## Documentation
 
 ### Vision et narratif
+
 - [genesis_live_lore.md](genesis_live_lore.md) — Cosmologie, 7 âges, Panthéon des viewers, apocalypses, mythes
 - [genesis_live_commands.md](genesis_live_commands.md) — Toutes les commandes chat par âge
 
 ### Moteur et architecture
+
 - [simulation_rules.md](simulation_rules.md) — Règles du moteur, cycles, vitesse, titres
 - [data_model.md](data_model.md) — Entités, persistance, migrations, exports
 - [architecture.md](architecture.md) — Stack, modules, patterns, diffusion multi-plateforme
 - [chat_integration.md](chat_integration.md) — YouTube + Twitch, parsing, modération auto
 
 ### Rendu et identité
+
 - [render_spec.md](render_spec.md) — Pixi.js, projection globe ↔ iso, HUD, caméra cinématique
 - [audio_design.md](audio_design.md) — Musique adaptative par âge, SFX, apocalypses sonores
 - [color_palette.md](color_palette.md) — 64 couleurs officielles, palettes par âge et biome
 
 ### Opérations
+
 - [content_moderation.md](content_moderation.md) — Catégories, sanctions, raids, protocoles de crise
 - [coding_best_practices.md](coding_best_practices.md) — Conventions de code, tests, dette technique
 - [roadmap.md](roadmap.md) — Phases 0 à 8, jalons, risques, budget temps
@@ -95,6 +99,7 @@ flowchart TB
 ```
 
 **Principes clés** :
+
 - **Séparation simulation / rendu** : le moteur tourne indépendamment du frontend, qui n'est qu'un observateur.
 - **Source unique de vérité** : le backend est autoritaire. Pas de logique métier dans le navigateur.
 - **Tout est événement** : chaque action (viewer ou moteur) produit un événement dans le HistoryLog — rien n'est jamais perdu.
@@ -141,6 +146,39 @@ Détails complets : [architecture.md](architecture.md), [chat_integration.md](ch
 - OBS Studio 29+
 - Relais multistream (Restream.io ou NGINX-RTMP self-hosted)
 
+## Setup local (pour contribuer)
+
+```powershell
+git clone https://github.com/mrks2/Genesis-Live.git
+cd Genesis-Live
+npm install
+```
+
+`npm install` fait deux choses :
+
+1. Installe les outils de qualité (markdownlint, husky, commitlint, lint-staged)
+2. Active automatiquement les **pre-commit hooks** via Husky (script `prepare`)
+
+Les hooks qui s'exécutent ensuite :
+
+| Hook | Ce qu'il fait | Si ça échoue |
+|------|---------------|---------------|
+| **pre-commit** | `lint-staged` : lint + auto-fix sur les fichiers stagés (MDs maintenant, code plus tard) | Le commit est bloqué — fixe les erreurs et retente |
+| **commit-msg** | `commitlint` : valide le format Conventional Commits du message | Le commit est bloqué — reformule le message |
+
+Scripts utiles :
+
+```powershell
+npm run lint:md          # check tous les MDs
+npm run lint:md:fix      # check + auto-fix les MDs
+```
+
+Pour désactiver temporairement les hooks (à utiliser **uniquement si nécessaire**, ex: merge conflict) :
+
+```powershell
+git commit --no-verify -m "..."
+```
+
 ## Workflow Git
 
 ### Règles d'or
@@ -153,7 +191,7 @@ Détails complets : [architecture.md](architecture.md), [chat_integration.md](ch
 
 ### Branches
 
-```
+```text
 main                 # branche stable, toujours déployable
 ├── doc/xxx          # modifications de documentation
 ├── feat/xxx         # nouvelle fonctionnalité (ex: feat/age4-evolution)
@@ -163,6 +201,7 @@ main                 # branche stable, toujours déployable
 ```
 
 **Créer une branche** :
+
 ```bash
 git checkout -b feat/age4-evolution
 ```
@@ -171,7 +210,7 @@ git checkout -b feat/age4-evolution
 
 Format court, à l'impératif, en minuscules, avec préfixe optionnel :
 
-```
+```text
 feat: ajouter la spéciation à l'âge IV
 fix: corriger le calcul de fitness pour les espèces aquatiques
 docs: aligner les durées de cycle sur 6-12 mois
@@ -182,7 +221,8 @@ chore: mettre à jour Pixi.js vers 7.4
 **À éviter** : `WIP`, `update`, `fix stuff`, `.`, commit messages génériques qui ne disent rien 6 mois plus tard.
 
 **Pour les commits multi-lignes** (utile quand le contexte est important) :
-```
+
+```text
 feat: refondre le système de titres
 
 - Aligner les 21 titres du Panthéon avec simulation_rules.md
@@ -226,6 +266,7 @@ git push origin v0.1.0
 ```
 
 Correspondance avec la [roadmap](roadmap.md) :
+
 - `v0.1` → fin Phase 2 (MVP simulation)
 - `v0.2` → fin Phase 3 (chat intégré)
 - `v0.5` → fin Phase 5 (polish visuel + audio)
@@ -246,6 +287,7 @@ Tous couverts par le `.gitignore`. Si tu ajoutes une nouvelle catégorie, mets-l
 ### Récupérer d'une erreur
 
 **Commité par erreur un fichier** (pas encore poussé) :
+
 ```bash
 git reset --soft HEAD~1       # annule le commit, garde les modifs
 git restore --staged <fichier>  # unstage le fichier
@@ -254,6 +296,7 @@ git restore --staged <fichier>  # unstage le fichier
 **Commité un secret par erreur** (pas encore poussé) : idem ci-dessus. **Déjà poussé** : [rotation immédiate du secret concerné](https://docs.github.com/code-security/secret-scanning/about-secret-scanning), puis réécriture d'historique (`git filter-repo` ou BFG). Un secret public 30 secondes doit être considéré comme compromis.
 
 **Besoin de revenir à un état propre sans perdre le travail** :
+
 ```bash
 git stash                  # met de côté les modifs non commitées
 git checkout main

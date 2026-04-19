@@ -6,6 +6,7 @@ labels: lore
 ---
 
 ## Type d'ajout
+
 - [ ] Mythe récurrent
 - [ ] Archétype de civilisation
 - [ ] Artefact / relique

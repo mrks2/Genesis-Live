@@ -224,6 +224,7 @@ Le [lore](genesis_live_lore.md) est le cœur narratif. Les contributions de lore
 ### Format
 
 Tout ajout de lore doit :
+
 1. S'intégrer dans une section existante (pas créer une nouvelle section sans discussion préalable)
 2. Respecter le **ton** : mythologique, contemplatif, légèrement solennel
 3. Mentionner le titre correspondant dans `simulation_rules.md` si une nouvelle commande ou condition est introduite (cohérence tri-document : lore → sim → commands)
@@ -253,6 +254,7 @@ Tout ajout de lore doit :
 ### Organisation
 
 Les assets vont dans (quand le code existera) :
+
 ```
 frontend/src/assets/
 ├── sprites/

@@ -9,6 +9,7 @@ labels: bug
 <!-- Une phrase claire qui dit ce qui ne va pas -->
 
 ## Étapes pour reproduire
+
 1.
 2.
 3.
@@ -20,6 +21,7 @@ labels: bug
 <!-- Ce qui se passe réellement -->
 
 ## Environnement
+
 - OS :
 - Navigateur (si applicable) :
 - Version / commit : `git rev-parse --short HEAD`
@@ -29,6 +31,7 @@ labels: bug
 <!-- Colle les logs pertinents dans un bloc ``` ``` ou attache des captures -->
 
 ## Sévérité (optionnelle)
+
 - [ ] 🔴 Critique (stream down, perte de données, faille sécu)
 - [ ] 🟠 Haute (fonctionnalité majeure cassée)
 - [ ] 🟡 Moyenne (bug visible mais contournable)

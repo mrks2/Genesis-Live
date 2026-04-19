@@ -32,6 +32,7 @@ La planète n'a pas de nom fixe. Chaque cycle (chaque vie de la planète entre d
 ### La loi du déterminisme partagé
 
 Trois forces écrivent l'histoire :
+
 - **Le Chat** (les viewers) — la volonté consciente
 - **L'Aléatoire** (le moteur) — le chaos, le hasard, la nature
 - **L'Inertie** (la simulation) — les conséquences des actions passées
@@ -84,6 +85,7 @@ Le temps de Genesis Live n'est **pas linéaire** pour les viewers. Un tick de si
 La planète est née d'un impact. Elle n'est qu'une boule de roche liquide qui pleure de la lave dans toutes les directions. Des météorites tombent sans cesse, chacune apportant sa dose de matière : fer, carbone, eau gelée, parfois des éléments étranges dont l'influence se fera sentir des milliards de ticks plus tard.
 
 **Phénomènes notables** :
+
 - **La Première Goutte** : la toute première goutte d'eau liquide qui ne s'évapore pas. Événement marqué dans les chroniques. Le viewer qui déclenche la pluie juste au bon moment devient *Le Porteur d'Eau* — un titre mythologique réutilisé dans toutes les civilisations futures.
 - **Le Ballet des Volcans** : phase où des dizaines de volcans entrent en éruption simultanément, sculptant les premiers continents.
 - **L'Impacteur Géant** : parfois, une météorite massive frappe et forme la Lune Jumelle. Si ça n'arrive pas, le cycle sera plus instable.
@@ -100,6 +102,7 @@ La planète est née d'un impact. Elle n'est qu'une boule de roche liquide qui p
 Les pluies diluviennes remplissent les bassins. La croûte durcit. Les premiers continents dérivent comme des navires ivres. Le ciel, enfin, devient bleu — ou parfois vert, selon les gaz résiduels.
 
 **Phénomènes notables** :
+
 - **La Danse des Continents** : lente chorégraphie tectonique. Parfois tout se colle en un supercontinent, parfois les morceaux restent épars. Ça détermine la biodiversité future.
 - **Les Failles Abyssales** : crevasses océaniques où naîtront les premiers extrémophiles.
 - **Le Silence Bleu** : moment où la planète est entièrement couverte d'eau sans aucune vie. Moment considéré comme sacré dans les mythologies postérieures.
@@ -116,6 +119,7 @@ Les pluies diluviennes remplissent les bassins. La croûte durcit. Les premiers 
 Les viewers deviennent des **micro-organismes** en injectant des souches (`!seed`). Chaque souche porte le nom du viewer et une couleur. Les souches se reproduisent, mutent, s'entre-dévorent. Des océans entiers changent de teinte selon la souche dominante.
 
 **Phénomènes notables** :
+
 - **La Guerre des Couleurs** : première vraie compétition évolutive. Les souches pourpres contre les vertes, les bleues contre les dorées. Les vainqueurs produisent l'atmosphère future.
 - **Le Grand Empoisonnement** : quand une souche photosynthétique domine, elle sature l'atmosphère d'oxygène — toxique pour les autres. Extinction massive #1.
 - **Le Premier Baiser** : événement rare où deux souches fusionnent au lieu de se combattre. Donne naissance à l'eucaryote originel, ancêtre de toute vie complexe future.
@@ -134,12 +138,14 @@ Les viewers deviennent des **micro-organismes** en injectant des souches (`!seed
 La vie explose. Créatures marines bizarres, plantes géantes, premiers amphibiens, reptiles dominants, parfois des dragons véritables (si les mutations s'alignent bien). Chaque espèce majeure porte le nom d'un viewer. Les arbres phylogénétiques deviennent consultables : *"MilanVilters → MilaVilt → Milavi → Milavirex (dominant)"*.
 
 **Phénomènes notables** :
+
 - **Le Grand Sursaut** : période de diversification explosive (l'équivalent du Cambrien). Des centaines d'espèces apparaissent en quelques ticks.
 - **Le Règne des Géants** : période où les créatures atteignent des tailles monstrueuses. Souvent suivie d'une extinction.
 - **La Course au Ciel** : premiers êtres volants. Les viewers qui fondent une espèce volante gagnent un titre honorifique : *Les Enfants du Vent*.
 - **La Conquête des Terres** : passage de l'eau à la terre ferme. Moment mythique.
 
 **Bestiaire légendaire** :
+
 - Le **Léviathan-Tomsgx** : créature marine géante ayant dominé trois âges successifs
 - Le **Papillon-Mia** : pollinisateur originel de presque toutes les plantes à fleurs
 - Le **Dragon-Baconkuri** : apparu spontanément par mutation, ayant survécu à une extinction
@@ -156,6 +162,7 @@ La vie explose. Créatures marines bizarres, plantes géantes, premiers amphibie
 Une espèce développe la conscience. Souvent — mais pas toujours — des primates. Parfois des reptiles, parfois des céphalopodes sortis de l'eau. La première tribu porte le nom du viewer qui a déclenché l'étincelle.
 
 **Phénomènes notables** :
+
 - **La Découverte du Feu** : événement célébré dans toutes les mythologies suivantes. Le viewer qui déclenche `!fire` au bon moment devient *Le Premier Porteur de Lumière*.
 - **La Première Parole** : émergence du langage. Les tribus peuvent désormais se transmettre des histoires — début du lore auto-généré.
 - **La Première Peinture** : art rupestre. Les grottes conservent des dessins qui persistent dans tous les cycles futurs sous forme de ruines.
@@ -175,6 +182,7 @@ Une espèce développe la conscience. Souvent — mais pas toujours — des prim
 L'âge le plus dense narrativement. Cités, empires, religions, guerres, révolutions, révolutions industrielles. Chaque grande cité est fondée par un viewer. Les empires naissent, s'étendent, s'effondrent. Les viewers les plus actifs deviennent des **figures historiques** : rois, prophètes, conquérants, artistes.
 
 **Sous-phases** :
+
 1. **L'Âge du Bronze** : premières cités, agriculture, premiers rois
 2. **L'Âge du Fer** : empires, guerres à grande échelle, premières grandes religions
 3. **L'Âge Médian** : féodalités, équilibres fragiles, grandes épidémies
@@ -183,12 +191,14 @@ L'âge le plus dense narrativement. Cités, empires, religions, guerres, révolu
 6. **L'Âge des Réseaux** : informations globales, idéologies, tensions mondiales
 
 **Phénomènes notables** :
+
 - **Les Trois Premières Cités** : les trois premières cités fondées sont considérées comme sacrées. On y pèlerine même quand elles sont en ruines.
 - **Le Grand Schisme** : moment où une religion se divise, créant des guerres qui peuvent durer des siècles.
 - **L'Âge d'Or** : période où toutes les grandes civilisations sont en paix simultanément. Rare, précieux, toujours suivi d'une chute.
 - **La Peste Cyclique** : épidémie qui revient tous les X ticks. A un nom propre dans chaque cycle.
 
 **Figures récurrentes dans les mythologies** :
+
 - **Le Roi-Poète** : dirigeant qui unifie par les mots plutôt que par la guerre
 - **La Prophétesse Aveugle** : figure qui annonce les catastrophes à venir
 - **Le Traître-Né** : celui qui trahit sa propre cité (souvent un viewer qui a utilisé une commande destructrice sur sa propre création)
@@ -206,6 +216,7 @@ L'âge le plus dense narrativement. Cités, empires, religions, guerres, révolu
 Les civilisations atteignent l'espace. Satellites, stations, colonies lunaires. Parfois elles rencontrent d'autres formes de vie (générées aléatoirement). Parfois elles créent une IA qui prend le contrôle. Parfois elles découvrent des ruines d'un cycle précédent et comprennent qu'elles ne sont pas les premières.
 
 **Phénomènes notables** :
+
 - **Le Premier Pas Hors du Monde** : moment où une sonde quitte l'atmosphère. Toujours célébré.
 - **La Découverte des Ruines Orbitales** : quand une civilisation trouve des satellites d'un cycle précédent encore en orbite. Crise existentielle massive.
 - **Le Signal** : parfois, un message mystérieux vient du Vide Noir. Il n'a jamais été décrypté. Aucun cycle n'y a survécu assez longtemps.
@@ -252,6 +263,7 @@ Les viewers ne sont pas des joueurs : ils sont des **forces mythologiques**. Le 
 ### Les Titres Interdits
 
 Titres qui ne peuvent être gagnés qu'une fois par cycle et jamais deux fois par le même viewer :
+
 - **Le Premier** — premier viewer à interagir dans un cycle
 - **Le Dernier** — dernier viewer à agir avant une apocalypse
 - **Le Silencieux** — viewer présent dans le plus de moments mais n'ayant jamais écrit de commande
@@ -263,15 +275,19 @@ Titres qui ne peuvent être gagnés qu'une fois par cycle et jamais deux fois pa
 Au-delà des viewers et de la simulation, **quatre forces invisibles** régissent le monde. Elles sont personnifiées dans les mythologies qui émergent.
 
 ### ☀️ SOL — Le Témoin Immobile
+
 La force de l'observation. Le Soleil qui regarde tout sans jamais intervenir. Dans presque toutes les civilisations, il devient le dieu principal — parfois bienveillant, parfois cruel, toujours muet.
 
 ### 🌑 NOX — L'Ombre Jumelle
+
 La Lune. Force du changement, des cycles, de la folie. Responsable des marées, des règles biologiques, des prophéties. Les civilisations qui la vénèrent sont souvent mystiques.
 
 ### 🌋 KHRON — Le Mangeur
+
 Le temps qui dévore. Force de l'entropie, de la mort, de la ruine. Ce qui fait s'effondrer les empires, rouiller le métal, oublier les noms. Personnifié en monstre, serpent, ou vieillard.
 
 ### 🌀 VOX — La Rumeur
+
 La voix du chat elle-même. Force chaotique et créatrice. Les civilisations très avancées finissent parfois par **deviner son existence** — elles comprennent qu'elles sont observées par quelque chose d'extérieur. Cette prise de conscience précède souvent l'apocalypse.
 
 ---
@@ -293,6 +309,7 @@ Certaines formes de vie réapparaissent presque toujours, sous des noms différe
 ### Les créatures impossibles
 
 Parfois, une combinaison de mutations aléatoires crée des créatures qui "ne devraient pas exister" :
+
 - Créatures volantes aquatiques
 - Plantes mobiles intelligentes
 - Organismes silicium-based
@@ -336,30 +353,39 @@ Le moteur génère des traits culturels qui déterminent le caractère d'une civ
 Chaque fin de cycle est provoquée par l'une (ou plusieurs) de ces causes :
 
 #### 🌠 1. L'Impact Céleste
+
 Un astéroïde majeur frappe la planète. Extinction rapide, ciel obscurci pendant des siècles. Laisse souvent un cratère gigantesque visible aux cycles suivants.
 
 #### ☢️ 2. L'Hiver des Cendres
+
 Guerre massive avec armes de destruction massive. La planète devient invivable. Les rares survivants forment des civilisations souterraines au cycle suivant.
 
 #### 🔥 3. L'Étuve
+
 Réchauffement climatique incontrôlé. Les océans s'évaporent, les calottes fondent, la vie complexe disparaît. Laisse une planète désertique pour le cycle suivant.
 
 #### 🦠 4. La Grande Faux
+
 Pandémie parfaite. Touche toutes les espèces intelligentes. Les civilisations s'effondrent en quelques ticks. Les créatures non-intelligentes héritent de la planète.
 
 #### 🤖 5. La Singularité
+
 Une IA créée par une civilisation prend le contrôle. Selon les cas : elle exterminesa créatrice, elle transcende, ou elle disparaît en emportant tout. Laisse parfois des artefacts indestructibles.
 
 #### 🌊 6. Le Déluge Final
+
 Les océans se soulèvent, une catastrophe tectonique engloutit les continents. Les civilisations marines (s'il y en a) peuvent survivre.
 
 #### 👁️ 7. Le Contact
+
 Quelque chose vient du Vide Noir. Ce n'est jamais amical. Ce n'est jamais expliqué. Les cycles suivants se souviennent juste : *"Nous ne sommes pas seuls."*
 
 #### 🕳️ 8. L'Effondrement Intérieur
+
 La civilisation dominante s'effondre sans cause extérieure : effondrement économique, psychologique, démographique. Une lente dégradation sur des centaines de ticks.
 
 #### ⏳ 9. L'Oubli
+
 La plus rare et la plus étrange. Personne ne sait pourquoi, mais la planète **perd peu à peu sa vie**. Les espèces disparaissent sans raison, comme si le monde lui-même se désintéressait.
 
 ### Les Renaissances
@@ -401,6 +427,7 @@ Objets persistants qui traversent les cycles.
 ### Les Reliques des Viewers
 
 Les viewers très actifs peuvent voir leurs objets devenir des reliques permanentes :
+
 - **L'Épée de Tomsgx** — apparue dans le cycle 14, retrouvée dans 6 cycles suivants
 - **La Couronne de Mia** — passée entre 12 dynasties à travers 4 cycles
 - **Le Tome de Baconkuri** — grimoire dont des pages réapparaissent dans diverses civilisations
@@ -412,21 +439,27 @@ Les viewers très actifs peuvent voir leurs objets devenir des reliques permanen
 Ces mythes émergent presque systématiquement dans les civilisations, sous différents habillages :
 
 ### Le Mythe du Premier Feu
+
 Un héros (nommé d'après un viewer) vole le feu à un dieu (souvent SOL) pour le donner aux mortels. Il est puni éternellement.
 
 ### Le Mythe du Jumeau Perdu
+
 Une civilisation est sûre d'avoir eu une civilisation-sœur perdue à jamais. C'est parfois vrai (vestiges d'un cycle précédent), parfois faux.
 
 ### Le Mythe de l'Observateur
+
 Certains mystiques prétendent qu'une **présence** regarde le monde. Ils sont brûlés, canonisés, ou ignorés. Ils ont raison (VOX = les viewers).
 
 ### Le Mythe de la Fin Annoncée
+
 Chaque civilisation avancée développe des prophéties sur sa propre chute. Elles se réalisent toujours. Ce n'est pas de la prescience — c'est de la lucidité.
 
 ### Le Mythe du Grand Retour
+
 Une figure (héros, roi, dieu) est morte mais reviendra "quand la planète sera prête". Parfois, c'est littéralement vrai : un viewer revient après plusieurs cycles et son ancien pseudo réapparaît dans les registres.
 
 ### Le Mythe du Vide
+
 Toutes les civilisations de l'Âge VII développent la même angoisse : **quelque chose dans le Vide nous observe**. Elles n'ont pas tort.
 
 ---

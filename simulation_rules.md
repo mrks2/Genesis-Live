@@ -97,6 +97,7 @@ Chaque tick de simulation exécute les phases suivantes **dans l'ordre** :
 ### Ordre important
 
 L'ordre des phases **garantit la cohérence** :
+
 - Les commandes du chat sont appliquées **avant** l'évolution naturelle (le viewer influence, puis la nature réagit)
 - Les événements aléatoires viennent **après** les commandes (le hasard s'ajuste au nouveau contexte)
 - Les transitions d'âge sont détectées **en fin de tick** pour éviter les états intermédiaires
@@ -199,6 +200,7 @@ Un tick a toujours la **même durée en temps réel** (par exemple 2 secondes), 
 ### Échelle affichée
 
 Le HUD affiche un compteur "âge de la planète" converti en **années simulées** pour l'immersion narrative :
+
 ```
 Cycle 1, Âge IV — 1 248 000 000 ans depuis la formation
 ```
@@ -221,6 +223,7 @@ Pour un stream 24/7, chaque cycle complet doit durer **6 à 12 mois réels** (18
 ### Vitesse adaptative
 
 Le moteur peut **ralentir ou accélérer** en fonction de l'activité :
+
 - **Chat actif** (>100 messages/minute) : vitesse normale (×1)
 - **Chat calme** (<10 messages/minute) : accélération modérée (×1.5) pour éviter les temps morts
 - **Événement majeur** en cours : ralentissement (×0.5) pour permettre aux viewers de réagir
@@ -248,21 +251,25 @@ Chaque transition d'âge a des **conditions à remplir**. Tant qu'elles ne sont 
 ### Âge I → Âge II : Refroidissement
 
 **Conditions** :
+
 - Température moyenne ≤ 100°C
 - Eau liquide présente ≥ 5% de la surface
 - Croûte solidifiée ≥ 80%
 
 **Comment accélérer** :
+
 - `!cool`, `!rain`, `!comet` (ajoute de l'eau froide)
 - Impacts de comètes glacées aléatoires
 
 **Comment ralentir** :
+
 - `!heat`, `!volcano` (réchauffe)
 - Impacts de météorites (chaleur de friction)
 
 ### Âge II → Âge III : Apparition de la vie
 
 **Conditions** :
+
 - Eau liquide ≥ 30% de la surface
 - Température entre 0°C et 60°C
 - Molécules organiques accumulées (via foudre + volcanisme)
@@ -270,12 +277,14 @@ Chaque transition d'âge a des **conditions à remplir**. Tant qu'elles ne sont 
 
 **Paramètre caché : Complexité Organique**
 Commence à 0, augmente de 0.001 à 0.1 par tick selon les conditions. Quand il atteint 1.0, la vie émerge.
+
 - Accumulation accélérée par : `!lightning`, `!volcano` (cheminées hydrothermales)
 - Accumulation ralentie par : température instable, pollution excessive
 
 ### Âge III → Âge IV : Multicellularité
 
 **Conditions** :
+
 - Biodiversité ≥ 10 souches distinctes
 - Au moins une souche eucaryote (apparue par `!merge` ou aléatoire)
 - Oxygène atmosphérique ≥ 10%
@@ -283,6 +292,7 @@ Commence à 0, augmente de 0.001 à 0.1 par tick selon les conditions. Quand il 
 
 **Paramètre caché : Complexité Biologique**
 Augmente quand :
+
 - Une souche atteint une population critique
 - Deux souches coexistent sans se détruire
 - Une mutation majeure réussit
@@ -290,12 +300,14 @@ Augmente quand :
 ### Âge IV → Âge V : Intelligence
 
 **Conditions** :
+
 - Au moins une espèce avec trait "social" et "outil-capable"
 - Environnement stable depuis 5000+ ticks
 - Cerveau simulé : taille corporelle / cerveau < seuil
 - Déclenchement de `!intelligence` réussi OU 20+ tentatives accumulées
 
 **Processus** :
+
 1. Une espèce accumule des traits "pro-intelligence" (mains/pattes préhensiles, vie sociale, régime omnivore)
 2. `!intelligence` augmente la probabilité d'éveil
 3. Éveil déclenché → transition d'âge
@@ -303,6 +315,7 @@ Augmente quand :
 ### Âge V → Âge VI : Civilisation
 
 **Conditions** :
+
 - Au moins 3 tribus avec feu, langage, et outils
 - Une tribu avec agriculture (déclenchée par `!farm`)
 - Population totale ≥ 10 000
@@ -310,6 +323,7 @@ Augmente quand :
 ### Âge VI → Âge VII : Spatial
 
 **Conditions** :
+
 - Tech level ≥ 8 (post-industriel)
 - Population globale ≥ 1 milliard
 - Une civilisation avec `!launch` réussi
@@ -317,6 +331,7 @@ Augmente quand :
 ### Transitions "retour en arrière"
 
 **Peut-on régresser ?** : Oui, en cas de mini-apocalypse.
+
 - Âge VI → V : effondrement civilisationnel (guerre massive, pandémie, pas assez pour apocalypse totale)
 - Âge VII → VI : chute technologique (singularity évitée, retour à civilisation classique)
 
@@ -333,12 +348,14 @@ La **Pression** est une jauge globale [0, 1] qui représente l'accumulation de t
 ### Évolution de la Pression
 
 **Augmente par** :
+
 - Chaque commande chat : +0.001 à +0.05 selon son importance
 - Chaque événement majeur évité : +0.02
 - Déséquilibres (température extrême, surpopulation, etc.) : +0.005 par tick
 - Temps qui passe sans événement : +0.0001 par tick
 
 **Diminue par** :
+
 - Événement majeur déclenché : -0.3 à -0.8
 - Commandes stabilisatrices (`!peace`, `!terraform`) : -0.01 à -0.1
 - Périodes de paix : -0.0005 par tick
@@ -385,11 +402,13 @@ où :
 **Algorithme** : Mulberry32 ou similaire (rapide, reproductible, qualité suffisante)
 
 **Initialisation** :
+
 ```
 seed initial = hash(startTimestamp + cycleNumber)
 ```
 
 **Utilisation** :
+
 ```javascript
 function random() {
   // retourne un float [0, 1[ déterministe
@@ -430,11 +449,13 @@ Très faibles probabilités, mais existent. Créent les moments mémorables.
 **Règle du Drift** : à chaque tick, chaque entité a une chance de muter légèrement sans intervention extérieure.
 
 **Espèces** :
+
 - 0.001% chance par tick d'une mutation aléatoire (trait modifié)
 - Le nom de l'espèce dérive sur plusieurs générations : "TomSgx" → "Tomsigi" → "Tomsi" → "Tomsei"
 - Règle de dérivation : remplacer/ajouter/supprimer 1 caractère tous les N ticks
 
 **Civilisations** :
+
 - Langue dérive (noms de villes et de personnages se modifient)
 - Religions évoluent (schismes, syncrétismes)
 - Traditions apparaissent et disparaissent
@@ -444,6 +465,7 @@ Très faibles probabilités, mais existent. Créent les moments mémorables.
 À des moments-clés (transition d'âge, naissance d'empire), le moteur fait un **Tirage des Destinées** : un tirage aléatoire majeur qui détermine la "personnalité" de la nouvelle ère.
 
 Exemple pour une nouvelle civilisation :
+
 ```
 trait_principal = random_pick([
   "belliqueuse", "pacifique", "mystique",
@@ -465,16 +487,19 @@ Ces destins ne sont **pas déterministes** : ils augmentent juste les probabilit
 ### Âge I — Feu : règles spécifiques
 
 **Paramètres surveillés** :
+
 - Température (descend progressivement)
 - Masse accumulée (augmente via impacts)
 - Solidification de la croûte
 
 **Processus passifs par tick** :
+
 - Température : -0.05°C à -0.2°C (selon activité volcanique)
 - Solidification : +0.01% à +0.1%
 - Chance d'impact météorite aléatoire : 0.5%
 
 **Événements spéciaux** :
+
 - **La Première Goutte** : déclenchée à T < 100°C + Eau > 0.1%
 - **Formation de la Lune** : si un impact géant a lieu (naturel ou via commande)
 - **Cristallisation de la croûte** : à solidification ≥ 80%
@@ -482,16 +507,19 @@ Ces destins ne sont **pas déterministes** : ils augmentent juste les probabilit
 ### Âge II — Eaux : règles spécifiques
 
 **Paramètres surveillés** :
+
 - Couverture d'eau
 - Température stabilisée (entre 0 et 60°C)
 - Accumulation de molécules organiques
 
 **Processus passifs** :
+
 - Pluie naturelle : +0.01% à +0.05% d'eau par tick
 - Tectonique : dérive des continents de 0.1° par tick
 - Accumulation organique : +0.0001 à +0.001 par tick
 
 **Événements spéciaux** :
+
 - **Le Silence Bleu** : si couverture d'eau > 95% sans vie, événement contemplatif
 - **Formation de supercontinent** : si tectonique ramène tous les continents
 - **Premier éclair abiogénique** : pose les bases de la vie
@@ -501,6 +529,7 @@ Ces destins ne sont **pas déterministes** : ils augmentent juste les probabilit
 **Entités simulées** : les **souches** (microorganismes)
 
 **Attributs d'une souche** :
+
 ```
 id, name (pseudo ou dérivé), color, 
 population (0 à 10^9),
@@ -518,21 +547,25 @@ habitat: enum (surface, profondeur, côte...)
 ```
 
 **Règles de reproduction** :
+
 - Chaque souche double en population tous les 10 ticks si conditions favorables
 - Limite de carrying capacity de l'environnement
 - Compétition pour les ressources : si 2 souches même habitat, la plus adaptée gagne
 
 **Règles de mutation** :
+
 - 0.01% chance par tick par souche
 - Si mutation : création d'une nouvelle souche enfant avec 1-3 traits modifiés
 - Nom dérivé du parent : "Alice" → "Alicette", "Alicia"...
 
 **Règles d'extinction** :
+
 - Population < seuil minimum → extinction
 - Si environnement change défavorablement → chute de population
 - Catastrophes (via commandes ou événements) → extinction immédiate possible
 
 **Règle du Premier Baiser** :
+
 - Probabilité naturelle de fusion : 0.0001% par paire de souches par tick
 - `!merge` augmente la probabilité pour un tick spécifique
 - Succès → création d'eucaryote ancestral, débloque la complexité
@@ -542,6 +575,7 @@ habitat: enum (surface, profondeur, côte...)
 **Entités simulées** : les **espèces** (créatures)
 
 **Attributs d'une espèce** :
+
 ```
 id, name (pseudo), scientific_name (auto-généré),
 population, 
@@ -560,16 +594,19 @@ prey: [ids]
 ```
 
 **Règles d'évolution** :
+
 - Sélection naturelle : traits adaptés → survie, pas adaptés → déclin
 - Radiation adaptative : si niche vacante, une espèce peut s'y adapter
 - Speciation : si population isolée géographiquement, devient une nouvelle espèce après N ticks
 
 **Règles de mutation** :
+
 - 0.005% par tick par espèce
 - Mutations possibles : changement de taille, régime, habitat, nouveau trait
 - Mutation légendaire (0.0001%) : trait impossible (télépathie, silicium...)
 
 **Règles d'extinction** :
+
 - Prédation non durable : si prédateur mange plus qu'il n'y a de proies → crash
 - Catastrophe : impact de météorite peut tuer 50-95% des espèces
 - Compétition : si deux espèces trop proches écologiquement, la moins adaptée disparaît
@@ -579,6 +616,7 @@ prey: [ids]
 **Entités simulées** : les **tribus**
 
 **Attributs d'une tribu** :
+
 ```
 id, name (pseudo fondateur), 
 population (20 à 10000),
@@ -596,11 +634,13 @@ relations: {
 ```
 
 **Règles de développement tribal** :
+
 - Découvertes naturelles : chance faible par tick d'auto-découvrir feu, outils, langage
 - Transmission : si deux tribus en paix, elles partagent leurs découvertes sur X ticks
 - Croissance : population +0.1% à +1% par tick selon conditions
 
 **Règles de conflit tribal** :
+
 - Probabilité de conflit = f(proximité, ressources, cultures, pression)
 - Issue d'un conflit : déterminée par population × technologie × aléatoire
 - Conséquences : extinction, fusion, migration
@@ -610,6 +650,7 @@ relations: {
 **Entités simulées** : **cités**, **empires**, **religions**
 
 **Attributs d'une cité** :
+
 ```
 id, name, founder_pseudo,
 population, tech_level,
@@ -623,21 +664,25 @@ history: [...]
 ```
 
 **Règles de croissance urbaine** :
+
 - Population croît selon : nourriture × bonheur × santé × (1 - guerre)
 - Si stagnation longue → rebellion possible
 - Si trop grande croissance → crise de ressources
 
 **Règles économiques** :
+
 - Commerce enrichit les deux parties
 - Guerre coûte et détruit
 - Innovation tech fait progresser l'ensemble de la civilisation
 
 **Règles d'empire** :
+
 - Un empire peut avoir 1-15 cités selon sa puissance
 - Rébellion probable si : distance trop grande de la capitale, culture différente, population mécontente
 - Succession : dynastie continue tant que pas d'assassinat, coup d'état, ou révolution
 
 **Règles de religion** :
+
 - Une religion se propage via commerce, guerre, migration
 - Schisme possible si : différences culturelles entre régions, hérétique charismatique
 - Influence sur la société : moralité, guerres saintes, art
@@ -647,11 +692,13 @@ history: [...]
 **Nouvelles entités** : **stations**, **colonies**, **IAs**
 
 **Règles de l'âge spatial** :
+
 - Développement tech accéléré (x2 par rapport à Âge VI)
 - Risques existentiels amplifiés
 - Possibilité d'échapper à l'apocalypse via `!ascension`
 
 **Règles d'IA** :
+
 - `!ai` crée une IA avec paramètres aléatoires
 - Chaque tick, l'IA évolue : bienveillante, neutre, hostile
 - Si hostile → apocalypse Singularité
@@ -659,6 +706,7 @@ history: [...]
 - Si transcendante → l'IA disparaît en emportant ses créateurs
 
 **Règles du Contact** :
+
 - `!contact` ou événement aléatoire rarissime
 - Visiteurs peuvent être : hostiles (apocalypse), indifférents (message mystérieux), bienveillants (don technologique)
 - Probabilité d'hostilité augmente avec le niveau de pollution de la planète
@@ -672,14 +720,17 @@ history: [...]
 Une apocalypse peut être déclenchée de trois manières :
 
 **1. Seuil de Pression**
+
 - Si `pressure ≥ 0.95` pendant > 100 ticks consécutifs → apocalypse forcée
 - Le type d'apocalypse est choisi selon le contexte
 
 **2. Commandes catastrophiques cumulées**
+
 - `!nuke` × 3 dans un même tick window → apocalypse nucléaire garantie
 - Combinaisons spécifiques peuvent trigger des apocalypses spécifiques
 
 **3. Événement aléatoire catastrophique**
+
 - Probabilité faible mais non nulle (0.0001% par tick à l'âge VII)
 - Augmente si la civilisation est fragile
 
@@ -699,20 +750,24 @@ sinon → choix aléatoire parmi tous les types compatibles
 ### Phases d'une apocalypse
 
 **Phase 1 — Prémisse (10% de la durée)**
+
 - Signes avant-coureurs
 - Population commence à paniquer
 - Dirigeants tentent de réagir (possibilité de `!peace`, `!terraform` etc.)
 
 **Phase 2 — Déclenchement (40%)**
+
 - L'événement catastrophique commence
 - Effets visibles : températures, mort massive, etc.
 
 **Phase 3 — Dévastation (40%)**
+
 - Effondrement massif
 - Populations en chute libre
 - Effets secondaires (famines, maladies)
 
 **Phase 4 — Cessation (10%)**
+
 - Fin des effets actifs
 - État final consigné
 - Transition vers la renaissance
@@ -734,6 +789,7 @@ sinon → choix aléatoire parmi tous les types compatibles
 ### Survivants
 
 Aucune apocalypse n'est jamais totale. Toujours :
+
 - **0.001% à 5%** de la biomasse survit
 - **Certaines espèces** (les plus résilientes) persistent
 - **Certaines ruines** sont préservées
@@ -752,18 +808,21 @@ Puis un **nouveau cycle commence** avec ces règles :
 ### Ce qui est conservé
 
 **À 100%** :
+
 - Le HistoryLog complet
 - Les titres des viewers
 - Le nom des viewers qui ont interagi (ils peuvent réapparaître)
 - Les statistiques globales
 
 **Partiellement** :
+
 - **30-70% des ruines physiques** (selon sévérité de l'apocalypse)
 - **1-3 artefacts légendaires** (L'Obélisque, Le Livre Brûlé...)
 - **Fossiles** des espèces majeures
 - **Débris orbitaux** (si Âge VII atteint)
 
 **Transformés** :
+
 - L'état de la planète (palette de couleurs change, paysage modifié)
 - Les "savoirs innés" : les premières tribus du nouveau cycle peuvent "se souvenir" de quelques mythes
 
@@ -820,6 +879,7 @@ fitness = base_fitness
 ```
 
 **Plages** :
+
 - `fitness > 0.7` : prospérité (croissance population)
 - `0.3 < fitness < 0.7` : stabilité
 - `fitness < 0.3` : déclin
@@ -839,17 +899,20 @@ Quand ces conditions sont remplies, la population devient une nouvelle espèce (
 ### Héritage génétique des traits
 
 Quand une nouvelle espèce émerge :
+
 - 70% des traits hérités du parent
 - 20% modifiés légèrement
 - 10% nouveaux traits aléatoires
 
 **Traits impossibles** (0.01% des mutations) :
+
 - Liste : télépathie, silicium, multi-corps, vol sans ailes, etc.
 - Si obtenus : l'espèce devient "légendaire" dans les chroniques
 
 ### Évolution culturelle (Âges V+)
 
 Même règles que biologique mais appliquées aux cultures :
+
 - **Dérive culturelle** : pratiques, langues, croyances évoluent par drift
 - **Sélection culturelle** : pratiques efficaces se diffusent, inefficaces disparaissent
 - **Schismes** : comme la spéciation biologique
@@ -865,113 +928,139 @@ Même règles que biologique mais appliquées aux cultures :
 ### Titres Primordiaux
 
 **Le Porteur d'Eau** 💧
+
 - Condition : premier viewer à faire pleuvoir pendant l'Âge I du cycle
 - Attribution : immédiate, permanent (gagné une fois, gardé à vie)
 
 **Le Forgeron** 🔥
+
 - Condition : avoir déclenché la plus grosse éruption volcanique du cycle
 - Attribution : en fin de cycle (réattribuable si record battu)
 
 **La Semeuse** 🌱
+
 - Condition : avoir injecté la souche qui domine la fin de l'Âge III
 - Attribution : en fin d'Âge III
 
 **Le Premier Œil** 👁️
+
 - Condition : avoir déclenché `!intelligence` quand cela a réussi
 - Attribution : immédiate
 
 **Le Porteur de Flamme** 🔥
+
 - Condition : premier à déclencher `!fire` sur une tribu pré-humaine à l'Âge V
 - Attribution : immédiate (un seul par cycle)
 
 **L'Architecte** 🏛️
+
 - Condition : avoir fondé la plus ancienne cité encore debout à la fin du cycle
 - Attribution : en fin de cycle
 
 **Le Conquérant** ⚔️
+
 - Condition : avoir mené le plus grand empire (taille × durée)
 - Attribution : en fin de cycle
 
 **Le Prophète** 📜
+
 - Condition : avoir fondé la religion la plus répandue (nb de fidèles × durée)
 - Attribution : en fin de cycle
 
 **L'Ingénieur-Roi** ⚙️
+
 - Condition : avoir déclenché `!industrial` en premier
 - Attribution : immédiate
 
 **L'Astronaute** 🚀
+
 - Condition : avoir réussi `!launch` en premier
 - Attribution : immédiate
 
 ### Titres Obscurs
 
 **Le Destructeur** ☠️
+
 - Condition : avoir causé la plus grande extinction (nb d'espèces éteintes par une action directe)
 - Attribution : à la fin de chaque extinction majeure, puis consolidation en fin de cycle
 
 **Le Traître** 🗡️
+
 - Condition : avoir attaqué sa propre création (cité fondée, espèce injectée, religion fondée)
 - Attribution : immédiate
 
 **Le Fossoyeur** ⚰️
+
 - Condition : avoir enterré plus d'espèces qu'il n'en a créé sur le cycle (diff net ≤ -3)
 - Attribution : en fin de cycle
 
 **L'Hérésiarque** ⛧
+
 - Condition : avoir provoqué le plus grand schisme religieux (scission d'une religion majeure en ≥ 2 branches)
 - Attribution : en fin de cycle
 
 **Le Porteur de Peste** 🦠
+
 - Condition : avoir déclenché la pandémie la plus meurtrière (morts × propagation)
 - Attribution : en fin de cycle
 
 **L'Oublieur** 🌫️
+
 - Condition : avoir effacé le plus de savoir (destructions de bibliothèques, autodafés, effondrements culturels via commandes)
 - Attribution : en fin de cycle
 
 ### Titres Rares
 
 **L'Équilibriste** ⚖️
+
 - Condition : civilisation fondée par le viewer en paix continue pendant 1000+ ticks
 - Attribution : immédiate au franchissement du seuil
 
 **Le Renouveau** 🌅
+
 - Condition : avoir permis une transition d'âge sans catastrophe (aucune extinction majeure sur les 500 ticks autour de la bascule)
 - Attribution : à la transition d'âge
 
 **L'Ascendant** ✨
+
 - Condition : faire partie de l'équipage d'une Ascension réussie (commande `!ascend` groupée, ≥ 3 viewers)
 - Attribution : immédiate
 
 **Le Retourné** 🔄
+
 - Condition : viewer apparu dans 7 cycles consécutifs (identité liée)
 - Attribution : automatique à l'entrée dans le 7ᵉ cycle
 
 **L'Oraculaire** 🔮
+
 - Condition : avoir prédit via `!prophecy` une apocalypse qui s'est produite ensuite (match texte ∨ catégorie)
 - Attribution : post-apocalypse si match validé
 
 **Le Légendaire** 🌟
+
 - Condition : désigné par la commande `!hero [nom]` à l'Âge V, avec un viewer actif (≥ 20 interactions dans le cycle)
 - Attribution : immédiate, le nom est ensuite transmis comme mythe aux cycles suivants
 - Persistance inter-cycles : oui (pseudo-lineage)
 
 **L'Empereur** 👑
+
 - Condition : avoir unifié ≥ 3 cités via `!unify` en un empire durable (≥ 500 ticks de stabilité)
 - Attribution : 500 ticks après la commande, si l'empire tient
 
 ### Titres Interdits (1 par cycle max, jamais deux fois par le même viewer)
 
 **Le Premier**
+
 - Condition : premier viewer à interagir dans le cycle (toute commande payante)
 - Attribution : immédiate
 
 **Le Dernier**
+
 - Condition : dernier viewer à agir avant le tick de déclenchement de l'apocalypse
 - Attribution : post-apocalypse
 
 **Le Silencieux**
+
 - Condition : viewer présent (vu dans le chat) dans ≥ 80 % des ticks du cycle sans jamais envoyer de commande payante
 - Attribution : en fin de cycle
 
@@ -989,11 +1078,13 @@ Même règles que biologique mais appliquées aux cultures :
 ### Snapshots
 
 **Fréquence** :
+
 - Snapshot rapide : toutes les 100 ticks (en mémoire)
 - Snapshot disque : toutes les 1000 ticks
 - Snapshot archive : toutes les 10 000 ticks (conservé long terme)
 
 **Contenu d'un snapshot** :
+
 - État complet de la planète
 - Seed RNG actuel
 - HistoryLog complet
@@ -1002,6 +1093,7 @@ Même règles que biologique mais appliquées aux cultures :
 ### Rotation
 
 **Snapshots conservés** :
+
 - Derniers 10 snapshots disque (pour rollback court terme)
 - Dernier snapshot de chaque âge (pour rejouer n'importe quel âge)
 - Dernier snapshot de chaque cycle (pour archives historiques)
@@ -1009,6 +1101,7 @@ Même règles que biologique mais appliquées aux cultures :
 ### Recovery
 
 En cas de crash :
+
 1. Charger le dernier snapshot disque valide
 2. Vérifier l'intégrité
 3. Reprendre la simulation au tick suivant
@@ -1017,6 +1110,7 @@ En cas de crash :
 ### HistoryLog
 
 **Structure** :
+
 ```
 Log entry {
   tick: int,
@@ -1031,6 +1125,7 @@ Log entry {
 ```
 
 **Rétention** :
+
 - Toujours conservé, jamais purgé
 - Export possible en JSON, MD, ou visualisation web
 
@@ -1094,6 +1189,7 @@ Pour savoir si la simulation est bien équilibrée :
 ### A/B Testing
 
 Pour les ajustements majeurs :
+
 - Faire tourner 2 cycles avec paramètres différents
 - Comparer engagement, durée, variété des apocalypses
 - Ajuster les paramètres vers la variante la plus réussie
@@ -1120,6 +1216,7 @@ Ces règles définissent **l'ADN du moteur**, mais elles ne sont pas gravées da
 ### Évolution du document
 
 Ce document est **vivant**. À mettre à jour :
+
 - Après chaque session de tuning majeure
 - À chaque ajout de règle nouvelle
 - Après chaque apocalypse "exceptionnelle" qui révèle un pattern non anticipé

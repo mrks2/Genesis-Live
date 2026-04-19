@@ -47,11 +47,13 @@ Chaque donnée a ses timestamps : créé_à, modifié_à, détruit_à (si applic
 Le modèle sépare deux types de données :
 
 **Données d'état** (mutables, reflètent le "maintenant")
+
 - Populations actuelles, températures, stats d'empires...
 - Stockées sous forme optimisée pour la lecture rapide
 - Reconstructibles à partir des événements
 
 **Données événementielles** (immutables, reflètent le "ce qui s'est passé")
+
 - Actions du chat, naissances, morts, apocalypses
 - Append-only, jamais modifiées
 - Source de vérité absolue
@@ -86,6 +88,7 @@ Le modèle sépare deux types de données :
 ### Volumes de données attendus
 
 Pour un cycle typique de 6-12 mois (180-365 jours) :
+
 - **Entités actives simultanées** : 100 - 10 000
 - **Entités créées au total** : 1 000 000 - 10 000 000
 - **Événements chat** : 3 000 000 - 30 000 000
@@ -93,6 +96,7 @@ Pour un cycle typique de 6-12 mois (180-365 jours) :
 - **Taille snapshots** : 50 MB - 500 MB chacun
 
 Sur un stream qui tourne plusieurs années = 1 à 2 cycles par an :
+
 - **Volume total archivé** : 30 - 300 GB / an
 - **HistoryLog cumulé** : 10 - 100 GB / an (compressable)
 
@@ -1287,22 +1291,26 @@ Religion (1) ──< (N) Religion (schisms)
 ### Index critiques pour les performances
 
 **Index sur Event** (table à forte volumétrie) :
+
 - `(cycleId, tickNumber)` — pour le replay chronologique
 - `(eventType)` — pour filtrer par type
 - `(actorId, actorType)` — pour l'historique d'un viewer
 - `(severity, tickNumber)` — pour retrouver les gros événements
 
 **Index sur ViewerAction** :
+
 - `(viewerId, timestamp)` — historique personnel
 - `(cycleId, tickNumber)` — ordre chronologique
 - `(commandType)` — stats par commande
 
 **Index sur Species / City / Civilization** :
+
 - `(cycleId, isAlive)` — entités actives
 - `(founderViewerId)` — entités créées par un viewer
 - `(parentSpeciesId)` — phylogénie
 
 **Index sur Viewer** :
+
 - `(pseudo)` unique — recherche par pseudo
 - `(platformId, platform)` unique — lien avec la plateforme
 - `(lastActionAt)` — viewers récemment actifs
@@ -1310,13 +1318,16 @@ Religion (1) ──< (N) Religion (schisms)
 ### Contraintes d'intégrité
 
 **Suppressions** :
+
 - Aucune suppression d'entités. Les entités "détruites" ont juste `isAlive/isActive = false` et `destroyedAtTick`.
 - Exception : données techniques (caches, ticks > 1000 anciens qui ne sont pas snapshots).
 
 **Références orphelines** :
+
 - Autorisées volontairement. Si un `parentSpeciesId` pointe vers une espèce "détruite", c'est normal et voulu.
 
 **Unicité** :
+
 - Un viewer ne peut pas avoir deux fois le même titre "permanent unique" (ex: "Le Premier d'un cycle")
 - Un pseudo + plateforme est unique
 - Un ID d'entité est unique globalement
@@ -1591,6 +1602,7 @@ Ce modèle de données est **la colonne vertébrale** de Genesis Live. Tout le r
 ### Volume de données à anticiper
 
 Pour un stream qui tourne **1 an** (1 à 2 cycles complets au rythme nominal 6-12 mois) :
+
 - 1 à 20 millions d'entités créées (selon la complexité du cycle et la durée réelle)
 - 3 à 60 millions d'événements
 - 3 à 50 GB de données compressées (HistoryLog inclus)

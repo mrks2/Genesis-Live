@@ -36,8 +36,9 @@ gantt
     axisFormat %b %Y
 
     section 🛠️ Préparation
-    Phase 0 — Setup environnement            :p0, 2026-04-20, 12d
-    Phase 1 — Fondations techniques          :p1, after p0, 18d
+    Phase 0 — Doc, CI, Husky, reorg          :done, p0a, 2026-04-12, 8d
+    Phase 0 — POCs techniques (Pixi/Twitch/YT) :active, p0b, after p0a, 4d
+    Phase 1 — Fondations techniques          :p1, after p0b, 18d
 
     section ⚙️ Moteur
     Phase 2 — MVP simulation                  :p2, after p1, 35d
@@ -237,44 +238,46 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 **Durée** : 1-2 semaines
 **Objectif** : être prêt à coder efficacement
 
+> **🏁 Avancement (MAJ 2026-04-19)** : Semaine 1 et Semaine 2 essentiellement terminées — reste les 3 POCs techniques (Pixi.js, bot Twitch, YouTube Live API) avant de passer en Phase 1. La doc a été étoffée au-delà du périmètre initial (alignement cycle 6-12 mois, multistream, diagrammes Mermaid, 12 MDs complétés).
+
 ### Semaine 1 — Compréhension et setup
 
 **Jour 1-2 — Relecture des specs**
 
-- [ ] Relire les 9 documents de spec en entier
-- [ ] Prendre des notes sur les points flous
-- [ ] Identifier les risques techniques (ce qu'on ne sait pas faire)
-- [ ] Lister les zones où il faudra improviser
+- [x] Relire les ~~9~~ **12** documents de spec en entier
+- [x] Prendre des notes sur les points flous → ajustements intégrés en direct (durée de cycle, multistream, titres manquants)
+- [x] Identifier les risques techniques → latence multistream, volumes data, équilibrage Âge VI dominant
+- [x] Lister les zones où il faudra improviser → équilibrage fin, déclenchement apocalypses, drift culturel
 
 **Jour 3-4 — Setup environnement de dev**
 
-- [ ] Installer Node.js 20+ (via nvm recommandé)
-- [ ] Installer un IDE (VS Code recommandé)
-- [ ] Configurer les extensions (ESLint, Prettier, TypeScript)
-- [ ] Git configuré, SSH key GitHub
-- [ ] Créer le repo GitHub (privé ou public)
+- [x] Installer Node.js 20+ (via nvm recommandé) → `npm install` fonctionne
+- [x] Installer un IDE (VS Code recommandé) → utilisé
+- [ ] Configurer les extensions (ESLint, Prettier, TypeScript) → à faire en Phase 1 avec le code
+- [x] Git configuré ~~SSH key GitHub~~ → HTTPS fonctionne, SSH optionnel
+- [x] Créer le repo GitHub (privé ou public) → <https://github.com/mrks2/Genesis-Live> (public)
 
 **Jour 5-7 — Exploration technique**
 
 - [ ] POC : faire marcher Pixi.js avec un canvas simple
 - [ ] POC : créer un bot Twitch qui réagit à "!hello"
 - [ ] POC : connecter YouTube Live Chat API et recevoir des messages
-- [ ] Décider de la stack finale (TypeScript confirmed ? SQLite ou PostgreSQL ?)
+- [x] Décider de la stack finale → TypeScript confirmé, SQLite confirmé (voir [architecture.md](architecture.md))
 
 ### Semaine 2 — Outillage et documentation
 
 **Jour 8-10 — Documentation initiale**
 
-- [ ] README.md du projet
-- [ ] CONTRIBUTING.md si open source
-- [ ] Schéma d'architecture (dans le README)
-- [ ] Diagramme de la roadmap
+- [x] README.md du projet → pitch, sommaire, schémas, setup local, workflow Git
+- [x] CONTRIBUTING.md → guide complet (bug/feature/lore/assets + code de conduite)
+- [x] Schéma d'architecture (dans le README) → diagramme Mermaid (flowchart + sequence diagram `!rain`)
+- [x] Diagramme de la roadmap → 3 diagrammes Mermaid (Gantt principal, comparatif scénarios, dépendances)
 
 **Jour 11-12 — Outillage CI/CD**
 
-- [ ] GitHub Actions : lint + tests automatiques sur PR
-- [ ] Configuration ESLint + Prettier
-- [ ] Pre-commit hooks (Husky)
+- [x] GitHub Actions : lint + tests automatiques sur PR → `.github/workflows/ci.yml` (markdown lint, link check, code-checks conditionnel) + `pr-title.yml` (Conventional Commits)
+- [ ] Configuration ESLint + Prettier → à faire en Phase 1 avec le code
+- [x] Pre-commit hooks (Husky) → husky + lint-staged + commitlint
 
 **Jour 13-14 — Buffer / réflexion**
 
@@ -282,18 +285,29 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 - [ ] Validation du plan avec quelqu'un d'autre si possible
 - [ ] GO/NO-GO pour la phase suivante
 
+### Bonus accomplis (hors scope initial Phase 0)
+
+- ✅ **Alignement narratif** : durée de cycle portée à 6-12 mois, tous les docs cohérents
+- ✅ **Spécification multistream** : YouTube Live + Twitch en co-primaires, section dédiée dans [architecture.md §Diffusion multi-plateforme](architecture.md#diffusion-multi-plateforme)
+- ✅ **Complétion des titres** : 21 titres du Panthéon alignés entre lore, simulation et commands
+- ✅ **Templates GitHub** : bug report, feature request, lore contribution, PR template, CODEOWNERS
+- ✅ **Linting markdown** : markdownlint-cli2 configuré, 0 erreur sur les 14 MDs
+- ✅ **Conventional Commits** : commitlint validé sur 11 types
+- ✅ **Réorganisation** : 12 docs de conception regroupés dans `docs/`, racine propre
+- ✅ **`.gitignore` + `.gitattributes`** : exclusions secrets/binaires, fins de ligne LF forcées sur hooks
+
 ### Livrables fin de Phase 0
 
-✅ Repo Git créé avec docs
-✅ Environnement de dev fonctionnel
-✅ 3 POCs techniques validés
-✅ Plan de la Phase 1 en détail
+- [x] Repo Git créé avec docs
+- [x] Environnement de dev fonctionnel (Node + Git + Husky OK)
+- [ ] 3 POCs techniques validés → **reste à faire**
+- [ ] Plan de la Phase 1 en détail → à revoir à l'issue des POCs
 
 ### Critères de succès
 
-- Je peux commit/push sans effort
-- Je comprends entièrement ce que je vais coder
-- J'ai validé que les technos fonctionnent
+- [x] Je peux commit/push sans effort
+- [x] Je comprends entièrement ce que je vais coder
+- [ ] J'ai validé que les technos fonctionnent → **POCs à faire**
 
 ---
 

@@ -69,6 +69,7 @@ Le nommage est **la chose la plus importante** en programmation, après la corre
 ### Règles universelles
 
 **1. Les noms doivent révéler l'intention**
+
 ```js
 // ❌ Mauvais
 const d = 30; // délai en jours
@@ -80,6 +81,7 @@ const activeUsers = users.filter(user => user.isActive);
 ```
 
 **2. Évite les abréviations cryptiques**
+
 ```js
 // ❌ Mauvais
 function calcTmpAvg(usrLst) { ... }
@@ -94,6 +96,7 @@ Exception : les abréviations universellement comprises (`id`, `url`, `http`, `d
 Si tu ne peux pas prononcer un nom de variable à voix haute dans une réunion, change-le.
 
 **4. Les noms doivent être "cherchables"**
+
 ```js
 // ❌ Mauvais — impossible à chercher dans le codebase
 const t = 7;
@@ -105,29 +108,34 @@ const DAYS_PER_WEEK = 7;
 ### Conventions par type
 
 **Variables & fonctions** : `camelCase`
+
 ```js
 let userName = "Alice";
 function getUserById(id) { ... }
 ```
 
 **Classes & types** : `PascalCase`
+
 ```js
 class GameEngine { ... }
 interface UserProfile { ... }
 ```
 
 **Constantes** : `SCREAMING_SNAKE_CASE`
+
 ```js
 const MAX_PLAYERS = 100;
 const API_BASE_URL = "https://...";
 ```
 
 **Fichiers** : convention cohérente dans le projet
+
 - `kebab-case.js` (le plus courant en JS)
 - `snake_case.py` (Python)
 - `PascalCase.tsx` (composants React)
 
 **Booléens** : toujours une question qui se répond par oui/non
+
 ```js
 // ✅ Bon
 const isReady = true;
@@ -137,6 +145,7 @@ const shouldRetry = attempts < 3;
 ```
 
 **Fonctions** : commencer par un verbe
+
 ```js
 getUserById()        // récupère
 calculateTotal()     // calcule
@@ -180,6 +189,7 @@ Une couche ne dépend que des couches **en dessous** d'elle, jamais au-dessus.
 **Deux approches valides** :
 
 **1. Par type (pour petits projets)**
+
 ```
 src/
   components/
@@ -189,6 +199,7 @@ src/
 ```
 
 **2. Par feature (pour projets moyens/gros) — RECOMMANDÉ**
+
 ```
 src/
   user/
@@ -213,6 +224,7 @@ Si tu imbriques plus de 3 niveaux de dossiers, tu te compliques la vie. Reste pl
 ### Taille des fichiers
 
 **Règles indicatives** :
+
 - Fichier > 300 lignes → questionne-toi
 - Fichier > 500 lignes → refactor probable
 - Fichier > 1000 lignes → refactor obligatoire
@@ -232,6 +244,7 @@ Une fonction qui fait plusieurs choses = plusieurs fonctions qui en font une seu
 ### Les 4 lois des bonnes fonctions
 
 **1. Elle fait UNE chose**
+
 ```js
 // ❌ Mauvais — fait 3 choses
 function processUser(user) {
@@ -255,6 +268,7 @@ sendWelcomeEmail(user.email);
 Ne mélange pas du haut niveau (logique métier) et du bas niveau (manipulation de string) dans la même fonction.
 
 **3. Elle a peu de paramètres**
+
 - 0-2 paramètres : idéal
 - 3 paramètres : tolérable
 - 4+ paramètres : utilise un objet
@@ -286,6 +300,7 @@ function calculateTotal(cart) {
 ### Pure functions > impure functions
 
 Une **pure function** :
+
 - Donne toujours le même résultat pour les mêmes entrées
 - Ne modifie rien en dehors de son scope
 
@@ -330,6 +345,7 @@ Un code lisible se passe de commentaires. Si tu ressens le besoin d'expliquer *c
 ### Quand commenter
 
 **✅ Commente le POURQUOI, pas le QUOI**
+
 ```js
 // ❌ Inutile
 // Incrémente i
@@ -341,6 +357,7 @@ await retryRequest(url, { attempts: 2 });
 ```
 
 **✅ Commente les décisions non-évidentes**
+
 ```js
 // On utilise un Set ici car on aura besoin de chercher par valeur
 // dans une boucle critique. La liste aurait été O(n²).
@@ -348,6 +365,7 @@ const userIds = new Set(users.map(u => u.id));
 ```
 
 **✅ Commente les hacks temporaires**
+
 ```js
 // TODO: retirer quand l'API v2 sera disponible (prévu Q3 2026)
 // HACK: workaround pour le bug #1234 côté librairie X
@@ -355,6 +373,7 @@ const userIds = new Set(users.map(u => u.id));
 ```
 
 **✅ Commente les formules complexes / non-intuitives**
+
 ```js
 // Formule de Haversine pour calculer la distance entre deux
 // coordonnées GPS en tenant compte de la courbure terrestre
@@ -436,6 +455,7 @@ try {
 ### Types d'erreurs
 
 Différencie :
+
 - **Erreurs attendues** (validation, input utilisateur invalide) → traitement normal
 - **Erreurs système** (DB down, API externe HS) → retry, fallback, ou alerte
 - **Erreurs de programmation** (bug) → crash rapide avec log détaillé
@@ -573,6 +593,7 @@ Apprends à estimer la complexité de tes algos :
 | O(2^n) | Exponentielle | Force brute sur sous-ensembles |
 
 **Warning signs** :
+
 - Boucles imbriquées sur de grandes collections
 - Recherches répétées dans des tableaux (utilise Set/Map)
 - Allocations en boucle (crée une fois, réutilise)
@@ -580,6 +601,7 @@ Apprends à estimer la complexité de tes algos :
 ### Optimisations courantes
 
 **Memoization** (cache de résultats)
+
 ```js
 const cache = new Map();
 function expensive(input) {
@@ -593,6 +615,7 @@ function expensive(input) {
 **Lazy evaluation** (calculer seulement quand nécessaire)
 
 **Batch processing** (grouper les opérations)
+
 ```js
 // ❌ Mauvais — 1000 appels réseau
 for (const user of users) {
@@ -608,6 +631,7 @@ await api.saveBatch(users);
 ### Attention à la mémoire
 
 Dans les apps long-running (comme des simulations continues) :
+
 - **Fuites de mémoire** : listeners non supprimés, caches qui grossissent à l'infini
 - **Garbage collector** : trop d'allocations = pauses GC = freezes
 - **Références circulaires** : anciennes sources de fuite en JS (moins vrai aujourd'hui)
@@ -642,6 +666,7 @@ Dans les apps long-running (comme des simulations continues) :
 ### Qu'est-ce qu'un bon test ?
 
 **AAA : Arrange, Act, Assert**
+
 ```js
 test('calculates total with tax', () => {
   // Arrange
@@ -680,6 +705,7 @@ Un test mal écrit est pire qu'un test manquant.
 ### TDD (optionnel mais puissant)
 
 Test-Driven Development :
+
 1. Écris le test **avant** le code
 2. Code le minimum pour le faire passer
 3. Refactor
@@ -693,6 +719,7 @@ Difficile au début, très efficace une fois maîtrisé.
 ### Messages de commit
 
 **Format conventional commits** (recommandé) :
+
 ```
 <type>(<scope>): <description>
 
@@ -702,6 +729,7 @@ Difficile au début, très efficace une fois maîtrisé.
 ```
 
 **Types courants** :
+
 - `feat` : nouvelle fonctionnalité
 - `fix` : correction de bug
 - `refactor` : refactoring sans changement de comportement
@@ -711,6 +739,7 @@ Difficile au début, très efficace une fois maîtrisé.
 - `perf` : amélioration de performance
 
 **Exemples** :
+
 ```
 feat(auth): add OAuth2 login with Google
 fix(api): handle null user in profile endpoint
@@ -730,6 +759,7 @@ Mieux vaut 10 petits commits qu'1 énorme. Facilite le review et le rollback.
 Chaque commit sur main doit compiler et passer les tests.
 
 **4. Écris des messages au présent impératif**
+
 - ✅ "add login feature"
 - ❌ "added login feature"
 - ❌ "adding login feature"
@@ -739,20 +769,24 @@ Chaque commit sur main doit compiler et passer les tests.
 **Modèles courants** :
 
 **Git Flow** (complexe, pour gros projets avec releases)
+
 - `main` : production
 - `develop` : intégration
 - `feature/*`, `release/*`, `hotfix/*`
 
 **GitHub Flow** (simple, pour web apps en déploiement continu) — RECOMMANDÉ
+
 - `main` : toujours déployable
 - `feature/*` : branches courtes, merge rapide
 
 **Trunk-Based Development** (pour équipes matures)
+
 - Tout sur `main`, feature flags pour le WIP
 
 ### .gitignore
 
 **Toujours ignorer** :
+
 - Dépendances (`node_modules`, `venv`, etc.)
 - Fichiers de build (`dist`, `build`)
 - Fichiers d'IDE (`.vscode`, `.idea`)
@@ -776,6 +810,7 @@ Utilise des variables d'environnement ou un gestionnaire de secrets. Si tu en co
 Input utilisateur, paramètres URL, API externes, fichiers uploadés. Tout.
 
 **2. Utilise des requêtes paramétrées**
+
 ```js
 // ❌ INJECTION SQL
 db.query(`SELECT * FROM users WHERE name = '${userInput}'`);
@@ -791,6 +826,7 @@ Tout ce qui est affiché dans le navigateur doit être échappé pour éviter le
 Aucune excuse en 2026.
 
 **5. Authentification solide**
+
 - Ne stocke jamais les mots de passe en clair (bcrypt/argon2)
 - Tokens JWT avec expiration courte + refresh tokens
 - 2FA pour les comptes sensibles
@@ -804,6 +840,7 @@ Utilise `npm audit`, `dependabot`, ou équivalent. Les failles dans les libs tie
 ### OWASP Top 10
 
 Connais au minimum les vulnérabilités courantes :
+
 1. Injection (SQL, NoSQL, commandes)
 2. Authentification cassée
 3. Exposition de données sensibles
@@ -919,6 +956,7 @@ setInterval(tick, TICK_RATE_MS);
 ```
 
 **Pièges à éviter** :
+
 - **Tick trop rapide** → CPU saturé
 - **Tick trop lent** → simulation qui lag
 - **Opérations longues dans le tick** → freeze de la simulation
@@ -932,6 +970,7 @@ Simulation (tick) → État du monde → Rendu (frame)
 ```
 
 Avantages :
+
 - Tu peux changer le rendu sans toucher la logique
 - Tu peux avoir plusieurs rendus de la même simulation (globe, iso, ASCII debug…) — Genesis Live utilise d'ailleurs deux projections 2D cohabitant, voir [render_spec.md](render_spec.md)
 - Tu peux accélérer/ralentir la simulation indépendamment du framerate
@@ -977,11 +1016,13 @@ Chaque input du chat est hostile jusqu'à preuve du contraire. Valide tout.
 ### Déterminisme (si possible)
 
 Une simulation **déterministe** (mêmes inputs → même résultat) est :
+
 - Plus facile à déboguer
 - Plus facile à rejouer
 - Plus facile à synchroniser
 
 Pour y arriver :
+
 - Utilise un PRNG (random) **seedé** au lieu de `Math.random()`
 - Évite les dépendances au timestamp réel dans la logique
 - Sérialise l'ordre des événements
@@ -991,6 +1032,7 @@ Pour y arriver :
 Pour un système qui tourne en continu, tu **dois** savoir ce qui se passe :
 
 **Métriques à suivre** :
+
 - Tick rate réel vs cible
 - Latence de traitement des événements
 - Mémoire utilisée (détecter les fuites)
@@ -999,6 +1041,7 @@ Pour un système qui tourne en continu, tu **dois** savoir ce qui se passe :
 - État de la simulation (nombre d'entités, âge actuel, etc.)
 
 **Outils** :
+
 - Logs structurés (JSON) avec niveaux (DEBUG, INFO, WARN, ERROR)
 - Dashboard de métriques (Grafana, ou un simple endpoint `/stats`)
 - Alertes (crash, anomalies)
@@ -1018,6 +1061,7 @@ Pour un stream 24/7 :
 ### Scalabilité future
 
 Même si tu commences petit, pense à :
+
 - **Séparer les responsabilités** : simulation, chat, rendu, persistance
 - **Interfaces bien définies** : tu pourras changer une implémentation sans tout casser
 - **Configuration externalisée** : pas de valeurs hardcodées dans le code
@@ -1051,6 +1095,7 @@ Même si tu commences petit, pense à :
 ## 📚 Pour aller plus loin
 
 **Livres essentiels** :
+
 - *Clean Code* — Robert C. Martin
 - *The Pragmatic Programmer* — Hunt & Thomas
 - *Refactoring* — Martin Fowler
@@ -1058,6 +1103,7 @@ Même si tu commences petit, pense à :
 - *Code Complete* — Steve McConnell
 
 **Concepts à explorer** :
+
 - Domain-Driven Design (DDD)
 - Hexagonal Architecture / Clean Architecture
 - Functional Programming basics

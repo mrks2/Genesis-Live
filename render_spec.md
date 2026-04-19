@@ -50,11 +50,13 @@ Un stream qui lague = des viewers qui partent. Le rendu doit tenir 60 FPS stable
 ### Style visuel global
 
 **Technique** : **pixel art moderne** (ou "low-res art") — **2D avec projection hybride globe/isométrique pilotée par le zoom**
+
 - Résolution logique : 480×270 ou 640×360 upscalée
 - Pas de pixel rigide pur (on peut avoir des effets, transparences, rotations fluides)
 - Esthétique proche de *Celeste*, *Hyper Light Drifter*, *Oxygen Not Included*
 
 **Projection** :
+
 - **Vue éloignée** (dézoom) → **globe 2D** (disque planétaire, style *Spore* / *Reus* vue monde)
 - **Vue rapprochée** (zoom) → **isométrique 2:1** (tilemap, style *Habbo* / *Transport Tycoon* / *Age of Empires 2*)
 - Transition continue : crossfade + léger morph entre les deux projections
@@ -62,7 +64,8 @@ Un stream qui lague = des viewers qui partent. Le rendu doit tenir 60 FPS stable
 
 **Palette** : respecte strictement les 64 couleurs du `color_palette.md`
 
-**Animations** : 
+**Animations** :
+
 - **Créatures** : 4-8 frames par cycle
 - **Éléments environnementaux** : 2-4 frames
 - **Effets majeurs** : 8-16 frames
@@ -83,17 +86,20 @@ Un stream qui lague = des viewers qui partent. Le rendu doit tenir 60 FPS stable
 ### Stack de rendu
 
 **Moteur principal** : **Pixi.js v7+**
+
 - WebGL pour les performances
 - API simple pour pixel art
 - Bon support des textures, filtres, particules
 
 **Pourquoi Pixi** :
+
 - Mieux que Canvas 2D pur pour la perf (WebGL accéléré)
 - Plus simple que Three.js (2D natif)
 - Écosystème mature (plugins, exemples)
 - Bien documenté
 
 **Alternatives envisagées** :
+
 - **Canvas 2D pur** : trop lent pour des milliers d'entités
 - **Three.js** : overkill pour du 2D
 - **Godot HTML5** : trop lourd à embedder
@@ -177,39 +183,47 @@ frontend/src/renderer/
 ### Règles par couche
 
 **Layer 0 — Background**
+
 - Toujours présent
 - Se contente de l'espace et des étoiles
 - Opacité : 100%
 - Ne bouge pas avec la caméra (ou très peu, parallaxe)
 
 **Layer 1 — Planet Base**
+
 - *Mode globe uniquement* : la "forme" de la planète (grand cercle/ovale), change de couleur selon l'âge, ombre portée discrète (éclairage par le soleil)
 - *Mode iso* : masqué (alpha 0)
 - *Mode spatial* : version réduite (petit disque)
 
 **Layer 2 — Terrain**
+
 - *Mode globe* : patches de biomes polygonaux dessinés sur la planète, masque circulaire de Layer 1, se modifie avec les événements
 - *Mode iso* : **tilemap isométrique 2:1** du chunk actif (voir [Vue isométrique](#vue-isométrique-near))
 
 **Layer 3 — Entities Surface**
+
 - Créatures, cités, tribus
 - Triées par profondeur (Y : plus bas = plus devant)
 - Cullées si hors écran
 
 **Layer 4 — Atmosphere**
+
 - Nuages semi-transparents qui bougent lentement
 - Bruine, brume
 - Passe devant les entités de surface mais derrière les aériennes
 
 **Layer 5 — Entities Aerial**
+
 - Oiseaux, ptérosaures, avions, satellites
 - Au-dessus des nuages généralement
 
 **Layer 6 — FX Foreground**
+
 - Effets qui couvrent toute la vue : pluie, neige, tempête de sable
 - Opacité modérée (30-60%)
 
 **Layer 7 — UI Overlay**
+
 - HUD HTML classique, pas géré par Pixi
 - Superposition DOM
 
@@ -258,6 +272,7 @@ class LayerManager {
 ### Représentation
 
 **La planète se rend en deux modes selon le zoom** (voir [Projection adaptative au zoom](#projection-adaptative-au-zoom)) :
+
 - **Mode globe** (zoom éloigné) : sphère vue en 2D — pas une vraie sphère 3D. On dessine un grand cercle/ovale avec des biomes peints dessus.
 - **Mode iso** (zoom rapproché) : tilemap isométrique 2:1 d'une région de surface.
 
@@ -283,11 +298,13 @@ Cette section couvre le **mode globe**. Le mode iso est détaillé dans la secti
 **Choix artistique** : on peut choisir entre :
 
 **Option A — Vue "lune"** (cercle plein) :
+
 - La planète est un **disque** de face
 - Rotation visible par le déplacement lent des continents
 - Plus simple à rendre, plus cinégénique
 
 **Option B — Vue "globe"** (projection sphérique simplifiée) :
+
 - Effet de perspective (bords plus sombres)
 - Illusion de 3D
 - Plus complexe mais plus immersif
@@ -398,6 +415,7 @@ entitiesSurfaceLayer.mask = planetMask;
 ### Ombrage
 
 La planète est éclairée par le soleil (on considère qu'il est à gauche) :
+
 - Côté gauche : pleine luminosité
 - Côté droit : ombre progressive (gradient)
 
@@ -433,6 +451,7 @@ Seuils indicatifs, à régler en playtest.
 Décrite intégralement dans [Rendu de la planète](#rendu-de-la-planète). Projection frontale, masque circulaire, rotation lente, biomes dessinés comme polygones peints sur le disque.
 
 **Ce qui est rendu** :
+
 - Disque planète, atmosphère, nuages globaux
 - Patches de biomes (polygones grossiers)
 - Entités : **agrégats seulement** (1 sprite = toute une population d'une région)
@@ -443,6 +462,7 @@ Décrite intégralement dans [Rendu de la planète](#rendu-de-la-planète). Proj
 **Projection** : isométrique 2:1 (angle classique, 1 unité X = 32px horizontal, 1 unité Y = 16px vertical).
 
 **Grille de tuiles** :
+
 - Taille de tile : **32×16 pixels** (losange)
 - Ratio 2:1 standard, compatible `roundPixels: true`
 - Format "diamond" (pointe en haut) ou "flat" (pointe horizontale) — **diamond** par défaut
@@ -464,11 +484,13 @@ const TILE_HEIGHT = 16;
 **Ancrage des sprites** : pivot en bas-centre du losange (pieds de la créature / base du bâtiment sur le sol de la tile).
 
 **Z-sorting** :
+
 - Tri par `(worldY + worldX + worldZ)` croissant
 - Les sprites plus proches (somme plus grande) sont dessinés devant
 - Utiliser `PIXI.Container.sortableChildren = true` + `zIndex` dynamique
 
 **Footprint des bâtiments** :
+
 - Cabane : 1×1 tile
 - Maison : 1×1 ou 2×2
 - Temple : 3×3
@@ -476,6 +498,7 @@ const TILE_HEIGHT = 16;
 - Mégastructure : 10×10+
 
 **Taille de la région chargée** :
+
 - Chunk actif : 64×64 tiles (2048×1024 pixels logiques)
 - Hors chunk : culling total
 - Bord du chunk : fade-out vers la couleur du biome dominant
@@ -483,6 +506,7 @@ const TILE_HEIGHT = 16;
 ### Transition globe → iso
 
 **Déclencheurs** :
+
 - Zoom manuel du viewer (si UI autorise)
 - [Zoom cinématique](#caméra-cinématique) sur un événement majeur
 - `!observe` sur une entité/cité
@@ -588,6 +612,7 @@ Les layers définis dans [Système de couches](#système-de-couches-layers) rest
 Les créatures apparaissent **beaucoup plus grandes** que leur taille réelle. Une fourmi microscopique est représentée par un sprite de 4×4 pixels (sinon invisible).
 
 **Règle de tailles** (en pixels) :
+
 - Microbes : 2-4 px
 - Insectes/petits animaux : 4-8 px
 - Animaux moyens : 8-16 px
@@ -598,6 +623,7 @@ Les créatures apparaissent **beaucoup plus grandes** que leur taille réelle. U
 Un sprite ne représente **pas une créature individuelle** mais un **groupe** ou une **population**. 1 sprite = "plusieurs milliers d'individus".
 
 **3. Densité visuelle**
+
 - Si population < seuil → 1 sprite
 - Population modérée → 3-5 sprites dispersés
 - Population dense → 10+ sprites
@@ -818,6 +844,7 @@ class CameraTransition {
 ### Effets de caméra
 
 **Shake** : pour les événements violents
+
 ```typescript
 triggerShake(intensity: 'light' | 'medium' | 'heavy', durationMs: number) {
   // Oscillation aléatoire de la caméra
@@ -825,11 +852,13 @@ triggerShake(intensity: 'light' | 'medium' | 'heavy', durationMs: number) {
 ```
 
 **Zoom dramatique** : pour les moments épiques
+
 - Zoom rapide d'un coup
 - Maintien
 - Retour lent
 
 **Slow motion** : pour les apocalypses
+
 - Le temps de la simulation continue normalement
 - Mais les effets visuels ralentissent dramatiquement
 
@@ -852,6 +881,7 @@ Utilisation de `@pixi/particle-emitter` ou implémentation custom légère.
 ### Effets standards
 
 **Pluie** :
+
 ```typescript
 const rainEmitter = {
   particleCount: 200,
@@ -868,6 +898,7 @@ const rainEmitter = {
 ```
 
 **Neige** :
+
 ```typescript
 const snowEmitter = {
   particleCount: 100,
@@ -885,6 +916,7 @@ const snowEmitter = {
 ```
 
 **Cendres volcaniques** :
+
 ```typescript
 const ashEmitter = {
   particleCount: 300,
@@ -903,12 +935,14 @@ const ashEmitter = {
 ### Effets d'événements majeurs
 
 **Éruption volcanique** :
+
 - Jet de lave (particules orange/rouge)
 - Fumée noire qui monte
 - Roches éjectées (plus grosses particules)
 - Shake de caméra
 
 **Impact de météorite** :
+
 - Trainée dans le ciel (avant)
 - Flash blanc à l'impact
 - Onde de choc circulaire
@@ -916,11 +950,13 @@ const ashEmitter = {
 - Poussière qui retombe pendant 30s
 
 **Grande guerre** :
+
 - Fumée au-dessus des cités en conflit
 - Éclairs orangés (explosions)
 - Particules de débris
 
 **Apparition d'une espèce légendaire** :
+
 - Halo doré
 - Particules qui montent comme des étoiles
 
@@ -950,6 +986,7 @@ Si on dépasse → ne plus émettre les effets d'ambiance, garder seulement les 
 **Cinématique dédiée** à chaque transition (5-10 secondes) :
 
 **Âge I → II** : "L'Âge des Eaux"
+
 - Caméra recule
 - Nuages massifs qui se forment
 - Pluie torrentielle sur toute la planète
@@ -957,30 +994,35 @@ Si on dépasse → ne plus émettre les effets d'ambiance, garder seulement les 
 - Titre "ÂGE II — LES EAUX" en fondu
 
 **Âge II → III** : "L'Âge des Germes"
+
 - Zoom sur un océan
 - Particules microscopiques apparaissent
 - Changement de teinte de l'eau (nuances vertes/violettes)
 - Musique évolue
 
 **Âge III → IV** : "Le Grouillement"
+
 - Zoom sur la surface
 - Premières créatures apparaissent
 - Végétation qui pousse en timelapse
 - Scène qui s'anime progressivement
 
 **Âge IV → V** : "L'Éveil"
+
 - Focus sur un groupe de créatures
 - Un œil qui s'ouvre (symbolique)
 - Premiers feux visibles au loin
 - Transition vers vue plus proche
 
 **Âge V → VI** : "Les Cités"
+
 - Pan sur une tribu qui s'agrandit
 - Première cité apparaît au centre
 - Murs se construisent
 - Autres cités apparaissent autour
 
 **Âge VI → VII** : "L'Ascension"
+
 - Caméra monte progressivement
 - Satellites apparaissent en orbite
 - Vue d'ensemble devient spatiale
@@ -989,15 +1031,18 @@ Si on dépasse → ne plus émettre les effets d'ambiance, garder seulement les 
 ### Animations d'UI
 
 **Arrivée de notification** :
+
 - Fade in + slide depuis le bord droit
 - Durée : 300ms
 - Easing : easeOutCubic
 
 **Disparition** :
+
 - Fade out + slide vers le haut
 - Durée : 500ms
 
 **Pulse d'attention** :
+
 - Scale 1 → 1.1 → 1
 - Boucle
 - Pour les events rares à ne pas manquer
@@ -1005,21 +1050,25 @@ Si on dépasse → ne plus émettre les effets d'ambiance, garder seulement les 
 ### Animations de sprites
 
 **Idle (par défaut)** :
+
 - Légère oscillation verticale (breathing)
 - 0.5-1 pixel d'amplitude
 - Période : 2-3 secondes
 
 **Mouvement** :
+
 - Marche : animation 4 frames
 - Course : animation 4 frames plus rapides
 - Vol : animation 4 frames, glissement horizontal
 
 **Mort** :
+
 - Flash rouge
 - Fade out 500ms
 - Petite explosion de particules
 
 **Naissance** :
+
 - Apparition en fondu depuis invisible
 - Petit effet d'étincelles
 
@@ -1034,6 +1083,7 @@ Un cycle jour/nuit visible rend le stream **rythmé** et **rassurant** (cycle pr
 ### Durée
 
 **Cycle complet** : ~5 minutes de temps réel
+
 - Jour : 2 minutes
 - Crépuscule : 30 secondes
 - Nuit : 2 minutes
@@ -1067,16 +1117,19 @@ class DayNightCycle {
 ### Effets visuels selon la phase
 
 **Jour** :
+
 - Palette claire
 - Pleine visibilité
 - Musique plus dynamique
 
 **Crépuscule** :
+
 - Teintes oranges/roses
 - Ombres allongées
 - Transition sonore
 
 **Nuit** :
+
 - Palette sombre
 - Étoiles visibles
 - **Les cités s'illuminent** (gros effet visuel)
@@ -1084,6 +1137,7 @@ class DayNightCycle {
 - Musique plus calme
 
 **Aube** :
+
 - Lumière froide qui devient chaude
 - Brume matinale
 - Transition progressive
@@ -1091,6 +1145,7 @@ class DayNightCycle {
 ### Ne pas imposer
 
 Certains âges ne montrent pas le cycle de façon uniforme :
+
 - **Âge I** : pas de cycle (trop de feu partout)
 - **Âge II** : cycle très léger (pas grand chose à éclairer)
 - **Âges III-VII** : cycle complet
@@ -1116,6 +1171,7 @@ void main() {
 ### Architecture HUD
 
 Le HUD est **HTML/CSS**, superposé sur le canvas Pixi. Ce choix permet :
+
 - Lisibilité du texte garantie (pas de rasterization)
 - Interactivité facile (hover, clicks)
 - Animations CSS fluides
@@ -1151,6 +1207,7 @@ Le HUD est **HTML/CSS**, superposé sur le canvas Pixi. Ce choix permet :
 ### Composants HTML
 
 **Top bar** (toujours visible) :
+
 ```html
 <div class="hud-top-bar">
   <div class="cycle-counter">Cycle 7</div>
@@ -1166,6 +1223,7 @@ Le HUD est **HTML/CSS**, superposé sur le canvas Pixi. Ce choix permet :
 ```
 
 **Status panel** (gauche) :
+
 ```html
 <div class="hud-status-panel">
   <div class="status-row">
@@ -1177,6 +1235,7 @@ Le HUD est **HTML/CSS**, superposé sur le canvas Pixi. Ce choix permet :
 ```
 
 **Event feed** (bas) :
+
 - Max 5 événements visibles
 - Auto-scroll quand nouveau
 - Animations d'apparition/disparition
@@ -1185,17 +1244,20 @@ Le HUD est **HTML/CSS**, superposé sur le canvas Pixi. Ce choix permet :
 ### Notifications temporaires
 
 **Titre gagné** (centre de l'écran) :
+
 ```
 ┌──────────────────────────────┐
 │  🏆 @Tom                     │
 │  LE FORGERON                 │
 └──────────────────────────────┘
 ```
+
 - Apparition : 500ms
 - Maintien : 3 secondes
 - Disparition : 1s
 
 **Annonce d'âge** (plein écran) :
+
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           🜁
@@ -1204,10 +1266,12 @@ Le HUD est **HTML/CSS**, superposé sur le canvas Pixi. Ce choix permet :
  "Les océans grouillent..."
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
+
 - Fondu noir → texte qui apparaît → fondu → retour
 - Durée totale : 8-10 secondes
 
 **Alerte apocalypse** :
+
 - Banner rouge pulsant en haut
 - Son d'alerte
 - Gel temporaire du HUD normal
@@ -1215,6 +1279,7 @@ Le HUD est **HTML/CSS**, superposé sur le canvas Pixi. Ce choix permet :
 ### Responsive
 
 Le HUD doit s'adapter à la taille du stream :
+
 - **1920×1080** (standard streaming) : layout normal
 - **720p** : réduction des marges
 - **Mobile** : version dégradée (pour viewers mobiles)
@@ -1289,12 +1354,14 @@ Pixi fait ça automatiquement si les sprites partagent la même texture. **Organ
 Tous les sprites liés sont regroupés dans une seule texture atlas :
 
 *Atlas globe* :
+
 - `planet_base_atlas.png` : textures planète par âge
 - `biomes_globe_atlas.png` : patches polygonaux de biomes (mode globe)
 - `effects_atlas.png` : toutes les particules
 - `ui_atlas.png` : tous les icônes
 
 *Atlas iso* (chargés paresseusement quand on bascule en iso) :
+
 - `iso_tiles_<biome>_atlas.png` : un atlas de tuiles par biome (forêt, désert, etc.)
 - `iso_creatures_atlas.png` : toutes les créatures en iso (4 orientations si animées)
 - `iso_cities_atlas.png` : tous les bâtiments iso
@@ -1304,6 +1371,7 @@ Utiliser un **quadtree** pour les entités — requêtes "qu'est-ce qui est visi
 
 **7. Throttling**
 Certaines mises à jour ne doivent pas être faites chaque frame :
+
 - Update des positions d'entités : chaque frame (OK)
 - Update du HUD : 10 fois/seconde suffisent
 - Update des stats : 2 fois/seconde
@@ -1312,12 +1380,14 @@ Certaines mises à jour ne doivent pas être faites chaque frame :
 ### Profiling
 
 **Métriques à surveiller** (dev tools) :
+
 - FPS compteur (Pixi a un utilitaire)
 - Nombre de draw calls (< 100 idéal)
 - Nombre de sprites actifs
 - Mémoire GPU utilisée
 
 **Outils** :
+
 - Chrome DevTools Performance tab
 - Pixi.js devtools
 - `stats.js` pour compteur FPS visible
@@ -1327,15 +1397,18 @@ Certaines mises à jour ne doivent pas être faites chaque frame :
 Si la perf chute :
 
 **Niveau 1** (FPS < 50) :
+
 - Réduire les particules d'ambiance de 50%
 - Désactiver certains effets post-processing
 
 **Niveau 2** (FPS < 40) :
+
 - Réduire les sprites d'entités de 30%
 - Désactiver le shake de caméra
 - Simplifier l'éclairage
 
 **Niveau 3** (FPS < 30, urgence) :
+
 - Mode "basique" : rendu minimal
 - Warning discret dans le HUD
 - Log d'alerte vers le serveur
@@ -1379,6 +1452,7 @@ PIXI.settings.ROUND_PIXELS = true;
 ### Texture loading
 
 **Stratégie** :
+
 1. **Pré-chargement total** au démarrage (assets critiques)
 2. **Chargement à la demande** pour les assets rarement utilisés (apocalypses spécifiques)
 3. **Atlas compilés** avec TexturePacker ou équivalent
@@ -1455,6 +1529,7 @@ Audio : capture du navigateur + micro si commentaire
 ### Mode debug
 
 Un **mode debug** accessible via `?debug=1` dans l'URL :
+
 - Affiche les bounding boxes des entités
 - Compteur FPS permanent
 - Stats live (entités actives, sprites, draw calls)
@@ -1489,6 +1564,7 @@ async function captureReferenceScenes() {
 ### Mode "démo" rapide
 
 Un mode qui fait défiler les 7 âges en 5 minutes (timelapse extrême), utilisé pour :
+
 - Démonstrations / pitch
 - Tests de performance
 - Trailer / teaser
@@ -1513,6 +1589,7 @@ class DemoMode {
 ### Panneau dev
 
 Accessible via `?dev=1`, permet de :
+
 - Forcer un événement (éruption, apocalypse, transition d'âge)
 - Skip à un âge précis
 - Ajouter/retirer des entités
@@ -1545,18 +1622,21 @@ Le rendu est **le visage de Genesis Live**. C'est par lui que les viewers tomben
 ### Ordre de priorité d'implémentation
 
 **Phase MVP** (Phase 2 roadmap) :
+
 - [ ] Planète de base qui change de couleur
 - [ ] 3-5 tiles de biomes
 - [ ] HUD minimal
 - [ ] Caméra statique
 
 **Phase 2** (Phase 4-5 roadmap) :
+
 - [ ] Layers complets
 - [ ] Entités animées
 - [ ] Caméra cinématique
 - [ ] Effets de particules
 
 **Phase polish** (Phase 5 roadmap) :
+
 - [ ] Toutes les transitions d'âge
 - [ ] Cycle jour/nuit
 - [ ] Tous les effets d'apocalypse

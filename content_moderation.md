@@ -59,12 +59,14 @@ Les mêmes règles pour tous. Pas de favoritisme pour les subs, donateurs, ou am
 ### Tone et ton
 
 **Les messages de modération sont** :
+
 - **Fermes** : sans équivoque sur ce qui n'est pas OK
 - **Respectueux** : même face à un troll, on reste poli
 - **Brefs** : pas besoin de grands discours
 - **Constructifs** : expliquer comment se comporter correctement
 
 **Ils ne sont pas** :
+
 - Moralisateurs
 - Sarcastiques (tentant mais toxique)
 - Publiquement humiliants
@@ -79,28 +81,33 @@ Les mêmes règles pour tous. Pas de favoritisme pour les subs, donateurs, ou am
 Actions ou contenus **jamais tolérés**, quel que soit le contexte. Ban immédiat et permanent.
 
 **Menaces réelles** :
+
 - Menaces de violence physique
 - Menaces de mort
 - Incitation au suicide d'autrui
 - Doxxing (révélation d'infos privées réelles)
 
 **Contenu illégal** :
+
 - Contenu pédocriminel (SIGNALEMENT OBLIGATOIRE aux autorités)
 - Contenu terroriste (apologie ou incitation)
 - Contenu non-consensuel sexualisé
 - Trafics illégaux
 
 **Haine identitaire** :
+
 - Attaques basées sur la race, l'origine, la religion, l'orientation sexuelle, le genre, le handicap
 - Propos déshumanisants (traiter un groupe d'"animaux", "vermines", etc.)
 - Négationnisme génocidaire
 
 **Cible mineure** :
+
 - Sexualisation de mineurs (même de manière "humoristique")
 - Grooming
 - Harcèlement de mineurs
 
 **Fraude** :
+
 - Tentatives d'extorsion d'autres viewers
 - Arnaques liées au stream
 - Usurpation d'identité d'autres viewers ou du streamer
@@ -110,26 +117,31 @@ Actions ou contenus **jamais tolérés**, quel que soit le contexte. Ban immédi
 Actions problématiques mais où un contexte peut exister. **Timeout 24h à 7 jours** selon gravité et récidive.
 
 **Harcèlement personnel** :
+
 - Attaques répétées contre un viewer spécifique
 - Moquerie sur un handicap, apparence, etc.
 - Création de noms d'entités moqueurs d'un autre viewer
 
 **Contenu explicite déplacé** :
+
 - Langage sexuellement explicite non sollicité
 - Descriptions graphiques de violence
 - Contenu choquant gratuit
 
 **Spam organisé** :
+
 - Raids coordonnés avec intention de perturber
 - Flood massif pour saturer le chat
 - Promotion agressive de contenu externe (autres streams, produits, services)
 
 **Atteintes à la dignité** :
+
 - Moqueries méchantes envers des viewers
 - Commentaires sur l'intelligence, les capacités cognitives
 - Body shaming
 
 **Contournement de modération** :
+
 - Contourner un timeout avec un autre compte
 - Utiliser le l33t speak pour bypass les filtres
 - Multi-accounting détecté
@@ -139,21 +151,25 @@ Actions problématiques mais où un contexte peut exister. **Timeout 24h à 7 jo
 Comportements inappropriés mais souvent involontaires ou isolés. **Timeout 10min à 1h** + warning, ou juste warning selon contexte.
 
 **Toxicité légère** :
+
 - Insultes ponctuelles
 - Commentaires passif-agressifs
 - Mauvaise foi récurrente
 
 **Contenu inapproprié** :
+
 - Langage vulgaire excessif (au-delà d'un juron occasionnel)
 - Blagues déplacées
 - Commentaires provocateurs sans incident aigu
 
 **Pollution du chat** :
+
 - Spam modéré (4-5 messages identiques)
 - Caps excessives répétées
 - Emojis spam
 
 **Hors-sujet récurrent** :
+
 - Discussions politiques houleuses
 - Débats religieux agressifs
 - Drama externe importé dans le chat
@@ -163,18 +179,22 @@ Comportements inappropriés mais souvent involontaires ou isolés. **Timeout 10m
 Pas vraiment des violations, mais des comportements à recadrer doucement.
 
 **Maladresse culturelle** :
+
 - Vocabulaire daté (souvent sans intention malveillante)
 - Blagues culturellement problématiques (non intentionnelles)
 
 **Excès d'enthousiasme** :
+
 - Spam involontaire de commandes
 - Interventions constantes (monopolisation du chat)
 
 **Trolls légers** :
+
 - Messages ironiques qui peuvent confondre
 - Provocations mineures pour le fun
 
 **Non-respect du cadre** :
+
 - Demandes répétées d'attention
 - Hors-sujet persistant mais inoffensif
 
@@ -198,12 +218,14 @@ Pas vraiment des violations, mais des comportements à recadrer doucement.
 ### Logique de progression
 
 **Règle des 3 strikes** (pour comportements non-graves) :
+
 - 1er warning → +0 (simple rappel)
 - 2ème warning → niveau 2 (timeout 10 min)
 - 3ème warning → niveau 4 (timeout 24h)
 - Au-delà → ban temporaire puis permanent
 
 **Accélération** :
+
 - Si récidive dans les 24h du dernier warning → saut de 2 niveaux
 - Si récidive dans les 7 jours → saut de 1 niveau
 - Si >30 jours depuis dernier incident → retour au niveau 0
@@ -220,17 +242,20 @@ Les violations ne restent pas en mémoire indéfiniment :
 ### Shadowban vs ban explicite
 
 Le **shadowban** est souvent plus efficace :
+
 - Les messages du shadowbanned apparaissent normalement **pour lui**
 - Mais **personne d'autre ne les voit**
 - Il ne réalise pas → ne crée pas de compte alternatif
 - Utile pour les trolls obstinés
 
 **Quand shadowban plutôt que ban ?**
+
 - Troll manifeste qui cherche l'attention
 - Suspicion forte mais pas de preuve définitive
 - Viewer qui a déjà créé plusieurs comptes après bans
 
 **Quand ban explicite ?**
+
 - Violation grave et claire
 - Nécessité de message public (harcèlement visible d'un autre viewer)
 - Première infraction d'un compte "propre"
@@ -301,6 +326,7 @@ function technicalFilter(msg: Message): FilterResult {
 ### Détection de patterns (niveau 2)
 
 **Spam** :
+
 ```typescript
 function detectSpam(viewer: Viewer, msg: Message): boolean {
   const recent = getRecentMessages(viewer.id, 60_000); // 1 min
@@ -321,6 +347,7 @@ function detectSpam(viewer: Viewer, msg: Message): boolean {
 ```
 
 **Caps excessives** :
+
 ```typescript
 function hasExcessiveCaps(text: string): boolean {
   // Plus de 70% de majuscules dans un message > 20 chars
@@ -335,6 +362,7 @@ function hasExcessiveCaps(text: string): boolean {
 ```
 
 **Répétition de caractères** :
+
 ```typescript
 function hasCharRepetition(text: string): boolean {
   // Plus de 5 caractères identiques consécutifs
@@ -345,6 +373,7 @@ function hasCharRepetition(text: string): boolean {
 ### Analyse sémantique (niveau 3)
 
 **Blacklist fuzzy** :
+
 ```typescript
 function checkBlockedWords(text: string): string | null {
   const normalized = normalizeForModeration(text);
@@ -382,6 +411,7 @@ function normalizeForModeration(text: string): string {
 ```
 
 **Listes à 3 niveaux** :
+
 ```typescript
 const BLOCKED_WORDS = {
   // Niveau 1 : bloqués absolument
@@ -461,6 +491,7 @@ function calculateTrust(viewer: Viewer): number {
 ```
 
 **Utilisation du trust score** :
+
 - Trust 80+ : bénéfice du doute (message douteux → warning léger)
 - Trust 50-80 : application standard des règles
 - Trust 20-50 : tolérance réduite (timeouts plus rapides)
@@ -475,16 +506,19 @@ function calculateTrust(viewer: Viewer): number {
 La modération automatique est efficace mais **imparfaite**. L'humain intervient pour :
 
 **Cas ambigus** :
+
 - Messages où le contexte compte (sarcasme, référence culturelle)
 - Conflits interpersonnels complexes
 - Nouvelles formes d'abus non prévues par les règles
 
 **Décisions graves** :
+
 - Bans permanents (jamais automatiques sauf violations Catégorie 1 absolues)
 - Levées de sanctions
 - Sanctions sur des viewers très actifs / abonnés
 
 **Investigations** :
+
 - Suspicion de harcèlement coordonné
 - Doutes sur la bonne foi d'un viewer
 - Signalements reçus
@@ -492,22 +526,26 @@ La modération automatique est efficace mais **imparfaite**. L'humain intervient
 ### Rôles dans l'équipe
 
 **Streamer** :
+
 - Décisions finales sur les cas sensibles
 - Revue hebdomadaire des bans permanents
 - Définition de la politique
 
 **Modérateurs principaux** (3-5 personnes de confiance) :
+
 - Gèrent la modération en direct pendant le stream
 - Peuvent bannir jusqu'à 30 jours
 - Peuvent lever warnings et timeouts courts
 - Communication directe avec le streamer pour cas graves
 
 **Modérateurs auxiliaires** (optionnel) :
+
 - Aident pendant les pics d'activité
 - Timeouts courts uniquement (max 24h)
 - Signalent les cas graves à la main
 
 **Bot de modération** (cœur du système) :
+
 - Gère les filtres automatiques
 - Logue tout pour revue humaine
 - Applique les règles simples
@@ -515,6 +553,7 @@ La modération automatique est efficace mais **imparfaite**. L'humain intervient
 ### Guide pratique pour modérateurs
 
 **Avant de sanctionner** :
+
 1. Lire le message **dans son contexte** (messages avant et après)
 2. Vérifier l'historique du viewer
 3. Se demander : est-ce que le viewer l'a fait **consciemment** ?
@@ -522,12 +561,14 @@ La modération automatique est efficace mais **imparfaite**. L'humain intervient
 5. Appliquer la **sanction appropriée au niveau**
 
 **Règles d'or** :
+
 - **Dans le doute, warning plutôt que sanction**
 - **Ne jamais sanctionner sous le coup de l'émotion**
 - **Si incertain → demander à un autre mod**
 - **Documenter la raison dans le système**
 
 **Erreurs à éviter** :
+
 - Sanctionner un viewer qui défend une victime
 - Sanctionner pour une opinion qu'on n'aime pas
 - Favoriser les amis / abonnés
@@ -536,12 +577,14 @@ La modération automatique est efficace mais **imparfaite**. L'humain intervient
 ### Communication interne des modérateurs
 
 **Canal privé dédié** (Discord recommandé) pour :
+
 - Discussions en temps réel des cas ambigus
 - Signalement de viewers suspects
 - Coordination sur les raids
 - Partage d'infos importantes
 
 **Logs d'action** accessibles à tous les mods :
+
 - Qui a sanctionné qui, pourquoi, quand
 - Historique consultable
 - Traçabilité totale
@@ -551,6 +594,7 @@ La modération automatique est efficace mais **imparfaite**. L'humain intervient
 **Burnout des modérateurs** : danger réel. Voir du contenu toxique 24/7 pèse.
 
 **Pratiques recommandées** :
+
 - Pauses régulières (pas plus de 2h de modération d'affilée)
 - Rotation des shifts entre mods
 - Support psychologique accessible (juste en parler)
@@ -611,22 +655,26 @@ async function validateEntityName(name: string, viewer: Viewer): Promise<Validat
 ### Règles spécifiques par type d'entité
 
 **Cités** :
+
 - Pas de noms d'entreprises réelles
 - Pas de noms politiques actuels
 - Max 20 caractères
 
 **Espèces** :
+
 - Pas de noms obscènes même humoristiques
 - Pas de références à d'autres viewers sans leur accord
 - Max 25 caractères
 
 **Religions** :
+
 - Attention particulière aux religions réelles
 - Pas de moquerie de religions existantes
 - Noms de dieux inventés OK, mais pas "Jesus 2" etc.
 - Max 30 caractères
 
 **Dynasties / Empires** :
+
 - Pas de régimes historiques sanguinaires glorifiés ("Dynastie Hitler" → refus immédiat)
 - Pas de factions politiques actuelles
 
@@ -635,6 +683,7 @@ async function validateEntityName(name: string, viewer: Viewer): Promise<Validat
 **Problème** : un nom passe la validation mais pose problème en contexte.
 
 **Solution** : système de **signalement de noms** :
+
 ```typescript
 interface NameReport {
   entityType: string;
@@ -651,6 +700,7 @@ Si un nom est signalé 3+ fois, il est **mis en revue manuelle** (vue par modér
 ### Renommage forcé
 
 Si un nom devient problématique rétroactivement :
+
 - L'entité est **renommée** par les modérateurs
 - L'ancien nom est **archivé** (pas supprimé, mais non affiché)
 - Le viewer créateur est **notifié** de la raison
@@ -659,6 +709,7 @@ Si un nom devient problématique rétroactivement :
 ### Exemples de noms OK vs KO
 
 **✅ OK** :
+
 - `Baconkurinia` (pseudo + suffixe religieux)
 - `Le Grand Empire de Tom`
 - `Mialumière` (créatif)
@@ -666,6 +717,7 @@ Si un nom devient problématique rétroactivement :
 - `Zorblox` (invention pure)
 
 **❌ KO** :
+
 - `Hitlerland` (nazi glorification)
 - `MacronMerde` (attaque personne réelle)
 - `[mot raciste]` (insulte)
@@ -674,6 +726,7 @@ Si un nom devient problématique rétroactivement :
 - `[URL ou plug]` (promotion)
 
 **🟡 Zone grise** (jugement mod) :
+
 - `Sauron` (référence fiction populaire — OK généralement)
 - `Walmart` (entreprise réelle — dépend du contexte)
 - `Freedonia` (nom fictif ambigü — OK)
@@ -685,16 +738,19 @@ Si un nom devient problématique rétroactivement :
 ### Types de raids
 
 **Raid positif** (OK) :
+
 - Un autre streamer envoie son audience en fin de stream
 - Les viewers arrivent, saluent, restent ou partent
 - Aucun problème
 
 **Raid négatif / brigade** (à modérer) :
+
 - Groupe coordonné venant perturber
 - Spam, insultes, tentatives de saturation
 - Objectif : nuire à l'expérience
 
 **Signes d'un raid hostile** :
+
 - Pic soudain de nouveaux comptes
 - Messages très similaires en rafale
 - Mentions coordonnées du même sujet hors-sujet
@@ -733,24 +789,29 @@ class RaidDetector {
 ### Modes de crise
 
 **Slow mode** :
+
 - Un viewer ne peut envoyer qu'un message toutes les X secondes
 - Activable : 5s, 10s, 30s, 60s
 - Neutralise instantanément le flood
 
 **Follower-only mode** :
+
 - Seuls les viewers qui suivent depuis X minutes peuvent parler
 - Filtre les trolls qui viennent de créer leur compte
 
 **Subscriber-only mode** (mesure forte) :
+
 - Seuls les abonnés peuvent écrire
 - À utiliser seulement en cas d'urgence
 - Pénalise les viewers légitimes → usage court
 
 **Emote-only mode** :
+
 - Aucun texte, que des emotes
 - Empêche le harcèlement textuel
 
 **Commandes désactivées** :
+
 - Mode "lecture seule" : pas de commandes Genesis Live
 - Pour protéger le monde d'actions malveillantes
 
@@ -779,10 +840,12 @@ class RaidDetector {
 ### Prévention
 
 **Whitelist des raids entrants** :
+
 - Autres streamers de confiance peuvent raid sans déclencher d'alerte
 - Liste maintenue par le streamer
 
 **Communication inter-streamers** :
+
 - Discord d'entraide entre streamers affinitaires
 - Alertes en cas de menace coordonnée
 
@@ -799,6 +862,7 @@ Un stream public peut attirer des viewers mineurs **sans qu'on le sache**. Cela 
 **Présomption** : Genesis Live doit être **safe-enough** pour qu'un mineur puisse regarder sans préjudice.
 
 **Contenu adapté** :
+
 - Pas de violence graphique gratuite
 - Pas de sexualité explicite
 - Langage mesuré (quelques jurons OK, pas de vulgarité extrême constante)
@@ -809,11 +873,13 @@ Un stream public peut attirer des viewers mineurs **sans qu'on le sache**. Cela 
 ### Si un mineur est identifié
 
 **Signes qu'un viewer est mineur** :
+
 - Mention explicite ("j'ai 12 ans")
 - Discussion sur l'école, parents
 - Comportement typique (naïveté, enthousiasme spécifique)
 
 **Actions** :
+
 1. **Ne pas afficher publiquement** qu'on pense qu'il est mineur
 2. **Activer mode protection** sur ce compte :
    - Commandes potentiellement inappropriées bloquées
@@ -826,6 +892,7 @@ Un stream public peut attirer des viewers mineurs **sans qu'on le sache**. Cela 
 ### Alertes de comportement suspect
 
 Si un autre viewer adopte un comportement inquiétant envers un mineur supposé :
+
 - **Messages privés** non sollicités → signalement
 - **Questions intrusives** sur l'identité/localisation → sanction immédiate
 - **Grooming** (même soft) → ban permanent + signalement légal
@@ -833,6 +900,7 @@ Si un autre viewer adopte un comportement inquiétant envers un mineur supposé 
 ### Ressources de protection
 
 Liste de numéros/sites d'aide à afficher si approprié :
+
 - Net écoute (France) : 0 800 200 000
 - 119 (enfance en danger France)
 - Internet Safety Helpline (pays anglo)
@@ -844,6 +912,7 @@ Liste de numéros/sites d'aide à afficher si approprié :
 ### Viewer vs viewer
 
 **Conflit entre deux viewers** :
+
 1. Identifier qui a commencé
 2. Évaluer si le conflit est équilibré (deux torts) ou asymétrique (agresseur + victime)
 3. Sanctions proportionnelles
@@ -854,20 +923,24 @@ Liste de numéros/sites d'aide à afficher si approprié :
 ### Moqueries sur le streamer
 
 **Critique légitime** : OK
+
 - "J'aime pas comment tu gères ce truc"
 - "Ton stream est moins bien depuis X"
 
 **Insultes** : pas OK
+
 - "T'es nul"
 - "T'es un menteur"
 
 **Harcèlement** : sanction
+
 - Présence répétée uniquement pour critiquer négativement
 - Tentatives de blesser personnellement
 
 ### Trolls "ironiques"
 
 **L'argument "c'est une blague"** :
+
 - Une blague raciste reste une blague raciste
 - Le cadre ironique ne protège pas
 - Application normale des règles
@@ -875,11 +948,13 @@ Liste de numéros/sites d'aide à afficher si approprié :
 ### Viewers en détresse émotionnelle
 
 **Signes** :
+
 - Mention de dépression, suicide
 - Détresse visible dans les messages
 - Appels à l'aide
 
 **Actions** :
+
 1. **Jamais minimiser** ("ça va aller" sans plus)
 2. **Ressources** : numéros d'écoute discrets en DM si possible
 3. **Signal au streamer** pour intervention humaine si urgent
@@ -888,6 +963,7 @@ Liste de numéros/sites d'aide à afficher si approprié :
 ### Spam accidentel
 
 **Viewer nouveau qui ne connaît pas les règles** :
+
 - Warning d'abord, explication
 - Timeout court si répétition
 - Ne pas ban direct sauf Catégorie 1
@@ -895,6 +971,7 @@ Liste de numéros/sites d'aide à afficher si approprié :
 ### Langues étrangères
 
 **Messages dans d'autres langues** :
+
 - OK par défaut (communauté internationale)
 - Modération automatique doit gérer les principales langues (EN, ES, DE, IT, PT...)
 - Si impossible à modérer → demander gentiment de changer de langue
@@ -902,6 +979,7 @@ Liste de numéros/sites d'aide à afficher si approprié :
 ### Bots amis
 
 **Autres bots de stream** (Nightbot, StreamElements, etc.) :
+
 - Whitelist
 - Pas soumis aux règles standard
 - Peuvent envoyer des messages automatiques
@@ -913,11 +991,13 @@ Liste de numéros/sites d'aide à afficher si approprié :
 ### Communication publique
 
 **Règles de modération visibles** :
+
 - Section "règles" affichée sur le stream
 - Commande `!rules` pour rappeler
 - Règles sur un site/Discord accessible
 
 **Annonces de changements** :
+
 - Nouvelles règles annoncées publiquement
 - Période de grâce si règle change (warnings avant sanctions)
 
@@ -926,6 +1006,7 @@ Liste de numéros/sites d'aide à afficher si approprié :
 Quand on sanctionne, on **explique** :
 
 **Warning** (DM ou message privé plateforme) :
+
 ```
 Salut [pseudo],
 
@@ -941,6 +1022,7 @@ Bonne suite sur Genesis Live !
 ```
 
 **Ban** :
+
 ```
 Salut [pseudo],
 
@@ -960,12 +1042,14 @@ Chaque sanction peut être **contestée** :
 **Canal d'appel** : Discord, email, formulaire
 **Délai de réponse** : 48h max
 **Processus** :
+
 1. Viewer dépose son appel avec explication
 2. Un modérateur (différent de celui qui a sanctionné) revoit le cas
 3. Consultation avec le streamer si besoin
 4. Décision communiquée au viewer
 
 **Issues possibles** :
+
 - Sanction levée (erreur reconnue)
 - Sanction réduite (cas nuancé)
 - Sanction maintenue (avec explication détaillée)
@@ -974,6 +1058,7 @@ Chaque sanction peut être **contestée** :
 ### Transparence statistique
 
 **Statistiques publiques trimestrielles** (optionnel mais bonne pratique) :
+
 - Nombre de sanctions appliquées
 - Répartition par catégorie
 - Taux d'appel
@@ -988,6 +1073,7 @@ Montre que la modération est **sérieuse et équitable**.
 ### Recrutement
 
 **Critères pour devenir modérateur** :
+
 - Présent régulièrement depuis 3+ mois
 - Comportement exemplaire dans le chat
 - Zéro infraction dans les 6 derniers mois
@@ -996,6 +1082,7 @@ Montre que la modération est **sérieuse et équitable**.
 - Volonté d'apprendre les règles en détail
 
 **Processus** :
+
 1. **Nomination** par le streamer ou autre mod
 2. **Discussion** privée pour confirmer intérêt
 3. **Période d'essai** de 30 jours (statut "mod junior")
@@ -1004,6 +1091,7 @@ Montre que la modération est **sérieuse et équitable**.
 ### Formation
 
 **Onboarding d'un nouveau mod** :
+
 - Lecture du document de modération (celui-ci !)
 - Accès au Discord privé des mods
 - Présentation aux autres mods
@@ -1011,6 +1099,7 @@ Montre que la modération est **sérieuse et équitable**.
 - Premières actions sous supervision
 
 **Formation continue** :
+
 - Points mensuels sur les cas complexes rencontrés
 - Partage d'expériences
 - Mise à jour des règles
@@ -1018,11 +1107,13 @@ Montre que la modération est **sérieuse et équitable**.
 ### Compensation
 
 **Modération = travail** :
+
 - Bénévole par défaut dans un petit stream
 - Si le stream monétise significativement → envisager compensation
 - Au minimum : cadeaux ponctuels, reconnaissance publique
 
 **Cadeaux possibles** :
+
 - Merchandising gratuit
 - Titre spécial "Gardien du Monde" dans Genesis Live
 - Pouvoir nommer une entité unique (artefact légendaire ?)
@@ -1031,11 +1122,13 @@ Montre que la modération est **sérieuse et équitable**.
 ### Conflits internes
 
 **Désaccord entre mods** :
+
 - Discussion en Discord privé
 - Si impasse → décision du streamer
 - Jamais publique (maintenir image de cohésion)
 
 **Mod qui abuse de son pouvoir** :
+
 - Warning privé
 - Révision des actions douteuses
 - Si répétition → rétrogradation ou révocation
@@ -1043,6 +1136,7 @@ Montre que la modération est **sérieuse et équitable**.
 ### Révocation
 
 **Un mod peut perdre son statut si** :
+
 - Abus de pouvoir (bans abusifs, favoritisme)
 - Inactivité prolongée (6+ mois)
 - Comportement public problématique
@@ -1057,6 +1151,7 @@ Montre que la modération est **sérieuse et équitable**.
 Interface web **séparée du stream public** pour les mods :
 
 **Vue principale** :
+
 - Chat en temps réel avec timestamps
 - Liste des viewers actifs avec trust score
 - Messages signalés automatiquement
@@ -1064,17 +1159,20 @@ Interface web **séparée du stream public** pour les mods :
 - Bouton "mode crise" (active slow mode, follower-only, etc.)
 
 **Vue des alertes** :
+
 - Raids suspects
 - Viewers au comportement anormal
 - Pics de spam
 - Messages pending review
 
 **Vue historique** :
+
 - Toutes les sanctions passées
 - Filtrage par mod, viewer, catégorie
 - Statistiques d'activité
 
 **Vue viewer** (clic sur un pseudo) :
+
 - Profil complet
 - Historique des messages
 - Historique des sanctions
@@ -1084,24 +1182,28 @@ Interface web **séparée du stream public** pour les mods :
 ### Outils de communication
 
 **Discord privé mods** :
+
 - Canal #général : discussions
 - Canal #cas-sensibles : cas complexes
 - Canal #logs-auto : notifications automatiques
 - Canal #raids : coordination pendant incidents
 
 **Alertes push** :
+
 - SMS / notification pour les urgences
 - Discord ping pour les incidents modérés
 
 ### Logs consultables
 
 **Toutes les actions mods sont loggées** :
+
 ```
 [2026-04-19 15:23:45] mod=Alice action=timeout target=Tom duration=10m reason="spam"
 [2026-04-19 15:25:12] mod=Bob action=ban target=Bad_Actor duration=permanent reason="slur"
 ```
 
 **Consultation** :
+
 - Par le streamer : accès total
 - Par les mods : leurs propres actions + vue des autres
 - Export CSV pour analyse
@@ -1109,6 +1211,7 @@ Interface web **séparée du stream public** pour les mods :
 ### Outils d'investigation
 
 **Pour les cas complexes** :
+
 - Export complet des messages d'un viewer
 - Timeline des interactions entre deux viewers
 - Visualisation des patterns suspects
@@ -1121,6 +1224,7 @@ Interface web **séparée du stream public** pour les mods :
 ### Définition d'une crise
 
 Situation hors du cadre normal qui nécessite une réponse **immédiate** et **coordonnée** :
+
 - Raid massif hostile
 - Attaque contre un viewer identifiable (harcèlement coordonné)
 - Contenu illégal posté (pédocriminalité, contenu terroriste)
@@ -1130,25 +1234,30 @@ Situation hors du cadre normal qui nécessite une réponse **immédiate** et **c
 ### Protocole général
 
 **1. Détection (0-30 secondes)**
+
 - Alerte auto ou manuelle
 - Premier mod disponible prend la tête
 
 **2. Containment (30s - 5 min)**
+
 - Activation des modes défensifs
 - Suppression du contenu problématique
 - Bans rapides des acteurs évidents
 
 **3. Analyse (5-30 min)**
+
 - Comprendre l'incident
 - Identifier la source
 - Collecter les preuves
 
 **4. Réponse (30 min - 2h)**
+
 - Actions correctives complètes
 - Communication si nécessaire
 - Retour progressif à la normale
 
 **5. Post-mortem (24-48h)**
+
 - Debrief avec l'équipe
 - Documentation
 - Amélioration des protocoles
@@ -1156,6 +1265,7 @@ Situation hors du cadre normal qui nécessite une réponse **immédiate** et **c
 ### Scénario 1 — Raid hostile massif
 
 **Actions immédiates (dans l'ordre)** :
+
 1. Mode suivi uniquement activé
 2. Slow mode 60s
 3. Ban des 5 premiers spammers visibles
@@ -1163,11 +1273,13 @@ Situation hors du cadre normal qui nécessite une réponse **immédiate** et **c
 5. Annonce dans le chat : "Incident en cours, patience"
 
 **Actions en continu** :
+
 - Ban chaque compte identifié comme lié au raid
 - Suppression des messages problématiques
 - Documentation des comptes impliqués
 
 **Actions post-incident** :
+
 - Identification de la source (autre stream ? Discord ? 4chan ?)
 - Coordination avec les autres streamers touchés
 - Rapport à la plateforme si pertinent
@@ -1175,6 +1287,7 @@ Situation hors du cadre normal qui nécessite une réponse **immédiate** et **c
 ### Scénario 2 — Contenu illégal
 
 **Contenu pédocriminel détecté** :
+
 1. **Supprimer immédiatement** le message/image
 2. **Ban permanent immédiat** du compte
 3. **Préserver les preuves** (screenshots, logs)
@@ -1188,11 +1301,13 @@ Situation hors du cadre normal qui nécessite une réponse **immédiate** et **c
 ### Scénario 3 — Attaque coordonnée contre un viewer
 
 **Exemples** :
+
 - Harcèlement en meute
 - Doxxing en cours
 - Diffusion de rumeurs
 
 **Actions** :
+
 1. **Protéger la victime** :
    - Contact direct pour la rassurer
    - Proposer de cacher temporairement son profil
@@ -1206,6 +1321,7 @@ Situation hors du cadre normal qui nécessite une réponse **immédiate** et **c
 Exemple : une commande Genesis Live cause un exploit qui permet de tricher massivement.
 
 **Actions** :
+
 1. **Désactiver immédiatement** la commande
 2. **Rollback** si possible à un snapshot avant l'exploit
 3. **Identifier** les viewers qui ont exploité
@@ -1220,17 +1336,20 @@ Exemple : une commande Genesis Live cause un exploit qui permet de tricher massi
 ### Obligations légales
 
 **En Europe (RGPD)** :
+
 - Pas de collecte de données personnelles au-delà du pseudo public
 - Droit à l'oubli : possibilité de demander suppression
 - Notification si data breach
 - DPO désigné si >250 utilisateurs
 
 **En France spécifiquement** :
+
 - Loi LCEN : responsabilité de l'éditeur pour contenus illégaux
 - Signalement obligatoire contenu pédocriminel
 - Conservation des logs d'identification (1 an)
 
 **US** :
+
 - Section 230 du Communications Decency Act : protection relative
 - COPPA : protection des <13 ans (règles strictes)
 - DMCA : gestion du copyright
@@ -1238,12 +1357,14 @@ Exemple : une commande Genesis Live cause un exploit qui permet de tricher massi
 ### Signalements aux autorités
 
 **Obligatoire** :
+
 - Contenu pédocriminel → PHAROS (FR) / NCMEC (US)
 - Menaces terroristes → services de police
 - Menaces de mort crédibles → police
 - Violences sur mineurs → services protection enfance
 
 **Processus** :
+
 1. Préserver les preuves (pas supprimer, cacher)
 2. Contacter les autorités compétentes
 3. Suivre leurs instructions
@@ -1252,11 +1373,13 @@ Exemple : une commande Genesis Live cause un exploit qui permet de tricher massi
 ### Confidentialité des mods
 
 **Les mods ont accès à des infos sensibles** :
+
 - Historiques privés
 - IPs (si exposées)
 - Contenu signalé
 
 **Obligations** :
+
 - Confidentialité absolue sur ces infos
 - Pas de divulgation même après départ du rôle
 - NDA possible pour les rôles seniors
@@ -1264,12 +1387,14 @@ Exemple : une commande Genesis Live cause un exploit qui permet de tricher massi
 ### Documentation légale
 
 **Conserver** :
+
 - Logs d'action (au moins 1 an)
 - Screenshots d'incidents graves
 - Correspondances avec autorités
 - Historiques de bans
 
 **Protéger** :
+
 - Accès restreint
 - Chiffrement si sensible
 - Backups sécurisés
@@ -1298,6 +1423,7 @@ La modération n'est pas un rôle **populaire**, mais elle est **essentielle**. 
 ### Check-list de démarrage (Phase 6 roadmap)
 
 **Avant le soft launch** :
+
 - [ ] Règles publiques rédigées et affichées
 - [ ] Blacklist de mots configurée
 - [ ] Filtres automatiques testés
@@ -1307,6 +1433,7 @@ La modération n'est pas un rôle **populaire**, mais elle est **essentielle**. 
 - [ ] Protocoles de crise documentés
 
 **Avant le lancement public (Phase 7)** :
+
 - [ ] 3-5 mods dispos sur les créneaux critiques
 - [ ] Escalades définies (qui appelle qui)
 - [ ] Canal d'appel opérationnel

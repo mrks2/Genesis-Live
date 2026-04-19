@@ -49,6 +49,7 @@ On ne cherche pas de virtuosité musicale. On cherche à créer **une émotion j
 ### Inspirations de référence
 
 **Ambient / atmosphérique** :
+
 - Brian Eno (*Music for Airports*, *Ambient 4: On Land*)
 - Stars of the Lid
 - Tim Hecker
@@ -56,6 +57,7 @@ On ne cherche pas de virtuosité musicale. On cherche à créer **une émotion j
 - Aphex Twin (*Selected Ambient Works Volume II*)
 
 **Musique de jeux** :
+
 - *Journey* (Austin Wintory) — émotion pure
 - *Celeste* (Lena Raine) — évolution atmosphérique
 - *Outer Wilds* (Andrew Prahlow) — mélancolie cosmique
@@ -63,16 +65,19 @@ On ne cherche pas de virtuosité musicale. On cherche à créer **une émotion j
 - *Oxygen Not Included* — ambiance scientifique douce
 
 **Musique organique** :
+
 - Björk (*Biophilia*)
 - Sigur Rós (*Valtari*, *Kveikur*)
 - Olafur Arnalds
 
 **Musique tribale / primitive** :
+
 - Dead Can Dance
 - Wardruna (pour l'aspect ancestral)
 - Musique traditionnelle du monde (pygmées, Tuva...)
 
 **Musique civilisationnelle** :
+
 - Hans Zimmer (*Interstellar*)
 - Max Richter (*Waltz with Bashir*)
 - Musique classique pour l'âge industriel
@@ -93,6 +98,7 @@ On ne cherche pas de virtuosité musicale. On cherche à créer **une émotion j
 ### Stack technique
 
 **Librairie principale** : **Howler.js**
+
 - API simple, fiable, bien maintenue
 - Support cross-browser excellent
 - Gestion des fades natifs
@@ -100,6 +106,7 @@ On ne cherche pas de virtuosité musicale. On cherche à créer **une émotion j
 - Pooling de sons automatique
 
 **Alternative considérée** : **Tone.js**
+
 - Plus puissant mais overkill pour Genesis Live
 - À envisager si on veut de la génération procédurale de musique
 
@@ -198,18 +205,21 @@ interface MusicTrack {
 ### Exemple de fonctionnement
 
 **Âge IV — état "peaceful"** (pression basse, écosystème stable) :
+
 ```
 Base layer (drone forêt) + Layer "calm" (flûtes douces) + Layer "diversity" (chants d'oiseaux légers)
 = Ambiance contemplative
 ```
 
 **Âge IV — état "tense"** (pression moyenne, guerre inter-espèces) :
+
 ```
 Base layer + Layer "tension" (percussions tribales)  + Layer "diversity"
 = Ambiance d'urgence naturelle
 ```
 
 **Âge IV — état "urgent"** (pression haute, extinction imminente) :
+
 ```
 Base layer (altéré) + Layer "urgent" (dissonances) + Layer "tension"
 = Ambiance de catastrophe
@@ -262,6 +272,7 @@ class AdaptiveLayerer {
 **Références** : Tim Hecker, drones sombres, early Autechre
 
 **Composition type** :
+
 - **Durée de boucle** : 4-5 minutes
 - **Instruments** :
   - Drones basse fréquence (30-80 Hz) évoquant la lave profonde
@@ -271,6 +282,7 @@ class AdaptiveLayerer {
   - Respiration synthétique (planète qui "vit")
 
 **Couches adaptatives** :
+
 - `calm` : Juste les drones, très lents
 - `tension` : Ajout de cymbales traitées, respiration plus forte
 - `urgent` : Percussions dissonantes, basses distordues
@@ -283,6 +295,7 @@ class AdaptiveLayerer {
 **Références** : Stars of the Lid, Brian Eno *On Land*, Subnautica
 
 **Composition type** :
+
 - **Durée de boucle** : 5-6 minutes
 - **Instruments** :
   - Synthés warmes et larges (pads)
@@ -292,6 +305,7 @@ class AdaptiveLayerer {
   - Cloches lointaines
 
 **Couches adaptatives** :
+
 - `calm` : Pads et gouttes d'eau
 - `tension` : Orages lointains qui grondent en sub-bass
 - `urgent` : Tempêtes, voix qui deviennent spectrales
@@ -304,6 +318,7 @@ class AdaptiveLayerer {
 **Références** : Autechre, Aphex Twin *SAW II*, sons microscopiques
 
 **Composition type** :
+
 - **Durée de boucle** : 4-5 minutes
 - **Instruments** :
   - Textures bubbling, gurgling (organique)
@@ -313,6 +328,7 @@ class AdaptiveLayerer {
   - Voix murmurées lointaines, incompréhensibles
 
 **Couches adaptatives** :
+
 - `calm` : Textures et bourdonnements
 - `tension` : Rythmes plus affirmés, début de percussions
 - `urgent` : Glitches, dissonances, acidité
@@ -325,6 +341,7 @@ class AdaptiveLayerer {
 **Références** : Dead Can Dance, musique de la jungle, rythmes organiques
 
 **Composition type** :
+
 - **Durée de boucle** : 5-7 minutes
 - **Instruments** :
   - Percussions organiques (tablas, djembés, congas)
@@ -334,6 +351,7 @@ class AdaptiveLayerer {
   - Cordes pincées (harpes, sitars)
 
 **Couches adaptatives** :
+
 - `calm` : Flûtes et chants
 - `tension` : Percussions tribales, tempo augmente
 - `urgent` : Percussions martelées, cuivres graves (dangers)
@@ -348,6 +366,7 @@ class AdaptiveLayerer {
 **Références** : Wardruna, musique traditionnelle, percussions ancestrales
 
 **Composition type** :
+
 - **Durée de boucle** : 4-6 minutes
 - **Instruments** :
   - Tambours de peau (tom-toms, bodhrán)
@@ -357,6 +376,7 @@ class AdaptiveLayerer {
   - Crépitement de feu (omniprésent, fondation)
 
 **Couches adaptatives** :
+
 - `calm` : Feu, voix douces, cordes
 - `tension` : Percussions collectives, chants guerriers
 - `urgent` : Cris, percussions chaotiques (conflits tribaux)
@@ -371,38 +391,45 @@ class AdaptiveLayerer {
 **Sous-compositions** :
 
 **Âge du Bronze** (bronze) :
+
 - Instruments antiques (lyres, flûtes grecques)
 - Cuivres brillants
 - Percussions ritualistes
 
 **Âge du Fer** (iron) :
+
 - Cordes (violons, cellos)
 - Chœurs épiques
 - Marches militaires discrètes
 
 **Âge Médian** (medieval) :
+
 - Luth, harpe, flûtes
 - Chœurs grégoriens
 - Cloches d'églises (lointaines)
 
 **Âge des Voiles** (sails) :
+
 - Musique baroque (clavecin, violons)
 - Instruments exotiques (introduits par exploration)
 - Musique de cour
 
 **Âge des Machines** (industrial) :
+
 - Cordes tendues
 - Percussions mécaniques (métalliques)
 - Orgues, piano sombre
 - Sons industriels traités
 
 **Âge des Réseaux** (network) :
+
 - Cordes modernes
 - Synthétiseurs subtils
 - Sons digitaux minimaux
 - Nappes électroniques
 
 **Couches adaptatives globales Âge VI** :
+
 - `calm` : Paix, prospérité, harmonie
 - `tension` : Empires qui se tendent, guerre proche
 - `urgent` : Bataille, effondrement
@@ -415,6 +442,7 @@ class AdaptiveLayerer {
 **Références** : Outer Wilds, Interstellar (parties glacées), ambient cosmique
 
 **Composition type** :
+
 - **Durée de boucle** : 6-8 minutes
 - **Instruments** :
   - Nappes synthétiques larges et froides
@@ -424,6 +452,7 @@ class AdaptiveLayerer {
   - Sub-bass pour donner l'espace infini
 
 **Couches adaptatives** :
+
 - `calm` : Nappes contemplatives, isolation
 - `tension` : Dissonances qui s'installent, voix anxieuses
 - `urgent` : Distortions, chaos cosmique (apocalypse imminente)
@@ -441,16 +470,19 @@ Chaque type d'apocalypse a sa **signature musicale** distincte. L'ambiance music
 ### 🌠 Impact céleste
 
 **Avant l'impact** :
+
 - Silence progressif pendant 10 secondes
 - Un sub-bass grandit en volume
 - Cloches de menace
 
 **Pendant** :
+
 - Impact énorme (cymbales, drums massifs)
 - Silence oppressant pendant 3 secondes
 - Ambiance étouffée (comme après explosion)
 
 **Après** :
+
 - Drones sombres, voix qui pleurent au loin
 - Reconstruction très lente
 
@@ -526,41 +558,49 @@ Après chaque apocalypse, une **transition musicale** vers le nouveau cycle :
 ### 🌋 Phénomènes naturels
 
 **Éruption volcanique** :
+
 - Explosion principale (basse fréquence + frequencies hautes)
 - Rumble continu après
 - Crackles de lave
 - Durée : 5-15 secondes
 
 **Tonnerre** :
+
 - Éclair (aigu, court)
 - Tonnerre (grave, long, roulant)
 - Variantes : proche/distant, sec/pluvieux
 
 **Tremblement de terre** :
+
 - Rumble sub-bass prolongé
 - Craquements (rochers)
 - Objets qui tombent
 
 **Tsunami / déluge** :
+
 - Eau qui monte en pression
 - Impact massif
 - Eau en mouvement continu
 
 **Vent** :
+
 - Plusieurs intensités (brise → tempête)
 - Bouclable parfaitement
 
 **Pluie** :
+
 - Légère (tick-tick)
 - Forte (hiss continu)
 - Diluvienne (whooshing)
 
 **Feu** :
+
 - Crépitement doux
 - Brasier (plus fort)
 - Incendie (énorme)
 
 **Geyser** :
+
 - Sifflement aigu
 - Jet d'eau
 - Retombée
@@ -568,59 +608,70 @@ Après chaque apocalypse, une **transition musicale** vers le nouveau cycle :
 ### 🌿 Vie
 
 **Cris d'animaux** (5-10 variantes) :
+
 - Préhistorique : rugissements, cris reptiliens
 - Moderne : oiseaux, mammifères
 - Créatures impossibles : sons étranges, uniques
 
 **Reproduction / naissance** :
+
 - Son subtil, organique
 - Pas trop littéral (éviter le gênant)
 
 **Mort animale** :
+
 - Cri court, étouffé
 - Pas de réalisme dégoûtant
 
 **Nuée** :
+
 - Oiseaux en vol groupé
 - Insectes (bourdonnement)
 
 ### 🏛️ Civilisations
 
 **Foule** :
+
 - Murmures de marché
 - Clameur de foule
 - Ovation
 - Colère collective
 
 **Construction** :
+
 - Marteau sur enclume
 - Scie
 - Coups de pioche
 - Treuils
 
 **Cloches** :
+
 - Cloche d'église (différentes tailles)
 - Cloches de festival
 - Glas funèbre
 
 **Feux d'artifice / cérémonies** :
+
 - Trompettes
 - Chants liturgiques
 - Tambours cérémoniels
 
 **Batailles** :
+
 - Épées qui s'entrechoquent
 - Cris de guerre
 - Archers
 - Explosions de canons (plus tard)
 
 **Industrie** :
+
 - Machines à vapeur
 - Usines
 - Sirènes d'usine
 - Trains
 
 **Moderne** :
+
 - Voitures
 - Klaxons
 - Sirènes de police
@@ -629,21 +680,25 @@ Après chaque apocalypse, une **transition musicale** vers le nouveau cycle :
 ### 🚀 Spatial
 
 **Fusée** :
+
 - Countdown
 - Décollage (sub-bass massif)
 - Vol
 - Retour atmosphérique
 
 **Satellite** :
+
 - Beep de transmission
 - Signal radio
 
 **IA** :
+
 - Voix synthétique
 - Calculs digitaux
 - Glitches
 
 **Contact** :
+
 - Sons impossibles
 - Voix non humaines
 - Signaux inconnus
@@ -651,42 +706,51 @@ Après chaque apocalypse, une **transition musicale** vers le nouveau cycle :
 ### 🎯 Événements narratifs
 
 **Titre gagné** :
+
 - Son bref, euphorique
 - Reverb brillante
 - Variantes par catégorie (primordial, obscur, légendaire...)
 
 **Nouvelle espèce** :
+
 - Son cristallin, émergent
 - Comme une découverte
 
 **Nouvelle cité** :
+
 - Son de fondation : cloche + chant
 - Sentiment d'installation
 
 **Apocalypse imminente** :
+
 - Alarme sinistre
 - Utilisé avec parcimonie (gardé pour les vrais moments)
 
 **Âge gagné / transition** :
+
 - Son cinématique long
 - Build-up + résolution
 
 ### ⚙️ UI / système
 
 **Commande reçue** (très discret) :
+
 - Tick subtil
 - À peine audible
 - Ne doit pas fatiguer
 
 **Notification** :
+
 - Ding doux
 - Variantes selon importance
 
 **Alerte** :
+
 - Plus affirmé
 - Mais jamais strident
 
 **Changement de caméra** :
+
 - Whoosh très léger
 - Si zoom → glissement sonore
 
@@ -701,6 +765,7 @@ Les **ambiances** sont des sons en boucle **continue** qui définissent l'enviro
 ### Types d'ambiance
 
 **Ambiance par biome (Âges IV+)** :
+
 - Forêt : oiseaux, insectes, frémissement de feuilles
 - Désert : vent, silence quasi-total
 - Océan : vagues, cris de mouettes
@@ -710,6 +775,7 @@ Les **ambiances** sont des sons en boucle **continue** qui définissent l'enviro
 - Marais : grenouilles, bourdonnements
 
 **Ambiance par densité civilisationnelle** :
+
 - Tribu : feu de camp lointain, discussions
 - Village : activité artisanale, enfants
 - Cité moyenne : marché, cloches, trafic
@@ -717,6 +783,7 @@ Les **ambiances** sont des sons en boucle **continue** qui définissent l'enviro
 - Mégalopole : vrombissement constant
 
 **Ambiance météo** :
+
 - Ciel clair : silence atmosphérique
 - Nuageux : vent modéré
 - Pluie : fond de pluie
@@ -726,6 +793,7 @@ Les **ambiances** sont des sons en boucle **continue** qui définissent l'enviro
 ### Transitions d'ambiance
 
 Les ambiances ne s'arrêtent pas brutalement :
+
 - **Cross-fade** de 5-10 secondes entre deux ambiances différentes
 - **Variation de volume** selon la zone visible à l'écran
 - **Empilement possible** : plusieurs ambiances peuvent coexister (forêt + pluie + tribu)
@@ -745,6 +813,7 @@ Les ambiances ne s'arrêtent pas brutalement :
 Chaque transition d'âge a sa **cinématique sonore** dédiée :
 
 **Âge I → II** :
+
 1. La musique de feu s'atténue progressivement
 2. Pluie torrentielle qui monte (effet SFX majeur)
 3. Silence de 3 secondes
@@ -752,6 +821,7 @@ Chaque transition d'âge a sa **cinématique sonore** dédiée :
 5. Durée totale : 30 secondes
 
 **Âge II → III** :
+
 1. Orages qui s'éloignent
 2. Zoom sonore (comme si l'oreille descend dans l'eau)
 3. Sons organiques minuscules émergent
@@ -759,12 +829,14 @@ Chaque transition d'âge a sa **cinématique sonore** dédiée :
 5. Durée : 30 secondes
 
 **Âge III → IV** :
+
 1. Les sons microbiens deviennent des cris d'animaux
 2. Émergence progressive de percussions
 3. Symphonie tribale qui explose
 4. Durée : 45 secondes
 
 **Âge IV → V** :
+
 1. La jungle se calme
 2. Émergence d'un feu de camp
 3. Premier battement de tambour humain
@@ -772,6 +844,7 @@ Chaque transition d'âge a sa **cinématique sonore** dédiée :
 5. Durée : 45 secondes
 
 **Âge V → VI** :
+
 1. Tambour tribal continue
 2. Se transforme progressivement en marche
 3. Cloches distantes apparaissent
@@ -779,6 +852,7 @@ Chaque transition d'âge a sa **cinématique sonore** dédiée :
 5. Durée : 60 secondes
 
 **Âge VI → VII** :
+
 1. Les sons terrestres s'éloignent
 2. Zoom vers l'espace
 3. Silence cosmique
@@ -788,6 +862,7 @@ Chaque transition d'âge a sa **cinématique sonore** dédiée :
 ### Au sein d'un âge (sous-transitions)
 
 **Passage de sous-âge en Âge VI** :
+
 - Durée : 15-20 secondes
 - Transitions douces, pas de rupture
 - Nouveaux instruments apparaissent, anciens se retirent
@@ -795,16 +870,19 @@ Chaque transition d'âge a sa **cinématique sonore** dédiée :
 ### Moments spéciaux
 
 **Titre légendaire gagné** :
+
 - Musique baisse à 30% (ducking)
 - Son de titre (2-3 secondes)
 - Musique remonte
 
 **Guerre éclate** :
+
 - Couche "tension" monte rapidement
 - SFX de bataille s'ajoutent en ambiance
 - Reste pendant toute la durée du conflit
 
 **Mort de figure légendaire** :
+
 - Silence musical pendant 5 secondes
 - Son unique (cloche ou voix)
 - Musique reprend en mode mineur (plus triste)
@@ -860,6 +938,7 @@ class AudioDucker {
 ```
 
 **Cas d'usage typiques** :
+
 - Annonce de nouveau cycle → tout duck 80%, narration seule
 - Apocalypse → musique duck, SFX apocalypse prioritaire
 - Titre légendaire → ambiance duck 30%
@@ -891,6 +970,7 @@ Quand un SFX important joue, la musique "pompe" subtilement pour laisser la plac
 ### Panning
 
 Les sons qui viennent d'une **zone de l'écran** peuvent être **pannés** (stéréo) :
+
 - Volcan à gauche de la planète → son à gauche
 - Éclair à droite → son à droite
 - Explosion au centre → son centré
@@ -909,6 +989,7 @@ class SpatialSFX {
 ### Distance / profondeur
 
 Sons qui viennent de **loin** (moins visibles) :
+
 - Volume réduit
 - Filtrage passe-bas (sons plus étouffés)
 - Reverb plus marquée
@@ -926,17 +1007,20 @@ Sons qui viennent de **loin** (moins visibles) :
 ### Formats audio
 
 **Musique** :
+
 - Format principal : **OGG Vorbis** (bonne compression, open source)
 - Alternative : **WebM/Opus** (encore meilleur, mais support un peu moins universel)
 - Fallback : **MP3** (compatibilité maximale)
 - Qualité : **192 kbps VBR** (équilibre qualité/poids)
 
 **SFX courts** :
+
 - Format : **OGG Vorbis** ou **WebM/Opus**
 - Qualité : **128 kbps** (suffisant, gains de poids significatifs)
 - Longs SFX (>5s) : mêmes paramètres que musique
 
 **Ambiance** :
+
 - Format : **OGG Vorbis**
 - Qualité : **128-160 kbps**
 - **Boucles parfaites** (pas de clic à la jonction)
@@ -944,23 +1028,27 @@ Sons qui viennent de **loin** (moins visibles) :
 ### Normalisation
 
 Tous les fichiers audio sont **normalisés à -14 LUFS** (standard streaming) :
+
 - Évite les écarts de volume brutaux
 - Compatible avec YouTube/Twitch (qui ajustent automatiquement)
 
 ### Poids budgétaire
 
 **Objectif** : total audio < 30 MB à charger initialement
+
 - 7 musiques d'âge : 3-4 MB chacune = 25 MB max
 - SFX critiques : 3-5 MB
 - Ambiances : 2-3 MB
 
 **Assets chargés à la demande** :
+
 - Musiques d'apocalypse (uniquement quand déclenchées)
 - SFX rares (créatures impossibles, contact, etc.)
 
 ### Préparation des fichiers
 
 Chaque fichier doit avoir :
+
 - Boucle parfaite si loopable (pas de clic, fondu invisible)
 - Silence de début/fin minimal (éviter les latences)
 - Pas de DC offset
@@ -973,12 +1061,14 @@ Chaque fichier doit avoir :
 ### Options de création
 
 **Option 1 — Créer tout soi-même**
+
 - Outils : Ableton Live, FL Studio, Reaper, Logic Pro
 - Coût : 0 si gratuit (LMMS, Reaper en trial)
 - Temps : TRÈS long (expertise requise)
 - Avantage : identité 100% unique
 
 **Option 2 — Banques de sons libres**
+
 - Sources :
   - [Freesound.org](https://freesound.org) (CC0 et CC-BY)
   - [Zapsplat](https://zapsplat.com) (gratuit avec compte)
@@ -989,6 +1079,7 @@ Chaque fichier doit avoir :
 - Avantage : grande variété rapidement
 
 **Option 3 — Packs commerciaux**
+
 - Sources :
   - AudioJungle (abordable)
   - Splice (abonnement mensuel)
@@ -997,12 +1088,14 @@ Chaque fichier doit avoir :
 - Avantage : qualité professionnelle
 
 **Option 4 — Commandes à des musiciens**
+
 - Freelances sur Fiverr, Soundbetter
 - Ou musiciens connus (plus cher)
 - Coût : 500-5000€ pour un score complet
 - Avantage : qualité maximale, identité forte
 
 **Option 5 — Musique générative / IA**
+
 - Suno, Udio, MusicGen, Stable Audio
 - À utiliser avec prudence (questions de droits d'auteur)
 - Rapide mais doit être retravaillé manuellement
@@ -1010,11 +1103,13 @@ Chaque fichier doit avoir :
 ### Recommandation pour Genesis Live
 
 **MVP (Phase 5)** : combinaison d'options 1 et 2
+
 - Banques libres (Sonniss packs) pour SFX
 - Outils musicaux pour composer les musiques d'âge
 - IA (avec retravail) pour itérer vite
 
 **V1 polished (Phase 7+)** : envisager l'option 4
+
 - Commander un score original à un musicien
 - Budget 1000-3000€
 - Renforce l'identité, différencie du tout-venant
@@ -1022,15 +1117,18 @@ Chaque fichier doit avoir :
 ### Banque SFX libres recommandées
 
 **Sonniss GameAudio (gratuit)** :
+
 - 30+ GB de sons libres pour jeu vidéo
 - Qualité pro
 - Licence commerciale OK
 
 **Freesound.org** :
+
 - Filtrer par licence CC0 (zéro contrainte)
 - Grande communauté de contributeurs
 
 **BBC Sound Effects** :
+
 - 33 000 sons historiques
 - Licence "personal/educational" (vérifier pour usage stream)
 
@@ -1041,6 +1139,7 @@ Chaque fichier doit avoir :
 ### Chargement
 
 **Pré-chargement au démarrage** :
+
 ```typescript
 class AudioLoader {
   async preloadCritical(): Promise<void> {
@@ -1062,6 +1161,7 @@ class AudioLoader {
 ```
 
 **Chargement à la demande** :
+
 ```typescript
 async playApocalypseMusic(type: ApocalypseType) {
   const path = `music/apocalypse_${type}.ogg`;
@@ -1171,6 +1271,7 @@ class AudioContextManager {
 ### Gestion mémoire
 
 **Décharger les sons inutilisés** :
+
 - Musique d'un âge précédent : décharger après 5 minutes dans le nouvel âge
 - SFX rarement utilisés : décharger si non utilisés depuis 10 min
 
@@ -1203,11 +1304,13 @@ class AudioMemoryManager {
 
 **Volume global** : slider 0-100%
 **Volumes par couche** :
+
 - Musique : 0-100% (recommandé 60%)
 - Ambiance : 0-100%
 - SFX : 0-100%
 
 **Options avancées** :
+
 - Mute complet
 - Mode "narration" : baisse musique à 30%, met en avant SFX événementiels
 - Mode "ambiance" : baisse SFX, met en avant musique
@@ -1216,6 +1319,7 @@ class AudioMemoryManager {
 ### Sous-titres sonores
 
 Pour les malentendants, **chaque événement sonore important** a son équivalent visuel :
+
 - SFX = notification HUD
 - Apocalypse = banner pleine largeur
 - Titre gagné = popup
@@ -1224,6 +1328,7 @@ Pour les malentendants, **chaque événement sonore important** a son équivalen
 ### Pas de sons stroboscopiques
 
 Éviter :
+
 - Pulsations très rapides (peuvent déclencher crises épileptiques)
 - Fréquences strictement aiguës prolongées (gênant)
 - Volumes brusques sans warning
@@ -1258,17 +1363,20 @@ Le son est **l'âme invisible** de Genesis Live. C'est ce qui transforme un écr
 ### Phases d'implémentation
 
 **MVP (Phase 5 roadmap)** :
+
 - [ ] 3 musiques d'âge (I, II, III) — base simple sans layers
 - [ ] 10-15 SFX essentiels
 - [ ] Mixer basique avec fade in/out
 
 **V1 (Phase 7 roadmap)** :
+
 - [ ] 7 musiques d'âge complètes avec layers adaptatifs
 - [ ] ~60 SFX complets
 - [ ] Système d'ambiance par biome
 - [ ] Transitions d'âge soignées
 
 **V2 (Phase 8 roadmap)** :
+
 - [ ] Musiques d'apocalypse uniques (9 variantes)
 - [ ] Spatialisation stéréo
 - [ ] Ducking et sidechain

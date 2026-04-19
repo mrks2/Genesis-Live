@@ -27,6 +27,45 @@
 
 ## Vue d'ensemble
 
+### Diagramme de la roadmap
+
+```mermaid
+gantt
+    title Roadmap Genesis Live — solo part-time (~6.5 mois jusqu'au lancement)
+    dateFormat YYYY-MM-DD
+    axisFormat %b %Y
+
+    section 🛠️ Préparation
+    Phase 0 — Setup environnement            :p0, 2026-04-20, 12d
+    Phase 1 — Fondations techniques          :p1, after p0, 18d
+
+    section ⚙️ Moteur
+    Phase 2 — MVP simulation                  :p2, after p1, 35d
+    🎯 Moteur tourne en mock                 :milestone, m1, after p2, 0d
+    Phase 3 — Intégration chat (YT + Twitch) :p3, after p2, 18d
+    🎯 Premier !rain en live                 :milestone, m2, after p3, 0d
+
+    section 🌍 Contenu
+    Phase 4 — Extension des 7 âges            :p4, after p3, 49d
+    🎯 Cycle complet jouable                  :milestone, m3, after p4, 0d
+
+    section 🎨 Polish
+    Phase 5 — Visuel et audio                 :p5, after p4, 35d
+
+    section 🚀 Lancement
+    Phase 6 — Soft launch (test privé)        :p6, after p5, 18d
+    🎯 7 jours sans crash                    :milestone, m4, after p6, 0d
+    Phase 7 — Lancement public                :crit, p7, after p6, 7d
+    🚀 STREAM PUBLIC 24/7                    :milestone, m5, after p7, 0d
+
+    section 🔄 Continu
+    Phase 8 — Itération continue              :p8, after p7, 180d
+    🎯 1er cycle nominal terminé (6-12 mois) :milestone, m6, 2027-04-01, 0d
+```
+
+> 💡 Le diagramme utilise des **durées médianes**. Les fourchettes min-max figurent dans la table ci-dessous.
+> Dates calculées à partir d'un démarrage au **20 avril 2026** en mode solo part-time.
+
 ### Timeline globale
 
 | Phase | Durée (solo part-time) | Livrable principal |
@@ -42,6 +81,50 @@
 | 8 — Itération | Continu | Améliorations continues |
 
 **Total estimé** : **6 à 9 mois en solo part-time**, **3-4 mois en solo full-time**, **2-3 mois en équipe de 2-3**.
+
+### Vue comparative des 3 scénarios
+
+```mermaid
+gantt
+    title Comparaison des 3 scénarios d'équipe (jusqu'au lancement public)
+    dateFormat YYYY-MM-DD
+    axisFormat %b %Y
+
+    section 👤 Solo part-time
+    ~6.5 mois                                :a1, 2026-04-20, 195d
+
+    section 👤 Solo full-time
+    ~3.5 mois                                :a2, 2026-04-20, 105d
+
+    section 👥 Équipe de 2-3
+    ~2.5 mois                                :a3, 2026-04-20, 75d
+```
+
+### Dépendances entre phases
+
+```mermaid
+flowchart LR
+    P0["Phase 0<br/>Setup"] --> P1["Phase 1<br/>Fondations"]
+    P1 --> P2["Phase 2<br/>MVP simulation"]
+    P2 --> P3["Phase 3<br/>Chat YT + Twitch"]
+    P2 -.->|possible en parallèle| P4a["Âges I-III<br/>design"]
+    P3 --> P4["Phase 4<br/>7 âges"]
+    P4a -.-> P4
+    P4 --> P5["Phase 5<br/>Polish"]
+    P4 -.->|possible en parallèle| P5a["Assets<br/>graphiques"]
+    P5a -.-> P5
+    P5 --> P6["Phase 6<br/>Soft launch"]
+    P6 --> P7["Phase 7<br/>Lancement"]
+    P7 --> P8["Phase 8<br/>Itération continue"]
+
+    classDef core fill:#f59e0b,stroke:#b45309,color:#111,stroke-width:2px
+    classDef parallel fill:#94a3b8,stroke:#475569,color:#fff,stroke-dasharray:5 5
+    classDef launch fill:#dc2626,stroke:#7f1d1d,color:#fff,stroke-width:3px
+
+    class P0,P1,P2,P3,P4,P5,P6,P8 core
+    class P4a,P5a parallel
+    class P7 launch
+```
 
 ### Objectifs par phase
 

@@ -336,9 +336,9 @@ Le MVP doit être **imparfait et visible**, pas parfait et caché. Sortir → ap
 
 **Jour 21 — Test intégration**
 
-- [ ] Tests unitaires basiques fonctionnent (vitest)
-- [ ] GitHub Actions exécute les tests
-- [ ] Premier commit qui passe le CI
+- [x] Tests unitaires basiques fonctionnent (vitest) → **13 tests verts** : 8 sur `readInt`/`readEnum` + 5 sur `/health`, `/`, 404
+- [x] GitHub Actions exécute les tests → le job `code-checks` s'active auto (détection `package.json`) et chaîne `npm ci` + `typecheck` + `lint` + `test`
+- [ ] Premier commit qui passe le CI → à valider au prochain push
 
 ### Semaine 4 — Frontend et communication
 

@@ -7,8 +7,8 @@ loadDotenv();
 type NodeEnv = "development" | "test" | "production";
 type LogLevel = "fatal" | "error" | "warn" | "info" | "debug" | "trace";
 
-function readInt(key: string, fallback: number): number {
-  const raw = process.env[key];
+export function readInt(key: string, fallback: number, source: NodeJS.ProcessEnv = process.env): number {
+  const raw = source[key];
   if (!raw) return fallback;
   const parsed = Number.parseInt(raw, 10);
   if (Number.isNaN(parsed)) {
@@ -17,8 +17,13 @@ function readInt(key: string, fallback: number): number {
   return parsed;
 }
 
-function readEnum<T extends string>(key: string, allowed: readonly T[], fallback: T): T {
-  const raw = process.env[key];
+export function readEnum<T extends string>(
+  key: string,
+  allowed: readonly T[],
+  fallback: T,
+  source: NodeJS.ProcessEnv = process.env
+): T {
+  const raw = source[key];
   if (!raw) return fallback;
   if (!allowed.includes(raw as T)) {
     throw new Error(`Env var ${key} must be one of [${allowed.join(", ")}], got: ${raw}`);

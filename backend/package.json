@@ -11,7 +11,8 @@
     "start": "node dist/index.js",
     "clean": "rimraf dist",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"Tests à ajouter en Phase 2\" && exit 0"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@genesis-live/shared": "*",
@@ -22,8 +23,11 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/supertest": "^6.0.2",
     "@types/ws": "^8.5.12",
     "pino-pretty": "^11.2.2",
-    "tsx": "^4.19.0"
+    "supertest": "^7.0.0",
+    "tsx": "^4.19.0",
+    "vitest": "^2.1.0"
   }
 }

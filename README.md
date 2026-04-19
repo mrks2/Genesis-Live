@@ -32,6 +32,90 @@ Phase de conception terminée. Ce repo contient les **12 documents de référenc
 - [coding_best_practices.md](coding_best_practices.md) — Conventions de code, tests, dette technique
 - [roadmap.md](roadmap.md) — Phases 0 à 8, jalons, risques, budget temps
 
+## Architecture (vue d'ensemble)
+
+```
+        ┌──────────────────┐           ┌──────────────────┐
+        │  YouTube Live    │           │     Twitch       │
+        │  (chat + video)  │           │  (chat + video)  │
+        └────┬────────┬────┘           └────┬────────┬────┘
+  chat msgs  │        │ video       video   │        │  chat msgs
+             │        └──────┬──────────────┘        │
+             │               │                       │
+             ▼               ▼                       ▼
+    ┌─────────────┐  ┌──────────────────┐   ┌─────────────┐
+    │  YouTube    │  │  Relais RTMP     │   │  Twitch     │
+    │  Adapter    │  │  (multistream)   │   │  Adapter    │
+    │  (poll API) │  └────────▲─────────┘   │  (IRC/WS)   │
+    └──────┬──────┘           │             └──────┬──────┘
+           │                  │                    │
+           └──────┬───────────┼────────────────────┘
+                  │           │
+                  ▼           │
+        ┌─────────────────┐   │
+        │  UnifiedChat    │   │
+        │  Manager        │   │
+        │  (agrégation +  │   │
+        │   identité      │   │
+        │   cross-plat.)  │   │
+        └────────┬────────┘   │
+                 │            │
+           commandes          │
+                 ▼            │
+╔═══════════════════════════════════════════════╗
+║          BACKEND  (Node.js + TypeScript)      ║
+║                                               ║
+║  ┌─────────────────────────────────────────┐  ║
+║  │  SIMULATION ENGINE                       │  ║
+║  │  • Tick loop (2s nominal, ×30-50 acc.)  │  ║
+║  │  • 7 âges, règles d'évolution            │  ║
+║  │  • Pression, apocalypses, cycles         │  ║
+║  │  • Attribution de titres                 │  ║
+║  └───────┬────────────────┬────────────────┘  ║
+║          │                │                    ║
+║   état   │                │   events           ║
+║          ▼                ▼                    ║
+║  ┌────────────────┐  ┌──────────────────┐     ║
+║  │  PERSISTENCE   │  │  EVENT BUS       │     ║
+║  │  • SQLite       │  │  • Pub/Sub        │     ║
+║  │  • Snapshots    │  │  • Broadcast WS   │     ║
+║  │  • HistoryLog   │  └────────┬─────────┘     ║
+║  └────────────────┘           │                ║
+║                               │                ║
+╚═══════════════════════════════╪════════════════╝
+                                │ WebSocket
+                                ▼                │
+┌───────────────────────────────────────────────┐│
+│   FRONTEND  (navigateur capturé par OBS)      ││
+│                                               ││
+│   ┌────────────┐ ┌────────┐ ┌──────────────┐ ││
+│   │  RENDERER  │ │  HUD   │ │    AUDIO     │ ││
+│   │  (Pixi.js) │ │ (HTML/ │ │  (Howler.js) │ ││
+│   │            │ │  CSS)  │ │              │ ││
+│   │ globe ↔ iso│ │        │ │ musique par  │ ││
+│   │ caméra     │ │ stats  │ │ âge, SFX     │ ││
+│   │ cinémat.   │ │ events │ │              │ ││
+│   └────────────┘ └────────┘ └──────────────┘ ││
+└───────────────────────┬───────────────────────┘│
+                        │                        │
+                        │ capture vidéo          │
+                        ▼                        │
+            ┌───────────────────────┐            │
+            │     OBS Studio        │────────────┘
+            │  (scène + encodeur)   │  flux RTMP unique
+            └───────────────────────┘  vers le relais
+```
+
+**Principes clés** :
+- **Séparation simulation / rendu** : le moteur tourne indépendamment du frontend, qui n'est qu'un observateur.
+- **Source unique de vérité** : le backend est autoritaire. Pas de logique métier dans le navigateur.
+- **Tout est événement** : chaque action (viewer ou moteur) produit un événement dans le HistoryLog — rien n'est jamais perdu.
+- **Multistream dès le jour 1** : YouTube + Twitch en entrée (chats agrégés) et en sortie (même flux vidéo).
+
+Détails complets : [architecture.md](architecture.md).
+
+---
+
 ## Concept en 3 phrases
 
 1. Une planète simulée tick par tick, dont chaque rocher, créature, civilisation est une entité persistante avec un nom.

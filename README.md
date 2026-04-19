@@ -12,29 +12,31 @@ Phase de conception terminée. Ce repo contient les **12 documents de référenc
 
 ## Documentation
 
+Tous les documents de conception sont dans [docs/](docs/).
+
 ### Vision et narratif
 
-- [genesis_live_lore.md](genesis_live_lore.md) — Cosmologie, 7 âges, Panthéon des viewers, apocalypses, mythes
-- [genesis_live_commands.md](genesis_live_commands.md) — Toutes les commandes chat par âge
+- [docs/genesis_live_lore.md](docs/genesis_live_lore.md) — Cosmologie, 7 âges, Panthéon des viewers, apocalypses, mythes
+- [docs/genesis_live_commands.md](docs/genesis_live_commands.md) — Toutes les commandes chat par âge
 
 ### Moteur et architecture
 
-- [simulation_rules.md](simulation_rules.md) — Règles du moteur, cycles, vitesse, titres
-- [data_model.md](data_model.md) — Entités, persistance, migrations, exports
-- [architecture.md](architecture.md) — Stack, modules, patterns, diffusion multi-plateforme
-- [chat_integration.md](chat_integration.md) — YouTube + Twitch, parsing, modération auto
+- [docs/simulation_rules.md](docs/simulation_rules.md) — Règles du moteur, cycles, vitesse, titres
+- [docs/data_model.md](docs/data_model.md) — Entités, persistance, migrations, exports
+- [docs/architecture.md](docs/architecture.md) — Stack, modules, patterns, diffusion multi-plateforme
+- [docs/chat_integration.md](docs/chat_integration.md) — YouTube + Twitch, parsing, modération auto
 
 ### Rendu et identité
 
-- [render_spec.md](render_spec.md) — Pixi.js, projection globe ↔ iso, HUD, caméra cinématique
-- [audio_design.md](audio_design.md) — Musique adaptative par âge, SFX, apocalypses sonores
-- [color_palette.md](color_palette.md) — 64 couleurs officielles, palettes par âge et biome
+- [docs/render_spec.md](docs/render_spec.md) — Pixi.js, projection globe ↔ iso, HUD, caméra cinématique
+- [docs/audio_design.md](docs/audio_design.md) — Musique adaptative par âge, SFX, apocalypses sonores
+- [docs/color_palette.md](docs/color_palette.md) — 64 couleurs officielles, palettes par âge et biome
 
 ### Opérations
 
-- [content_moderation.md](content_moderation.md) — Catégories, sanctions, raids, protocoles de crise
-- [coding_best_practices.md](coding_best_practices.md) — Conventions de code, tests, dette technique
-- [roadmap.md](roadmap.md) — Phases 0 à 8, jalons, risques, budget temps
+- [docs/content_moderation.md](docs/content_moderation.md) — Catégories, sanctions, raids, protocoles de crise
+- [docs/coding_best_practices.md](docs/coding_best_practices.md) — Conventions de code, tests, dette technique
+- [docs/roadmap.md](docs/roadmap.md) — Phases 0 à 8, jalons, risques, budget temps
 
 ## Architecture (vue d'ensemble)
 
@@ -129,7 +131,7 @@ sequenceDiagram
     Note over V,F: Le viewer voit le résultat ~2-5s<br/>après avoir tapé la commande
 ```
 
-Détails complets : [architecture.md](architecture.md), [chat_integration.md](chat_integration.md).
+Détails complets : [docs/architecture.md](docs/architecture.md), [docs/chat_integration.md](docs/chat_integration.md).
 
 ---
 
@@ -265,7 +267,7 @@ git tag -a v0.1.0 -m "MVP simulation — fin Phase 2"
 git push origin v0.1.0
 ```
 
-Correspondance avec la [roadmap](roadmap.md) :
+Correspondance avec la [roadmap](docs/roadmap.md) :
 
 - `v0.1` → fin Phase 2 (MVP simulation)
 - `v0.2` → fin Phase 3 (chat intégré)

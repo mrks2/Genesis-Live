@@ -22,7 +22,7 @@ labels: enhancement
 - **Effort de développement** : S / M / L
 
 ## Phase roadmap cible
-<!-- Voir roadmap.md. Exemple : Phase 4 (Extension des âges) -->
+<!-- Voir docs/roadmap.md. Exemple : Phase 4 (Extension des âges) -->
 
 ## Références lore / cohérence
 <!-- Liens vers les sections de doc qui justifient ou contraignent cette feature -->

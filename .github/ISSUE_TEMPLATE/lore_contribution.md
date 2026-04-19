@@ -15,7 +15,7 @@ labels: lore
 - [ ] Autre : _______
 
 ## Contenu proposé
-<!-- Copier-coller le texte prêt à être intégré dans genesis_live_lore.md -->
+<!-- Copier-coller le texte prêt à être intégré dans docs/genesis_live_lore.md -->
 
 ## Section cible
 <!-- Dans quel fichier et quelle section l'ajouter ? -->
@@ -35,5 +35,5 @@ labels: lore
 
 ## Si nouveau mécanisme
 
-- [ ] Impact sur `simulation_rules.md` identifié
-- [ ] Impact sur `genesis_live_commands.md` identifié
+- [ ] Impact sur `docs/simulation_rules.md` identifié
+- [ ] Impact sur `docs/genesis_live_commands.md` identifié

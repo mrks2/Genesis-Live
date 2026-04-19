@@ -18,8 +18,8 @@ Merci de ton intérêt pour Genesis Live. Ce document explique comment contribue
 
 ## Avant de commencer
 
-1. **Lis la [roadmap](roadmap.md)** pour comprendre la phase actuelle du projet. Une contribution qui correspond à la phase en cours a beaucoup plus de chances d'être intégrée rapidement.
-2. **Lis la [philosophie du projet](genesis_live_lore.md#philosophie-du-monde)**. Genesis Live a des principes forts (émergence, persistance, pacte silencieux avec les viewers) — les contributions doivent s'aligner avec.
+1. **Lis la [roadmap](docs/roadmap.md)** pour comprendre la phase actuelle du projet. Une contribution qui correspond à la phase en cours a beaucoup plus de chances d'être intégrée rapidement.
+2. **Lis la [philosophie du projet](docs/genesis_live_lore.md#philosophie-du-monde)**. Genesis Live a des principes forts (émergence, persistance, pacte silencieux avec les viewers) — les contributions doivent s'aligner avec.
 3. **Regarde les [issues ouvertes](https://github.com/mrks2/Genesis-Live/issues)** et les [pull requests en cours](https://github.com/mrks2/Genesis-Live/pulls) pour éviter les doublons.
 4. **Pour les gros changements**, ouvre d'abord une issue « discussion » avant d'écrire du code ou de gros volumes de doc. Ça évite les efforts perdus.
 
@@ -135,7 +135,7 @@ npm run dev            # lancer en mode développement
 
 ### Standards de code
 
-Lire [coding_best_practices.md](coding_best_practices.md) en entier **avant** la première PR. Les règles clés :
+Lire [coding_best_practices.md](docs/coding_best_practices.md) en entier **avant** la première PR. Les règles clés :
 
 - **Fonctions courtes et focalisées** (20-30 lignes max, une seule responsabilité)
 - **Noms explicites**, pas d'abréviations obscures
@@ -186,7 +186,7 @@ La documentation est **aussi importante que le code**. Un bon changement de doc 
 1. **Cohérence entre les 12 MDs** : si tu modifies un concept dans un fichier, vérifie les références dans les autres (ex: modifier la durée d'un âge dans `simulation_rules.md` implique de vérifier `genesis_live_lore.md` et `roadmap.md`)
 2. **Liens markdown** : toujours utiliser la syntaxe relative `[texte](fichier.md#ancre)` pour que les liens marchent sur GitHub **et** dans les IDEs
 3. **Exemples concrets** : un bloc de code, un tableau, une commande valent mieux qu'un paragraphe abstrait
-4. **Pas de jargon non expliqué** : la première occurrence d'un terme spécifique doit être définie ou renvoyer au [Glossaire](genesis_live_lore.md#glossaire)
+4. **Pas de jargon non expliqué** : la première occurrence d'un terme spécifique doit être définie ou renvoyer au [Glossaire](docs/genesis_live_lore.md#glossaire)
 
 ### Typos et petits fixes
 
@@ -204,7 +204,7 @@ Ouvrir une issue `discussion` d'abord. Sinon tu risques de réécrire 500 lignes
 
 ## Contribuer au lore
 
-Le [lore](genesis_live_lore.md) est le cœur narratif. Les contributions de lore sont précieuses **mais exigeantes** :
+Le [lore](docs/genesis_live_lore.md) est le cœur narratif. Les contributions de lore sont précieuses **mais exigeantes** :
 
 ### Ce qui est bienvenu
 
@@ -217,9 +217,9 @@ Le [lore](genesis_live_lore.md) est le cœur narratif. Les contributions de lore
 ### Ce qui ne passera pas
 
 - Contenu qui contredit la cosmologie établie (VOX = chat, 7 âges, cycle → apocalypse → renaissance)
-- Éléments trop explicites ou « expliquants » (le mystère est structurel — voir [§mystère non résolu](genesis_live_lore.md#le-mystère-non-résolu))
+- Éléments trop explicites ou « expliquants » (le mystère est structurel — voir [§mystère non résolu](docs/genesis_live_lore.md#le-mystère-non-résolu))
 - Références directes à notre monde réel (pas de mention d'années terrestres, de pays, de marques)
-- Contenu humoristique / 4ème mur systématique (reste réservé aux [commandes cachées](genesis_live_commands.md#commandes-cachées--secrètes))
+- Contenu humoristique / 4ème mur systématique (reste réservé aux [commandes cachées](docs/genesis_live_commands.md#commandes-cachées--secrètes))
 
 ### Format
 
@@ -235,15 +235,15 @@ Tout ajout de lore doit :
 
 ### Graphiques
 
-- **Style obligatoire** : pixel art, palette limitée à [color_palette.md](color_palette.md) (64 couleurs officielles)
-- **Tailles** : selon [render_spec.md](render_spec.md) (sprites 16×16, 32×32, tuiles iso 32×16)
+- **Style obligatoire** : pixel art, palette limitée à [color_palette.md](docs/color_palette.md) (64 couleurs officielles)
+- **Tailles** : selon [render_spec.md](docs/render_spec.md) (sprites 16×16, 32×32, tuiles iso 32×16)
 - **Format** : PNG avec transparence, nommé `<catégorie>_<nom>_<variante>.png` (ex: `species_milavirex_idle.png`)
 - **Source** : fournir le fichier source (Aseprite `.ase` / `.aseprite` de préférence)
 - **License** : tu certifies en contribuant que l'asset est original ou sous licence compatible (CC0, CC-BY, MIT-like)
 
 ### Audio
 
-- **Conformité** : [audio_design.md](audio_design.md) (normalisation -14 LUFS, no stroboscopique, respect des stems)
+- **Conformité** : [audio_design.md](docs/audio_design.md) (normalisation -14 LUFS, no stroboscopique, respect des stems)
 - **Format** :
   - SFX : WAV 44.1 kHz 16-bit
   - Musique : WAV ou OGG Vorbis (~200 kbps) stéréo
@@ -292,7 +292,7 @@ Les violations peuvent entraîner un ban du repo sans préavis. Pour signaler un
 
 ## Remerciements
 
-Chaque contribution — qu'elle soit d'une ligne ou de mille — fait avancer Genesis Live. Les contributeurs seront listés dans le fichier `CREDITS.md` (créé au premier merge externe), et les viewers les plus actifs du stream verront leurs pseudos passer dans les **mythes des cycles** à travers le mécanisme de [pseudo-lineage](genesis_live_lore.md#glossaire).
+Chaque contribution — qu'elle soit d'une ligne ou de mille — fait avancer Genesis Live. Les contributeurs seront listés dans le fichier `CREDITS.md` (créé au premier merge externe), et les viewers les plus actifs du stream verront leurs pseudos passer dans les **mythes des cycles** à travers le mécanisme de [pseudo-lineage](docs/genesis_live_lore.md#glossaire).
 
 Merci.
 

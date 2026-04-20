@@ -38,11 +38,47 @@ describe("GET /", () => {
   });
 });
 
-describe("GET /unknown", () => {
+describe("404 handler", () => {
   const app = createHttpApp();
 
-  it("returns 404 on unknown routes", async () => {
+  it("returns 404 JSON on unknown GET route", async () => {
     const res = await request(app).get("/this-does-not-exist");
     expect(res.status).toBe(404);
+    expect(res.headers["content-type"]).toMatch(/application\/json/);
+    expect(res.body).toMatchObject({
+      error: "not_found",
+      message: expect.stringContaining("/this-does-not-exist")
+    });
+  });
+
+  it("returns 404 JSON on unknown POST route with method in message", async () => {
+    const res = await request(app).post("/nope").send({});
+    expect(res.status).toBe(404);
+    expect(res.body.message).toContain("POST");
+  });
+});
+
+describe("error handler", () => {
+  const app = createHttpApp();
+
+  it("returns 400 JSON when body is malformed", async () => {
+    const res = await request(app)
+      .post("/")
+      .set("Content-Type", "application/json")
+      .send("{not valid json");
+    expect(res.status).toBe(400);
+    expect(res.headers["content-type"]).toMatch(/application\/json/);
+    expect(res.body.error).toBeDefined();
+    expect(res.body.message).toBeDefined();
+  });
+
+  it("returns 413 JSON when body exceeds 100kb limit", async () => {
+    const huge = "x".repeat(200_000);
+    const res = await request(app)
+      .post("/")
+      .set("Content-Type", "application/json")
+      .send(JSON.stringify({ payload: huge }));
+    expect(res.status).toBe(413);
+    expect(res.body.error).toBeDefined();
   });
 });

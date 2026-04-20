@@ -1,5 +1,7 @@
 import express, { type Express } from "express";
 import { healthRouter } from "../routes/health.js";
+import { notFoundHandler } from "../middleware/notFoundHandler.js";
+import { errorHandler } from "../middleware/errorHandler.js";
 
 export function createHttpApp(): Express {
   const app = express();
@@ -15,6 +17,9 @@ export function createHttpApp(): Express {
       docs: "https://github.com/mrks2/Genesis-Live"
     });
   });
+
+  app.use(notFoundHandler);
+  app.use(errorHandler);
 
   return app;
 }
